@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Interactive Terraform learning platform for beginners, advanced learners, production engineers, and interview preparation.">
+<title>Terraform Learning Platform</title>
+<link rel="stylesheet" href="terraform-cheatsheet.css">
+</head>
+<body>
+<header class="site-header">
+<div class="wrap">
+  <div class="brand-row">
+    <div>
+      <div class="brand-kicker">INFRASTRUCTURE AS CODE • LEARNING PLATFORM</div>
+      <h1>Terraform Learning Platform</h1>
+      <p class="subtitle">Learn Terraform from beginner fundamentals to advanced, production-ready concepts with explanations, examples, interview scenarios, and interactive practice.</p>
+    </div>
+    <div class="header-badge"><span>53+</span><small>concepts</small></div>
+  </div>
+  <div class="toolbar">
+    <label class="search-box"><span>⌕</span><input id="search" autocomplete="off" placeholder="Search concepts: moved, state lock, dynamic, import, provider..."><kbd>/</kbd></label>
+    <select id="level" aria-label="Filter by level">
+      <option value="all">All levels</option><option value="Core">Core</option><option value="Advanced">Advanced</option><option value="Production">Production</option><option value="Interview Trap">Interview Trap</option>
+    </select>
+    <button id="expandAll">Expand all</button><button id="collapseAll">Collapse all</button><button id="resetProgress" class="danger-btn">Reset progress</button>
+  </div>
+  <nav class="tabs" id="tabs" aria-label="Terraform categories"></nav>
+</div>
+</header>
+<main class="wrap">
+<section class="progress-card card">
+  <div class="progress-top"><div><p class="eyebrow">YOUR LEARNING PROGRESS</p><h2><span id="completedConcepts">0</span> / <span id="totalConcepts">0</span> completed</h2></div><strong id="progressPercent">0%</strong></div>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+  <p class="small" id="progressText">0 / 0 concepts completed</p>
+</section>
+<section id="content"></section>
+<section id="comparison" class="platform-section"></section>
+<section id="interview" class="platform-section"></section>
+<section id="quiz" class="platform-section"></section>
+<footer class="footer"><strong>Terraform Learning Platform</strong><span>Learn it. Practice it. Understand how it works in production.</span></footer>
+</main>
+<script src="terraform-cheatsheet.js" defer></script>
+</body>
+</html>
