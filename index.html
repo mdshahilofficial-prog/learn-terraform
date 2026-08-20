@@ -103,7 +103,7 @@
         /* CATEGORY FILTER PILLS */
         .pills-container {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
             justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 2rem;
@@ -113,14 +113,14 @@
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
             color: var(--text-secondary);
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 30px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             transition: all 0.3s;
         }
 
@@ -135,11 +135,11 @@
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
             color: var(--text-primary);
-            padding: 0.6rem 1.2rem;
+            padding: 0.5rem 1rem;
             border-radius: 30px;
             outline: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* PROGRESS TRACKER */
@@ -196,6 +196,22 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .badge-category {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+            border: 1px solid var(--success);
+            font-weight: 600;
         }
 
         .badge-level {
@@ -320,21 +336,33 @@
     <div class="search-section">
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, or code (e.g. module, state, S3, count)..." oninput="renderConcepts()">
+            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, or code across all 16 modules..." oninput="renderConcepts()">
         </div>
     </div>
 
-    <!-- INTERACTIVE PILL NAVIGATION -->
+    <!-- INTERACTIVE PILL NAVIGATION (16 CATEGORIES) -->
     <div class="pills-container">
         <button class="pill-btn active" onclick="filterCategory('all', this)"><i class="fa-solid fa-globe"></i> All Modules</button>
-        <button class="pill-btn" onclick="filterCategory('Foundations', this)"><i class="fa-solid fa-bolt"></i> Foundations</button>
-        <button class="pill-btn" onclick="filterCategory('State & Architecture', this)"><i class="fa-solid fa-database"></i> State & Arch</button>
-        <button class="pill-btn" onclick="filterCategory('Modules & Code Structure', this)"><i class="fa-solid fa-box-open"></i> Modules</button>
-        <button class="pill-btn" onclick="filterCategory('Advanced Logic', this)"><i class="fa-solid fa-code-branch"></i> Advanced Logic</button>
-        <button class="pill-btn" onclick="filterCategory('Production & CI/CD', this)"><i class="fa-solid fa-shield-halved"></i> Production & CI/CD</button>
+        <button class="pill-btn" onclick="filterCategory('Fundamentals', this)">Fundamentals</button>
+        <button class="pill-btn" onclick="filterCategory('HCL & Configuration', this)">HCL & Config</button>
+        <button class="pill-btn" onclick="filterCategory('Resources', this)">Resources</button>
+        <button class="pill-btn" onclick="filterCategory('Variables & Outputs', this)">Variables & Outputs</button>
+        <button class="pill-btn" onclick="filterCategory('Data Sources', this)">Data Sources</button>
+        <button class="pill-btn" onclick="filterCategory('Expressions & Functions', this)">Expressions & Functions</button>
+        <button class="pill-btn" onclick="filterCategory('Meta-Arguments', this)">Meta-Arguments</button>
+        <button class="pill-btn" onclick="filterCategory('Modules', this)">Modules</button>
+        <button class="pill-btn" onclick="filterCategory('State', this)">State</button>
+        <button class="pill-btn" onclick="filterCategory('Backend & Remote State', this)">Backend & Remote State</button>
+        <button class="pill-btn" onclick="filterCategory('Workspaces', this)">Workspaces</button>
+        <button class="pill-btn" onclick="filterCategory('Advanced Terraform', this)">Advanced Terraform</button>
+        <button class="pill-btn" onclick="filterCategory('Terraform on Azure', this)">Terraform on Azure</button>
+        <button class="pill-btn" onclick="filterCategory('CI/CD', this)">CI/CD</button>
+        <button class="pill-btn" onclick="filterCategory('Security & Best Practices', this)">Security & Best Practices</button>
+        <button class="pill-btn" onclick="filterCategory('Production', this)">Production</button>
+        <button class="pill-btn" onclick="filterCategory('Interview Preparation', this)">Interview Prep</button>
 
         <select id="level-filter" class="level-select" onchange="renderConcepts()">
-            <option value="all">All Difficulty Levels</option>
+            <option value="all">All Levels</option>
             <option value="Core">Core</option>
             <option value="Advanced">Advanced</option>
             <option value="Production">Production</option>
@@ -348,7 +376,7 @@
             <div class="progress-info">
                 <div>
                     <strong style="color:var(--text-secondary); font-size:0.8rem; text-transform:uppercase; letter-spacing: 1px;">Your Progress</strong>
-                    <h3 id="progress-text" style="color: #fff; font-size: 1.2rem; margin-top: 0.2rem;">0 / 53 completed</h3>
+                    <h3 id="progress-text" style="color: #fff; font-size: 1.2rem; margin-top: 0.2rem;">0 / 0 completed</h3>
                 </div>
                 <strong id="progress-percent" style="font-size: 1.8rem; color: var(--accent);">0%</strong>
             </div>
@@ -373,7 +401,7 @@
             {
                 id: "c1",
                 title: "1. Declarative Paradigm & State Alignment",
-                category: "Foundations",
+                category: "Fundamentals",
                 level: "Core",
                 summary: "Understanding how Terraform uses a declarative model to reach target infrastructure states without manual steps.",
                 whatIsIt: "In a declarative model, you define WHAT end-state infrastructure you want created rather than writing procedural scripts describing HOW to create it step-by-step.",
@@ -385,62 +413,218 @@
             {
                 id: "c2",
                 title: "2. HCL Syntax & Block Hierarchy",
-                category: "Foundations",
+                category: "HCL & Configuration",
                 level: "Core",
                 summary: "Mastering HashiCorp Configuration Language syntax, blocks, labels, and argument structure.",
                 whatIsIt: "HCL (HashiCorp Configuration Language) is a human-readable, structured configuration language built specifically for infrastructure configuration.",
                 mentalModel: "HCL structures follow a standard pattern: Block Type -> Block Label 1 -> Block Label 2 -> Arguments inside braces `{}`.",
                 codeExample: `# Syntax: <BLOCK TYPE> "<TYPE LABEL>" "<NAME LABEL>" {}\nresource "aws_instance" "web_server" {\n  ami           = "ami-0c55b159cbfafe1f0"\n  instance_type = "t3.micro"\n}`,
-                productionNote: "Run \`terraform fmt\` across your workspace before opening Pull Requests to automatically reformat syntax to standard indentations.",
-                interviewTrap: "HCL syntax allows block duplication, but running \`plan\` fails if duplicate block addresses point to identical cloud resources."
+                productionNote: "Run `terraform fmt` across your workspace before opening Pull Requests to automatically reformat syntax to standard indentations.",
+                interviewTrap: "HCL syntax allows block duplication, but running `plan` fails if duplicate block addresses point to identical cloud resources."
             },
             {
                 id: "c3",
-                title: "3. Provider Architecture & gRPC Plugins",
-                category: "Foundations",
+                title: "3. Provider Architecture & Plugin Execution",
+                category: "Fundamentals",
                 level: "Core",
                 summary: "How Terraform translates HCL declarations into cloud API calls using gRPC provider plugins.",
                 whatIsIt: "Providers are executable plugins that translate generic Terraform operations into explicit API calls against AWS, Azure, GCP, or custom services.",
                 mentalModel: "Providers act as API translators. Terraform Core passes execution requests down to the provider plugin over gRPC sockets.",
-                codeExample: `terraform {\n  required_providers {\n    aws = {\n      source  = "hashicorp/aws"\n      version = "~> 5.0"\n    }\n  }\n}\n\nprovider "aws" {\n  region = "us-east-1"\n}`,
-                productionNote: "Always pin provider versions strictly using constraint operators (\`~> 5.0\`) to avoid pipeline breaks when provider updates publish.",
+                codeExample: `terraform {\n  required_providers {\n    azurerm = {\n      source  = "hashicorp/azurerm"\n      version = "~> 3.0"\n    }\n  }\n}\n\nprovider "azurerm" {\n  features {}\n}`,
+                productionNote: "Always pin provider versions strictly using constraint operators (`~> 3.0`) to avoid pipeline breaks when provider updates publish.",
                 interviewTrap: "Providers run as isolated binaries separate from Terraform Core, communicating over gRPC loopback interfaces."
             },
             {
                 id: "c4",
-                title: "4. Modules & Reusable Code Enclaves",
-                category: "Modules & Code Structure",
+                title: "4. Resource Lifecycle & Creation Dependencies",
+                category: "Resources",
+                level: "Core",
+                summary: "Defining managed resources, implicit dependency graphs, and resource references.",
+                whatIsIt: "A resource block describes one or more infrastructure objects such as virtual networks, compute instances, or DNS records.",
+                mentalModel: "Terraform creates a Directed Acyclic Graph (DAG) automatically by reading references between resources to determine execution order.",
+                codeExample: `resource "aws_vpc" "main" {\n  cidr_block = "10.0.0.0/16"\n}\n\nresource "aws_subnet" "public" {\n  vpc_id     = aws_vpc.main.id # Implicit dependency created here\n  cidr_block = "10.0.1.0/24"\n}`,
+                productionNote: "Avoid forcing manual execution ordering unless necessary; let Terraform construct its implicit DAG graph natively.",
+                interviewTrap: "What happens if a resource creation fails midway? Terraform records created infrastructure in state before halting execution."
+            },
+            {
+                id: "c5",
+                title: "5. Input Variables & Validation Rules",
+                category: "Variables & Outputs",
+                level: "Core",
+                summary: "Parameterizing configurations using type constraints, defaults, and custom validation blocks.",
+                whatIsIt: "Input variables serve as parameters for a Terraform module, allowing configurations to be customized without altering source code.",
+                mentalModel: "Input variables are function arguments passed into your infrastructure module.",
+                codeExample: `variable "environment" {\n  type        = string\n  default     = "dev"\n  description = "Target deployment stage"\n\n  validation {\n    condition     = contains(["dev", "stage", "prod"], var.environment)\n    error_message = "Environment must be dev, stage, or prod."\n  }\n}`,
+                productionNote: "Always define strict type constraints and descriptive text for all input variables in production modules.",
+                interviewTrap: "Order of precedence for variable values: `-var`/`-var-file` CLI overrides > `*.auto.tfvars` > `terraform.tfvars` > `TF_VAR_` environment variables > `default`."
+            },
+            {
+                id: "c6",
+                title: "6. Outputs & Cross-Stack Exposure",
+                category: "Variables & Outputs",
+                level: "Core",
+                summary: "Exporting resource attributes for parent modules, CLI consumers, or remote state queries.",
+                whatIsIt: "Output values expose structural resource attributes to child modules, external pipelines, or root execution logs.",
+                mentalModel: "Output values act like return values from a function call.",
+                codeExample: `output "db_endpoint" {\n  value       = aws_db_instance.primary.endpoint\n  description = "Connection endpoint for relational DB"\n  sensitive   = true\n}`,
+                productionNote: "Mark sensitive outputs with `sensitive = true` to prevent secrets from rendering in plain text during CI pipeline logs.",
+                interviewTrap: "Setting `sensitive = true` hides values from stdout CLI logs, but does NOT encrypt or hide values inside the `.tfstate` file."
+            },
+            {
+                id: "c7",
+                title: "7. Data Sources & Unmanaged Infrastructure Ingestion",
+                category: "Data Sources",
+                level: "Core",
+                summary: "Querying pre-existing cloud resources without taking direct lifecycle management ownership.",
+                whatIsIt: "Data sources allow Terraform to fetch read-only attributes from existing cloud resources created outside the current workspace.",
+                mentalModel: "Data sources are read-only database queries performed live against target cloud provider APIs.",
+                codeExample: `data "aws_ami" "ubuntu" {\n  most_recent = true\n  owners      = ["099720109477"] # Canonical\n\n  filter {\n    name   = "name"\n    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]\n  }\n}`,
+                productionNote: "Use data sources to reference shared platform infrastructure (like central VPCs or KMS Keys) maintained by core platform teams.",
+                interviewTrap: "Data sources perform real-time API reads during `plan`. If a target resource does not exist, `plan` fails before any changes can be applied."
+            },
+            {
+                id: "c8",
+                title: "8. Expressions, Conditionals & Built-in Functions",
+                category: "Expressions & Functions",
+                level: "Core",
+                summary: "Manipulating data types using built-in functions, ternary operators, and string interpolation.",
+                whatIsIt: "Terraform includes built-in functions (like `lookup`, `merge`, `flatten`) to transform and evaluate dynamic infrastructure expressions.",
+                mentalModel: "Functions are pure utility helpers used directly within parameter value declarations.",
+                codeExample: `locals {\n  env_prefix = lower(var.environment)\n  instance_count = var.environment == "prod" ? 3 : 1\n  tags = merge(var.common_tags, { Env = local.env_prefix })\n}`,
+                productionNote: "User-defined functions are not supported in HCL. You must rely strictly on Terraform's native built-in function library.",
+                interviewTrap: "Can you write custom functions in Terraform? No. Custom logic must be constructed using native functions and ternary expressions."
+            },
+            {
+                id: "c9",
+                title: "9. Meta-Arguments: count vs for_each",
+                category: "Meta-Arguments",
+                level: "Advanced",
+                summary: "Selecting appropriate iteration operators to avoid index-shift resource recreations.",
+                whatIsIt: "`count` iterates using integer indices, while `for_each` iterates over unique string keys in sets or maps.",
+                mentalModel: "`count` behaves like an indexed array (`list[0]`). `for_each` behaves like a key-value map (`map[\"us-east-1\"]`).",
+                codeExample: `resource "aws_iam_user" "team" {\n  for_each = toset(["alice", "bob", "charlie"])\n  name     = each.key\n}`,
+                productionNote: "Prefer `for_each` over `count` when managing collections where items might be inserted or removed from the middle of a list.",
+                interviewTrap: "Deleting the first element in a `count` list shifts all subsequent index positions, forcing Terraform to destroy and recreate downstream resources."
+            },
+            {
+                id: "c10",
+                title: "10. Modules & Reusable Code Enclaves",
+                category: "Modules",
                 level: "Core",
                 summary: "Encapsulating resources into reusable, version-controlled modules to prevent code duplication.",
                 whatIsIt: "A Terraform module is a set of configuration files grouped in a folder that exposes input variables and returns output values.",
                 mentalModel: "Modules are functions for infrastructure. You pass input arguments into the module, and it returns created resource outputs.",
                 codeExample: `module "vpc_network" {\n  source = "./modules/vpc"\n  \n  cidr_block          = "10.0.0.0/16"\n  public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]\n  environment         = "production"\n}`,
-                productionNote: "Store reusable company modules in versioned git repositories so environments can pin to explicit tag versions (\`?ref=v1.2.0\`).",
-                interviewTrap: "Resources declared inside child modules cannot be targeted directly without specifying full module paths (\`module.vpc_network.aws_subnet.public[0]\`)."
+                productionNote: "Store reusable modules in versioned git repositories so environments can pin to explicit release tags (`?ref=v1.2.0`).",
+                interviewTrap: "Resources declared inside child modules cannot be targeted directly without specifying full module paths (`module.vpc_network.aws_subnet.public[0]`)."
             },
             {
-                id: "c5",
-                title: "5. Remote Backends & State Locks",
-                category: "State & Architecture",
+                id: "c11",
+                title: "11. State Architecture & Desired vs Actual State",
+                category: "State",
+                level: "Core",
+                summary: "How Terraform records real-world resource bindings and mapping IDs in tfstate files.",
+                whatIsIt: "State is a JSON file acting as a single source of truth mapping your code resource declarations to actual real-world cloud resource IDs.",
+                mentalModel: "State is a translator database linking `aws_instance.web` to actual instance ID `i-0123456789abcdef0`.",
+                codeExample: `# State file excerpt showing resource-to-provider binding\n{\n  "version": 4,\n  "terraform_version": "1.7.0",\n  "resources": [\n    {\n      "mode": "managed",\n      "type": "aws_s3_bucket",\n      "name": "assets",\n      "provider": "provider[\\\"registry.terraform.io/hashicorp/aws\\\"]"\n    }\n  ]\n}`,
+                productionNote: "Never edit raw state files manually. Always use safe CLI tools like `terraform state mv` or `terraform state rm`.",
+                interviewTrap: "If state is deleted, running `apply` will attempt to recreate all infrastructure, resulting in 'Resource Already Exists' cloud API conflicts."
+            },
+            {
+                id: "c12",
+                title: "12. Remote Backends & State Lock Mechanisms",
+                category: "Backend & Remote State",
                 level: "Advanced",
-                summary: "Securing tfstate files centrally using encrypted S3 storage and DynamoDB locking.",
+                summary: "Securing tfstate files centrally using encrypted S3 storage and DynamoDB state locks.",
                 whatIsIt: "A backend defines where Terraform stores its state file. Remote backends keep state centralized and locked during concurrent team applies.",
-                mentalModel: "Think of a central database lock. When developer A runs \`apply\`, a lock record prevents developer B from making conflicting writes.",
+                mentalModel: "Think of a central database lock. When developer A runs `apply`, a lock record prevents developer B from writing conflicting changes.",
                 codeExample: `terraform {\n  backend "s3" {\n    bucket         = "company-tf-state"\n    key            = "prod/terraform.tfstate"\n    region         = "us-east-1"\n    dynamodb_table = "terraform-locks"\n  }\n}`,
                 productionNote: "Enable versioning and server-side encryption on your state storage buckets for instant recovery during corruption events.",
-                interviewTrap: "Forcefully unlocking state locks (\`force-unlock\`) while another deployment is running risks state file corruption."
+                interviewTrap: "Forcefully unlocking state locks (`force-unlock`) while another deployment pipeline is actively writing risks catastrophic state corruption."
             },
             {
-                id: "c6",
-                title: "6. Advanced Iteration: count vs for_each",
-                category: "Advanced Logic",
+                id: "c13",
+                title: "13. Workspaces vs Multi-Folder Isolation",
+                category: "Workspaces",
                 level: "Advanced",
-                summary: "Selecting appropriate iteration operators to avoid array-index shift resource recreations.",
-                whatIsIt: "\`count\` iterates based on integer indexes, while \`for_each\` iterates over unique string keys in sets or maps.",
-                mentalModel: "\`count\` acts like a standard indexed array (\`list[0]\`). \`for_each\` acts like a key-value dictionary (\`map[\"us-east-1\"]\`).",
-                codeExample: `resource "aws_iam_user" "team" {\n  for_each = toset(["alice", "bob", "charlie"])\n  name     = each.key\n}`,
-                productionNote: "Prefer \`for_each\` over \`count\` when managing collections that may experience middle-element deletions.",
-                interviewTrap: "Deleting the first element in a \`count\` list shifts all subsequent index positions, forcing Terraform to recreate all downstream resources."
+                summary: "Evaluating state isolation strategies for multi-environment infrastructure.",
+                whatIsIt: "Workspaces allow multiple state files to exist within the same configuration directory using the `terraform.workspace` variable.",
+                mentalModel: "Workspaces are like local Git branches for your `.tfstate` backend file.",
+                codeExample: `resource "aws_s3_bucket" "env_bucket" {\n  bucket = "company-assets-\${terraform.workspace}"\n}`,
+                productionNote: "For production platforms, prefer separate directory structures and repository branches over CLI workspaces to strictly enforce blast-radius isolation.",
+                interviewTrap: "Workspaces share the same code base and provider configuration; using them for production vs development can accidentally expose production to dev breaking changes."
+            },
+            {
+                id: "c14",
+                title: "14. Dynamic Blocks & Dynamic HCL Construction",
+                category: "Advanced Terraform",
+                level: "Advanced",
+                summary: "Constructing repeating nested configuration blocks programmatically using dynamic expressions.",
+                whatIsIt: "`dynamic` blocks allow you to generate repeated nested blocks (like ingress security group rules) using iterable expressions.",
+                mentalModel: "A `dynamic` block is a `for` loop designed specifically for nested block attributes.",
+                codeExample: `resource "aws_security_group" "sg" {\n  name = "app-sg"\n\n  dynamic "ingress" {\n    for_each = var.service_ports\n    content {\n      from_port   = ingress.value\n      to_port     = ingress.value\n      protocol    = "tcp"\n      cidr_blocks = ["10.0.0.0/8"]\n    }\n  }\n}`,
+                productionNote: "Overusing dynamic blocks makes code difficult to audit. Use them sparingly for complex nested configurations.",
+                interviewTrap: "Can you nest `dynamic` blocks inside other `dynamic` blocks? Yes, but it significantly reduces readability and maintainability."
+            },
+            {
+                id: "c15",
+                title: "15. Azure Resource Management with `azurerm`",
+                category: "Terraform on Azure",
+                level: "Core",
+                summary: "Provisioning Resource Groups, VNets, and Azure App Services safely using provider features.",
+                whatIsIt: "The `azurerm` provider interacts with the Azure Resource Manager (ARM) API to manage Azure cloud infrastructure.",
+                mentalModel: "Translates standard HCL resource blocks into REST API requests targeting the Azure Resource Manager endpoint.",
+                codeExample: `resource "azurerm_resource_group" "rg" {\n  name     = "rg-production-eastus"\n  location = "East US"\n}\n\nresource "azurerm_virtual_network" "vnet" {\n  name                = "vnet-production"\n  resource_group_name = azurerm_resource_group.rg.name\n  location            = azurerm_resource_group.rg.location\n  address_space       = ["10.0.0.0/16"]\n}`,
+                productionNote: "Always declare the required `features {}` block in the `azurerm` provider block; omitting it causes initial execution errors.",
+                interviewTrap: "Why is the `features {}` block mandatory in the `azurerm` provider? It configures custom provider behavior for resource deletion locks and soft deletes."
+            },
+            {
+                id: "c16",
+                title: "16. Automated CI/CD Pipelines with GitHub Actions",
+                category: "CI/CD",
+                level: "Production",
+                summary: "Automating validation, plan generation, and approval-gated applies in continuous integration pipelines.",
+                whatIsIt: "Running Terraform within automated CI/CD tools to enforce pull-request reviews, automated formatting checks, and security scans.",
+                mentalModel: "Eliminates 'works on my machine' deployments by executing `fmt`, `validate`, `plan`, and `apply` inside isolated pipeline containers.",
+                codeExample: `# GitHub Actions Workflow Step Excerpt\n- name: Terraform Plan\n  run: terraform plan -no-color -out=tfplan\n- name: Terraform Apply\n  if: github.ref == 'refs/heads/main' && github.event_name == 'push'\n  run: terraform apply -input=false tfplan`,
+                productionNote: "Always generate a saved plan file (`-out=tfplan`) during the PR validation phase and apply that exact plan file in production.",
+                interviewTrap: "What happens if you run `terraform apply` in CI/CD without specifying a plan file? The pipeline may apply state changes that differ from the approved pull request review."
+            },
+            {
+                id: "c17",
+                title: "17. Secret Management & State Masking Best Practices",
+                category: "Security & Best Practices",
+                level: "Production",
+                summary: "Preventing plain-text secret exposure in git repositories and CI/CD logging streams.",
+                whatIsIt: "Strategies for injecting sensitive credentials (passwords, tokens, keys) safely without hardcoding them into version control.",
+                mentalModel: "Treat HCL files as public source code; pull runtime secrets dynamically from KMS, Vault, or Environment Variables.",
+                codeExample: `variable "db_password" {\n  type      = string\n  sensitive = true\n}\n\nresource "aws_db_instance" "db" {\n  allocated_storage = 20\n  password          = var.db_password # Injected via TF_VAR_db_password\n}`,
+                productionNote: "Even if marked `sensitive = true`, values ARE written in plain text to `.tfstate`. Restrict state file access via strict cloud IAM policies.",
+                interviewTrap: "Does marking a variable as `sensitive` encrypt it in the `.tfstate` file? No. It only prevents the value from displaying in CLI terminal output."
+            },
+            {
+                id: "c18",
+                title: "18. Production Drift Detection & State Reconciliation",
+                category: "Production",
+                level: "Production",
+                summary: "Detecting and resolving out-of-band changes made manually in the cloud console.",
+                whatIsIt: "Drift occurs when physical cloud resources are changed out-of-band without updating the underlying Terraform configuration.",
+                mentalModel: "Terraform inspects real-world infrastructure during `plan`, compares it to state, and proposes modifications to align real-world resources to your code.",
+                codeExample: `# Execute refresh-only plan to inspect real-world drift without modifying state\nterraform plan -refresh-only`,
+                productionNote: "Schedule daily automated `terraform plan -detailed-exitcode` cron jobs to receive alerts whenever production configuration drift occurs.",
+                interviewTrap: "How does `terraform refresh` differ from `terraform plan`? `refresh` updates state to match real infrastructure; `plan` compares code to state and real infrastructure."
+            },
+            {
+                id: "c19",
+                title: "19. High-Frequency Interview Scenario: State Lock & Corruption Recovery",
+                category: "Interview Preparation",
+                level: "Interview Trap",
+                summary: "Resolving deadlocks, interrupted applies, and corrupted `.tfstate` backup files under pressure.",
+                whatIsIt: "A core scenario testing an engineer's ability to safely clear stale state locks and restore corrupted state files without causing downtime.",
+                mentalModel: "First verify no active deployment pipelines are running; then safely clear stale lock IDs or pull prior state backups.",
+                codeExample: `# Step 1: Force unlock stale lock ID (ONLY after verifying process deadlocks)\nterraform force-unlock <LOCK-ID>\n\n# Step 2: Push known good backup state if corruption occurred\nterraform state push backup.tfstate`,
+                productionNote: "Always keep cloud storage bucket versioning enabled on state buckets so prior state files can be restored instantly.",
+                interviewTrap: "Why is running `terraform force-unlock` dangerous? If another pipeline runner is actively applying changes, forcing an unlock will corrupt the state file."
             }
         ];
 
@@ -457,6 +641,7 @@
                 const matchesCategory = currentCategory === 'all' || c.category === currentCategory;
                 const matchesLevel = selectedLevel === 'all' || c.level === selectedLevel;
                 const matchesSearch = c.title.toLowerCase().includes(searchQuery) || 
+                                      c.category.toLowerCase().includes(searchQuery) ||
                                       c.summary.toLowerCase().includes(searchQuery) ||
                                       c.whatIsIt.toLowerCase().includes(searchQuery) ||
                                       c.codeExample.toLowerCase().includes(searchQuery);
@@ -469,7 +654,7 @@
                     <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                         <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; margin-bottom: 1rem;"></i>
                         <h3>No matching Terraform concepts found</h3>
-                        <p>Try searching for a different keyword like "state", "module", "S3", or "variables".</p>
+                        <p>Try searching for a different keyword like "state", "module", "S3", "Azure", or "variables".</p>
                     </div>`;
                 return;
             }
@@ -480,7 +665,10 @@
                 card.className = 'concept-card';
                 card.innerHTML = `
                     <div class="concept-card-header">
-                        <span class="badge-level">${item.level}</span>
+                        <div class="badge-container">
+                            <span class="badge-category">${item.category}</span>
+                            <span class="badge-level">${item.level}</span>
+                        </div>
                         <button class="complete-btn ${isDone ? 'done' : ''}" onclick="toggleComplete('${item.id}')">
                             ${isDone ? '<i class="fa-solid fa-check"></i> Completed' : 'Mark Completed'}
                         </button>
