@@ -30,10 +30,7 @@
             margin: 0 auto;
         }
 
-        /* HEADER SECTION */
-        header {
-            margin-bottom: 2rem;
-        }
+        header { margin-bottom: 2rem; }
 
         .header-top {
             display: flex;
@@ -53,17 +50,9 @@
             margin-bottom: 0.5rem;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
+        h1 { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
 
-        .header-desc {
-            color: var(--text-secondary);
-            max-width: 700px;
-            line-height: 1.5;
-        }
+        .header-desc { color: var(--text-secondary); max-width: 700px; line-height: 1.5; }
 
         .concept-count-badge {
             background: var(--bg-card);
@@ -74,26 +63,10 @@
             box-shadow: 0 4px 12px var(--accent-glow);
         }
 
-        .concept-count-badge span {
-            display: block;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--accent);
-        }
+        .concept-count-badge span { display: block; font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+        .concept-count-badge small { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; }
 
-        .concept-count-badge small {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        /* CONTROLS & CATEGORIES */
-        .controls {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
+        .controls { display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
 
         .controls select {
             background: var(--bg-card);
@@ -105,12 +78,7 @@
             cursor: pointer;
         }
 
-        .nav-categories {
-            display: flex;
-            gap: 0.5rem;
-            overflow-x: auto;
-            padding-bottom: 0.5rem;
-        }
+        .nav-categories { display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem; }
 
         .nav-btn {
             background: var(--bg-card);
@@ -123,13 +91,8 @@
             transition: all 0.2s;
         }
 
-        .nav-btn.active, .nav-btn:hover {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-        }
+        .nav-btn.active, .nav-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 
-        /* PROGRESS TRACKER */
         .progress-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
@@ -141,11 +104,7 @@
             gap: 0.75rem;
         }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        .progress-info { display: flex; justify-content: space-between; align-items: center; }
 
         .progress-bar-bg {
             background: var(--bg-dark);
@@ -162,12 +121,7 @@
             transition: width 0.3s ease;
         }
 
-        /* CONCEPTS LIST GRID */
-        .concepts-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+        .concepts-grid { display: flex; flex-direction: column; gap: 1.5rem; }
 
         .concept-card {
             background: var(--bg-card);
@@ -177,17 +131,9 @@
             transition: transform 0.2s, border-color 0.2s;
         }
 
-        .concept-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-        }
+        .concept-card:hover { border-color: var(--accent); transform: translateY(-2px); }
 
-        .concept-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
+        .concept-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
 
         .badge-level {
             font-size: 0.75rem;
@@ -198,50 +144,16 @@
             border: 1px solid var(--accent);
         }
 
-        .concept-card h2 {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
+        .concept-card h2 { font-size: 1.3rem; color: #fff; margin-bottom: 0.5rem; }
+        .concept-card p { color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; }
 
-        .concept-card p {
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.5;
-        }
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; margin-bottom: 1rem; }
 
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
+        @media (max-width: 768px) { .details-grid { grid-template-columns: 1fr; } }
 
-        @media (max-width: 768px) {
-            .details-grid { grid-template-columns: 1fr; }
-        }
-
-        .detail-box {
-            background: var(--bg-dark);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        .detail-box h4 {
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .detail-box p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
+        .detail-box { background: var(--bg-dark); padding: 1rem; border-radius: 8px; border: 1px solid var(--border); }
+        .detail-box h4 { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+        .detail-box p { font-size: 0.9rem; margin-bottom: 0; }
 
         .complete-btn {
             background: transparent;
@@ -254,18 +166,9 @@
             transition: all 0.2s;
         }
 
-        .complete-btn.done {
-            background: var(--success);
-            color: white;
-        }
+        .complete-btn.done { background: var(--success); color: white; }
 
-        footer {
-            margin-top: 3rem;
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
-        }
+        footer { margin-top: 3rem; text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); }
     </style>
 </head>
 <body>
@@ -278,7 +181,7 @@
                 <p class="header-desc">Learn Terraform from beginner fundamentals to advanced, production-ready concepts with explanations, examples, interview scenarios, and interactive practice.</p>
             </div>
             <div class="concept-count-badge">
-                <span id="total-count">3+</span>
+                <span id="total-count">53+</span>
                 <small>Concepts</small>
             </div>
         </div>
@@ -294,7 +197,10 @@
             <div class="nav-categories" id="category-nav">
                 <button class="nav-btn active" onclick="filterCategory('all')">All</button>
                 <button class="nav-btn" onclick="filterCategory('Foundations')">Foundations</button>
-                <button class="nav-btn" onclick="filterCategory('State Management')">State Management</button>
+                <button class="nav-btn" onclick="filterCategory('State & Architecture')">State & Architecture</button>
+                <button class="nav-btn" onclick="filterCategory('Modules & Code Structure')">Modules & Code Structure</button>
+                <button class="nav-btn" onclick="filterCategory('Production & CI/CD')">Production & CI/CD</button>
+                <button class="nav-btn" onclick="filterCategory('Advanced Logic')">Advanced Logic</button>
             </div>
         </div>
     </header>
@@ -325,42 +231,74 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-hcl.min.js"></script>
     <script>
         const CONCEPTS = [
-            {
-                id: "hcl-syntax",
-                title: "HCL Syntax & Structure",
-                category: "Foundations",
-                level: "Core",
-                summary: "HashiCorp Configuration Language structure and block definitions.",
-                whatIsIt: "HCL is a declarative syntax used to express cloud infrastructure state rather than procedural step-by-step code.",
-                mentalModel: "Think of HCL as a blueprint describing the desired final state of your infrastructure.",
-                codeExample: `resource "aws_s3_bucket" "example" {\n  bucket = "my-unique-bucket-name"\n  tags   = {\n    Environment = "Dev"\n  }\n}`,
-                productionNote: "Always keep block naming conventions consistent and lowercase across all team modules.",
-                interviewTrap: "Is Terraform imperative or declarative? Declarative, though execution flow depends on block dependencies."
-            },
-            {
-                id: "state-management",
-                title: "State Files & Remote Backends",
-                category: "State Management",
-                level: "Advanced",
-                summary: "Managing tfstate safely in team environments with concurrency locks.",
-                whatIsIt: "The Terraform state file correlates configuration code to real-world cloud infrastructure provider IDs.",
-                mentalModel: "The state file acts as the Single Source of Truth linking local code to active cloud resources.",
-                codeExample: `terraform {\n  backend "s3" {\n    bucket         = "tf-state-store"\n    key            = "prod/terraform.tfstate"\n    region         = "us-east-1"\n    dynamodb_table = "tf-locks"\n  }\n}`,
-                productionNote: "Never store plain-text secrets in terraform.tfstate without backend encryption enabled.",
-                interviewTrap: "What happens if state lock fails during apply? Execution aborts to prevent concurrent state corruption."
-            },
-            {
-                id: "variables-outputs",
-                title: "Variables & Output Values",
-                category: "Foundations",
-                level: "Core",
-                summary: "Parametrizing configurations using tfvars and outputs.",
-                whatIsIt: "Variables allow input parametrization across staging and production environments.",
-                mentalModel: "Variables are input arguments to a function; outputs are return values made available to other modules.",
-                codeExample: `variable "instance_type" {\n  type    = string\n  default = "t3.micro"\n}\n\noutput "server_ip" {\n  value = aws_instance.web.public_ip\n}`,
-                productionNote: "Mark sensitive output flags (`sensitive = true`) to prevent secret leakage in CI/CD logs.",
-                interviewTrap: "Variable evaluation priority order: CLI flags > .auto.tfvars > terraform.tfvars > Environment variables."
-            }
+            // Track 1: Foundations
+            { id: "c1", title: "1. Declarative Paradigm", category: "Foundations", level: "Core", summary: "Understanding how Terraform defines desired end states.", whatIsIt: "Terraform allows you to describe target infrastructure without specifying execution step sequences.", mentalModel: "Think of an order form at a restaurant vs cooking instructions.", codeExample: `resource "aws_s3_bucket" "b" {\n  bucket = "my-tf-test-bucket"\n}`, productionNote: "Focus on specifying clear end states rather than writing operational shell loops.", interviewTrap: "Is Terraform declarative or imperative? (Trap: Declarative state definition with localized imperative provisioners)." },
+            { id: "c2", title: "2. HCL Syntax & Structure", category: "Foundations", level: "Core", summary: "HashiCorp Configuration Language syntax, blocks, and arguments.", whatIsIt: "The configuration language used by Terraform to define resource schemes.", mentalModel: "A JSON-like structured data format optimized for human readability.", codeExample: `block_type "label_one" "label_two" {\n  key = "value"\n}`, productionNote: "Maintain consistent indentation using `terraform fmt` across all repository commits.", interviewTrap: "HCL syntax allows duplicate top-level block configurations; resolution order depends on resource attributes." },
+            { id: "c3", title: "3. Providers Architecture", category: "Foundations", level: "Core", summary: "How Terraform interacts with AWS, Azure, GCP, and custom APIs.", whatIsIt: "Plugins that translate HCL definitions into API calls to infrastructure targets.", mentalModel: "Translators converting generic configuration files into cloud API payloads.", codeExample: `terraform {\n  required_providers {\n    aws = {\n      source  = "hashicorp/aws"\n      version = "~> 5.0"\n    }\n  }\n}`, productionNote: "Always pin provider versions in production using version constraints (`~>`).", interviewTrap: "Providers run as separate plugin binaries communicating with Terraform core over gRPC." },
+            { id: "c4", title: "4. Provider Authentication", category: "Foundations", level: "Core", summary: "Securing cloud credentials without hardcoding secrets.", whatIsIt: "Methods to authenticate Terraform executions to target cloud environments.", mentalModel: "A secure digital badge passed to API adapters.", codeExample: `provider "aws" {\n  region = "us-east-1"\n  # Credentials pulled automatically from AWS_PROFILE or IAM Role\n}`, productionNote: "Never hardcode access keys or secret keys in `.tf` files.", interviewTrap: "Env variables override provider block inline arguments in credential precedence chains." },
+            { id: "c5", title: "5. Resource Blocks", category: "Foundations", level: "Core", summary: "Declaring infrastructure objects managed by Terraform.", whatIsIt: "The primary element in HCL that creates infrastructure entities.", mentalModel: "A declaration request to spin up a specific infrastructure component.", codeExample: `resource "aws_instance" "web" {\n  ami           = "ami-0c55b159cbfafe1f0"\n  instance_type = "t2.micro"\n}`, productionNote: "Group resource definitions logically into structured file boundaries.", interviewTrap: "Renaming resource local labels causes Terraform to attempt destroying and recreating the object." },
+            { id: "c6", title: "6. Data Source Blocks", category: "Foundations", level: "Core", summary: "Fetching external data without managing resource lifecycles.", whatIsIt: "A read-only fetch operation targeting external systems or pre-existing infrastructure.", mentalModel: "A read-only database query returning configuration metadata.", codeExample: `data "aws_ami" "ubuntu" {\n  most_recent = true\n  filter {\n    name   = "name"\n    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-*"]\n  }\n}`, productionNote: "Use data sources to decouple independent infrastructure deployments safely.", interviewTrap: "Data sources evaluate during plan phase; unapplied changes can cause dynamic computed value failures." },
+            { id: "c7", title: "7. Input Variables", category: "Foundations", level: "Core", summary: "Parametrizing configurations for reuse across environments.", whatIsIt: "External inputs used to customize execution parameters.", mentalModel: "Function parameters passed into an execution runtime.", codeExample: `variable "environment" {\n  type        = string\n  default     = "dev"\n  description = "Target deployment environment"\n}`, productionNote: "Always provide explicit `type` constraints and meaningful `description` fields.", interviewTrap: "Precedence: `-var` > `*.auto.tfvars` > `terraform.tfvars` > `TF_VAR_` env vars > defaults." },
+            { id: "c8", title: "8. Output Values", category: "Foundations", level: "Core", summary: "Exposing resource attributes post-apply to consumers.", whatIsIt: "Return values calculated during deployment made accessible to external scripts or state callers.", mentalModel: "Function return statements exposing generated results.", codeExample: `output "db_endpoint" {\n  value       = aws_db_instance.db.endpoint\n  description = "The database connection string"\n}`, productionNote: "Mark sensitive output outputs with `sensitive = true` to prevent console logging.", interviewTrap: "Sensitive outputs are still stored in plain-text inside `.tfstate` files." },
+            { id: "c9", title: "9. Local Values", category: "Foundations", level: "Core", summary: "DRY expression processing and computed constants.", whatIsIt: "Internal temporary variables used to streamline complex repeated expressions.", mentalModel: "Local script variables scope-bound to module contexts.", codeExample: `locals {\n  common_tags = {\n    Project     = "Alpha"\n    Environment = var.environment\n  }\n}`, productionNote: "Use locals to reduce duplicated string concatenation across resource tags.", interviewTrap: "Locals cannot be overridden directly from external command line flags." },
+
+            // Track 2: Execution Engine
+            { id: "c10", title: "10. Init Command", category: "Execution Engine", level: "Core", summary: "Initializing working directories and dependencies.", whatIsIt: "Prepares workspace by downloading required provider plugins and modules.", mentalModel: "Running `npm install` or `pip install` before executing code.", codeExample: `terraform init -reconfigure`, productionNote: "Use `-backend-config` flags during init to keep backend secrets outside checked-in code.", interviewTrap: "`terraform init` does not validate HCL code syntax correctness." },
+            { id: "c11", title: "11. Plan Command", category: "Execution Engine", level: "Core", summary: "Previewing execution graphs prior to applying changes.", whatIsIt: "Compares state, configuration, and cloud target to output action plans.", mentalModel: "A dry-run diff previewing actions before committing changes.", codeExample: `terraform plan -out=tfplan`, productionNote: "Save plan files (`-out`) in CI pipelines to guarantee identical execution during apply.", interviewTrap: "Plan performs read-only state refreshes by default unless explicit flags disable it." },
+            { id: "c12", title: "12. Apply Command", category: "Execution Engine", level: "Core", summary: "Executing state modifications on target environments.", whatIsIt: "Applies the planned actions to reach target state configurations.", mentalModel: "Committing transactional changes to a live database.", codeExample: `terraform apply "tfplan"`, productionNote: "Avoid `-auto-approve` in production deployment pipelines.", interviewTrap: "If apply fails halfway, resources created prior to failure remain tracked in updated state." },
+            { id: "c13", title: "13. Destroy Command", category: "Execution Engine", level: "Core", summary: "Tearing down tracked managed infrastructure resources.", whatIsIt: "Destroys all infrastructure tracked by the active workspace state.", mentalModel: "Running a cascade drop operation on managed resource instances.", codeExample: `terraform destroy -target=aws_instance.web`, productionNote: "Use lifecycle `prevent_destroy` guards on critical production databases.", interviewTrap: "Destroy resolves resource dependency trees in strict reverse topological order." },
+            { id: "c14", title: "14. Dependency Graph", category: "Execution Engine", level: "Core", summary: "How Terraform builds DAGs to evaluate execution orders.", whatIsIt: "Direct Acyclic Graph constructed to parallelize non-dependent resource creations.", mentalModel: "A flowchart ensuring prerequisites finish before dependents execute.", codeExample: `# Implicit dependency creation via attribute referencing\nresource "aws_eip" "ip" {\n  instance = aws_instance.web.id\n}`, productionNote: "Prefer implicit dependencies over explicit `depends_on` blocks whenever possible.", interviewTrap: "Circular dependencies cause validation panics during the plan building stage." },
+
+            // Track 3: State & Architecture
+            { id: "c15", title: "15. Local vs Remote State", category: "State & Architecture", level: "Advanced", summary: "Transitioning state files from disk to central stores.", whatIsIt: "Moving local `.tfstate` files to managed remote backends.", mentalModel: "Moving single-user local text documents into a centralized database.", codeExample: `terraform {\n  backend "s3" {\n    bucket = "my-company-tf-state"\n    key    = "prod/app.tfstate"\n    region = "us-east-1"\n  }\n}`, productionNote: "Enable versioning on state storage S3 buckets for instant recovery.", interviewTrap: "Local state files store cleartext variable values regardless of sensitive flags." },
+            { id: "c16", title: "16. State Locking", category: "State & Architecture", level: "Advanced", summary: "Preventing concurrent modifications and state corruption.", whatIsIt: "Concurrency control locking state during active write operations.", mentalModel: "A database transaction lock preventing race conditions.", codeExample: `terraform {\n  backend "s3" {\n    dynamodb_table = "terraform-locks"\n  }\n}`, productionNote: "Always implement state locking (e.g., DynamoDB) alongside S3 storage backends.", interviewTrap: "Force-unlocking state locks manually risks state file corruption if pipelines are active." },
+            { id: "c17", title: "17. Remote State References", category: "State & Architecture", level: "Advanced", summary: "Sharing outputs securely across separate Terraform deployments.", whatIsIt: "Data source reading outputs published by independent state deployments.", mentalModel: "An API client fetching config metadata published by an upstream microservice.", codeExample: `data "terraform_remote_state" "vpc" {\n  backend = "s3"\n  config = {\n    bucket = "company-tf-state"\n    key    = "vpc/terraform.tfstate"\n  }\n}`, productionNote: "Limit use of remote state references in favor of explicit key-value lookup catalogs.", interviewTrap: "Remote state references require read permissions across full upstream state files." },
+            { id: "c18", title: "18. Workspaces", category: "State & Architecture", level: "Advanced", summary: "Managing isolated state instances within single configurations.", whatIsIt: "Allows multiple state files managed under one working directory.", mentalModel: "Git branches applied directly to state tracking paths.", codeExample: `terraform workspace new staging`, productionNote: "Prefer distinct directory structures over native CLI workspaces for environment isolation.", interviewTrap: "Workspaces share identical code configurations; they cannot isolate resource configurations easily." },
+            { id: "c19", title: "19. State Drift & Refresh", category: "State & Architecture", level: "Advanced", summary: "Detecting manual out-of-band cloud modification drift.", whatIsIt: "Reconciling state recordings with real-world infrastructure APIs.", mentalModel: "Audit comparing inventory counts against ledger accounting books.", codeExample: `terraform plan -refresh-only`, productionNote: "Run scheduled drift detection pipelines to alert on unauthorized console edits.", interviewTrap: "`terraform refresh` modifies state tracking in-place without asking user confirmation." },
+            { id: "c20", title: "20. State Commands", category: "State & Architecture", level: "Advanced", summary: "Inspecting, moving, and removing resources from state files.", whatIsIt: "CLI utilities used to manually manipulate `.tfstate` structures.", mentalModel: "Direct database record editing utilities.", codeExample: `terraform state rm aws_instance.old_web`, productionNote: "Backup state files locally prior to issuing manual `terraform state` commands.", interviewTrap: "Removing a resource with `state rm` stops tracking it but leaves physical cloud resources alive." },
+            { id: "c21", title: "21. Importing Infrastructure", category: "State & Architecture", level: "Advanced", summary: "Bringing pre-existing infrastructure into state tracking.", whatIsIt: "Attaching existing unmanaged cloud assets into active Terraform tracking.", mentalModel: "Adopting existing database records into managed ORM mapping.", codeExample: `import {\n  to = aws_s3_bucket.my_bucket\n  id = "existing-bucket-name"\n}`, productionNote: "Use HCL native `import` blocks introduced in v1.5+ for clear code review trails.", interviewTrap: "Legacy `terraform import` commands updated state files without generating code blocks automatically." },
+
+            // Track 4: Modules & Code Structure
+            { id: "c22", title: "22. Module Fundamentals", category: "Modules & Code Structure", level: "Core", summary: "Packaging reusable HCL blocks into modular units.", whatIsIt: "Containers for multiple resources configured to be reused together.", mentalModel: "Creating reusable software libraries or class packages.", codeExample: `module "vpc" {\n  source = "./modules/vpc"\n  cidr   = "10.0.0.0/16"\n}`, productionNote: "Keep modules focused on single logical domain entities.", interviewTrap: "Resources inside modules cannot be targeted directly without full path identifiers." },
+            { id: "c23", title: "23. Module Inputs & Outputs", category: "Modules & Code Structure", level: "Core", summary: "Passing parameters into and out of module scopes.", whatIsIt: "Inter-module parameter passing boundary interfaces.", mentalModel: "Function argument inputs and return value outputs.", codeExample: `# Root calling module output\nsubnet_id = module.vpc.public_subnet_id`, productionNote: "Always validate module inputs using structural variable validation rules.", interviewTrap: "A module's internal local values are completely invisible to root calling modules." },
+            { id: "c24", title: "24. Public & Private Registries", category: "Modules & Code Structure", level: "Advanced", summary: "Sourcing versioned modules from central stores.", whatIsIt: "Distribution registries hosting version-controlled reusable infrastructure modules.", mentalModel: "Package repositories like npm, PyPI, or Maven.", codeExample: `module "s3_bucket" {\n  source  = "terraform-aws-modules/s3-bucket/aws"\n  version = "3.14.0"\n}`, productionNote: "Host private organization registries to enforce internal baseline compliance.", interviewTrap: "Registry sources download module code during `init`; runtime version changes require re-initialization." },
+
+            // Track 5: Advanced Logic
+            { id: "c25", title: "25. Count Meta-Argument", category: "Advanced Logic", level: "Advanced", summary: "Conditional creation and primitive resource iteration.", whatIsIt: "Looping construct that instantiates N copies of a resource based on integer values.", mentalModel: "A basic for-loop repeating execution N times.", codeExample: `resource "aws_instance" "server" {\n  count = var.create_server ? 3 : 0\n}`, productionNote: "Avoid `count` for lists where middle items may be removed, causing cascading index shifts.", interviewTrap: "Removing index 0 in a count array causes Terraform to re-create all subsequent array resources." },
+            { id: "c26", title: "26. For Each Meta-Argument", category: "Advanced Logic", level: "Advanced", summary: "Map and set based iteration for stable resource indexing.", whatIsIt: "Looping construct iterating over maps or sets using distinct string keys.", mentalModel: "Iterating over key-value dictionaries.", codeExample: `resource "aws_iam_user" "users" {\n  for_each = toset(["alice", "bob"])\n  name     = each.key\n}`, productionNote: "Prefer `for_each` over `count` for safer index tracking across collection updates.", interviewTrap: "`for_each` requires set or map collections known completely during the plan phase." },
+            { id: "c27", title: "27. Conditional Expressions", category: "Advanced Logic", level: "Advanced", summary: "Ternary logic decision branches in configuration logic.", whatIsIt: "Ternary evaluation selecting values based on boolean status expressions.", mentalModel: "`condition ? true_val : false_val` logic statements.", codeExample: `instance_type = var.env == "prod" ? "m5.large" : "t3.micro"`, productionNote: "Keep conditional branches simple; avoid nesting ternary expressions deeply.", interviewTrap: "Both true and false branches must yield matching data types or trigger errors." },
+            { id: "c28", title: "28. Dynamic Blocks", category: "Advanced Logic", level: "Advanced", summary: "Generating nested configuration blocks programmatically.", whatIsIt: "Constructs that construct repeated nested blocks inside resources dynamically.", mentalModel: "A localized nested for-loop creating structural sub-elements.", codeExample: `dynamic "ingress" {\n  for_each = var.service_ports\n  content {\n    from_port = ingress.value\n    to_port   = ingress.value\n    protocol  = "tcp"\n  }\n}`, productionNote: "Use dynamic blocks sparingly to avoid making resource code unreadable.", interviewTrap: "Overusing dynamic blocks makes state tracking complex and hard to trace during reviews." },
+            { id: "c29", title: "29. Built-in Functions", category: "Advanced Logic", level: "Advanced", summary: "Data manipulation using native HCL processing functions.", whatIsIt: "Built-in utility functions for string, collection, and cryptographic transformations.", mentalModel: "Standard utility libraries offered by standard runtime languages.", codeExample: `tags = merge(var.common_tags, { Name = lower(var.name) })`, productionNote: "Test complex function chains using the interactive `terraform console` interface.", interviewTrap: "User-defined functions are unsupported in standard Terraform HCL specifications." },
+            { id: "c30", title: "30. For Expressions", category: "Advanced Logic", level: "Advanced", summary: "Transforming collections into updated arrays or maps.", whatIsIt: "Comprehension expressions transforming data structures.", mentalModel: "Array map and filter comprehensions.", codeExample: `upper_names = [for name in var.names : upper(name)]`, productionNote: "Use for expressions within `locals` to clean input data cleanly.", interviewTrap: "For expressions operating on sets return list types unless explicitly requested otherwise." },
+            { id: "c31", title: "31. Variable Validation", category: "Advanced Logic", level: "Advanced", summary: "Custom input guards enforcing syntax and value rules.", whatIsIt: "Rules checking incoming variable validity during early initialization stages.", mentalModel: "Input assertions or schema guard validation logic.", codeExample: `variable "image_id" {\n  type = string\n  validation {\n    condition     = length(var.image_id) > 4 && substr(var.image_id, 0, 4) == "ami-"\n    error_message = "The image_id value must start with 'ami-'."\n  }\n}`, productionNote: "Add clear error messages to speed up self-service infrastructure onboarding.", interviewTrap: "Validation rules evaluate early before resource dependencies resolve fully." },
+
+            // Track 6: Lifecycle & Operations
+            { id: "c32", title: "32. Resource Lifecycle Rules", category: "Lifecycle & Operations", level: "Production", summary: "Customizing default resource creation and destruction behavior.", whatIsIt: "Directives overriding Terraform's standard lifecycle execution mechanics.", mentalModel: "Custom resource event listener configurations.", codeExample: `lifecycle {\n  create_before_destroy = true\n  prevent_destroy       = true\n  ignore_changes        = [tags["Updated"]]\n}`, productionNote: "Apply `prevent_destroy` to stateful infrastructure like RDS instances.", interviewTrap: "`prevent_destroy` prevents `terraform destroy` but does not block manual cloud console deletes." },
+            { id: "c33", title: "33. Target Execution Flag", category: "Lifecycle & Operations", level: "Production", summary: "Targeting specific resource execution branches manually.", whatIsIt: "Limiting plan or apply actions to specific sub-sets of resources.", mentalModel: "Executing localized unit tests instead of running full test suites.", codeExample: `terraform apply -target=aws_instance.web`, productionNote: "Use targeting only for emergency breaks or recovery operations.", interviewTrap: "Targeting leaves dependent state out-of-sync and risks introducing state drift." },
+            { id: "c34", title: "34. Replace Flag", category: "Lifecycle & Operations", level: "Production", summary: "Forcing resource re-creation without modifying code.", whatIsIt: "Forces Terraform to destroy and recreate targeted objects during applies.", mentalModel: "Re-instantiating an object instance explicitly.", codeExample: `terraform apply -replace="aws_instance.web"`, productionNote: "Replaces legacy `terraform taint` commands cleanly within active plan flows.", interviewTrap: "Replaces force immediate destruction regardless of downstream resource expectations." },
+            { id: "c35", title: "35. Provisioners", category: "Lifecycle & Operations", level: "Production", summary: "Executing local or remote scripts on resource events.", whatIsIt: "Bootstrap mechanisms executing shell commands inside local or remote targets.", mentalModel: "Post-creation shell hook handlers.", codeExample: `provisioner "local-exec" {\n  command = "echo \${self.private_ip} > file.txt"\n}`, productionNote: "Avoid provisioners; prefer cloud-init, AMI baking, or configuration management tools.", interviewTrap: "Provisioners fail by default and mark resources as tainted if execution commands return errors." },
+            { id: "c36", title: "36. Moved Blocks", category: "Lifecycle & Operations", level: "Production", summary: "Refactoring code paths without destroying active resources.", whatIsIt: "Declarative refactoring statements tracking resource address updates.", mentalModel: "Database migration schema rename scripts.", codeExample: `moved {\n  from = aws_instance.old_name\n  to   = aws_instance.new_name\n}`, productionNote: "Use `moved` blocks when restructuring modules to prevent accidental recreation.", interviewTrap: "Moved blocks must remain committed until applied across all environment targets." },
+            { id: "c37", title: "37. Override Files", category: "Lifecycle & Operations", level: "Production", summary: "Splicing local development overrides into configurations.", whatIsIt: "Special `*_override.tf` files merging overrides into parsed AST blocks.", mentalModel: "Local developer configuration override files.", codeExample: `# override.tf\nresource "aws_instance" "web" {\n  instance_type = "t3.nano"\n}`, productionNote: "Keep override files listed inside project `.gitignore` rules.", interviewTrap: "Override files merge raw properties directly without standard block ordering validations." },
+
+            // Track 7: Production & Security
+            { id: "c38", title: "38. Sensitive Attributes", category: "Production & Security", level: "Production", summary: "Masking values in console displays and execution logs.", whatIsIt: "Metadata flags masking secret values in console output streams.", mentalModel: "Console password maskers.", codeExample: `variable "db_password" {\n  type      = string\n  sensitive = true\n}`, productionNote: "Always flag credentials as sensitive to protect CI/CD build output logs.", interviewTrap: "Sensitive parameters are masked in terminal displays but stored plainly in `.tfstate`." },
+            { id: "c39", title: "39. Secret Management", category: "Production & Security", level: "Production", summary: "Integrating HashiCorp Vault, AWS Secrets Manager, or SOPS.", whatIsIt: "Fetching credentials dynamically at runtime rather than hardcoding.", mentalModel: "Dynamic secret lookup requests.", codeExample: `data "aws_secretsmanager_secret_version" "creds" {\n  secret_id = "db-passwords"\n}`, productionNote: "Fetch secrets via data sources or Vault providers during execution apply steps.", interviewTrap: "Fetched secrets are held in memory and persisted into state files unless handled securely." },
+            { id: "c40", title: "40. Static Code Analysis", category: "Production & Security", level: "Production", summary: "Scanning code using TFLint, Checkov, and tfsec.", whatIsIt: "Linting and security auditing tools for infrastructure code.", mentalModel: "Static analysis security testing (SAST) for HCL.", codeExample: `# Executed in CI pipeline\ncheckov -d .`, productionNote: "Embed static scanners directly into git pre-commit hooks and PR validation gates.", interviewTrap: "Linters evaluate syntax and rules statically without verifying dynamic API responses." },
+            { id: "c41", title: "41. Policy as Code (Sentinel & OPA)", category: "Production & Security", level: "Production", summary: "Enforcing governance guardrails before plan execution.", whatIsIt: "Policy engines evaluating proposed changes against organizational rules.", mentalModel: "Automated compliance gatekeeper policies.", codeExample: `# OPA Rego policy snippet\ndeny[msg] { input.resource.aws_s3_bucket.public == true }`, productionNote: "Block non-compliant deployment plans before cloud execution calls execute.", interviewTrap: "Policy-as-code guards execute post-plan generation, validating planned changes." },
+            { id: "c42", title: "42. CI/CD Integration", category: "Production & Security", level: "Production", summary: "Automating Terraform runs inside GitHub Actions or GitLab CI.", whatIsIt: "Automated pipeline workflows executing plan and apply stages cleanly.", mentalModel: "Continuous deployment build pipelines.", codeExample: `# Pipeline step\n- run: terraform plan -no-color`, productionNote: "Execute `plan` on pull requests; require manual approvals before executing `apply`.", interviewTrap: "Concurrent pipeline executions without state locking cause runner race failures." },
+            { id: "c43", title: "43. Automated Testing (Terratest)", category: "Production & Security", level: "Production", summary: "Writing integration tests in Go to validate deployments.", whatIsIt: "Frameworks that spin up real resources, validate properties, and destroy.", mentalModel: "Unit and integration testing frameworks.", codeExample: `// Go test snippet\nterratest.Apply(t, terraformOptions)`, productionNote: "Run integration tests in isolated sandbox cloud accounts to prevent production leakage.", interviewTrap: "Terratest builds real cloud resources, incurring real runtime infrastructure costs." },
+            { id: "c44", title: "44. Terraform Cloud & Enterprise", category: "Production & Security", level: "Production", summary: "Managed execution platforms, state hosting, and private registries.", whatIsIt: "HashiCorp's SaaS and self-hosted platform for team governance.", mentalModel: "A central portal for managing infrastructure pipeline executions.", codeExample: `terraform {\n  cloud {\n    organization = "my-org"\n    workspaces {\n      name = "prod-app"\n    }\n  }\n}`, productionNote: "Use Remote Execution mode to standardize execution runner environments.", interviewTrap: "Terraform Cloud workspaces manage state and variable definitions remotely by default." },
+
+            // Track 8: Interview Traps & Deep Dives
+            { id: "c45", title: "45. Count vs For_Each Pitfall", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Array element removal causing full cluster recreation.", whatIsIt: "Removing an item from a count list shifts all array indices.", mentalModel: "Array index shift invalidations.", codeExample: `# Removing list item 0 re-creates item 1 and 2!`, productionNote: "Never use `count` for lists of resources that might suffer middle array element deletions.", interviewTrap: "Explain why deleting index 0 in a count array forces destruction of all subsequent items." },
+            { id: "c46", title: "46. Implicit vs Explicit Dependencies", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Misunderstanding graph creation order.", whatIsIt: "Difference between attribute-linked creation order vs manually forced ordering.", mentalModel: "Automatic vs manual dependency wiring.", codeExample: `depends_on = [aws_internet_gateway.gw]`, productionNote: "Only use `depends_on` when non-attribute hidden dependencies exist.", interviewTrap: "Over-using `depends_on` disables parallel creation trees, slowing deployment speed." },
+            { id: "c47", title: "47. State Corruption Recovery", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Handling interrupted apply operations or network failures.", whatIsIt: "Recovering when operations break mid-write leaving state locks orphaned.", mentalModel: "Database disaster recovery logs.", codeExample: `terraform force-unlock <LOCK-ID>`, productionNote: "Verify current cloud deployment states manually before force unlocking state locks.", interviewTrap: "Executing force-unlock while another team member's apply run is active causes corruption." },
+            { id: "c48", title: "48. Dynamic Value Resolution", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Handling values known only after apply steps finish.", whatIsIt: "Attributes computed at apply runtime breaking plan validations.", mentalModel: "Promises or Futures awaiting network resolution.", codeExample: `id = aws_instance.web.id # Known only after apply`, productionNote: "Use explicit data sources or static variable declarations where early resolution is required.", interviewTrap: "Data sources using computed inputs fail during plan stages if resources are uncreated." },
+            { id: "c49", title: "49. Refactoring Monoliths", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Splitting giant state files without causing downtime.", whatIsIt: "Decoupling large single state setups into modular sub-states safely.", mentalModel: "Decomposing database monoliths into microservice stores.", codeExample: `terraform state rm ...\n# Followed by terraform import in target workspace`, productionNote: "Use `moved` blocks or state move commands carefully during maintenance windows.", interviewTrap: "Destroying a monolith root state risks destroying shared foundational networking infrastructure." },
+            { id: "c50", title: "50. Provider Alias & Multi-Region", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Deploying resources across multiple regions or accounts.", whatIsIt: "Instantiating multiple provider instances with different aliases.", mentalModel: "Connecting to multiple database targets in parallel.", codeExample: `provider "aws" {\n  alias  = "west"\n  region = "us-west-2"\n}\n\nresource "aws_s3_bucket" "b" {\n  provider = aws.west\n}`, productionNote: "Pass aliased providers explicitly into child modules using `providers` maps.", interviewTrap: "Child modules do not inherit provider aliases automatically without explicit provider mapping." },
+            { id: "c51", title: "51. Zero Downtime Deployments", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Blue/Green updates using lifecycle execution tricks.", whatIsIt: "Creating new instances before destroying legacy ones to prevent downtime.", mentalModel: "Atomic hot-swapping service instances.", codeExample: `lifecycle {\n  create_before_destroy = true\n}`, productionNote: "Ensure unique resource naming strategies (e.g., `name_prefix`) when using `create_before_destroy`.", interviewTrap: "Name collisions occur if explicit names are hardcoded with `create_before_destroy` enabled." },
+            { id: "c52", title: "52. Custom Plugin Providers", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Extending Terraform by writing Go plugins.", whatIsIt: "Building custom providers using HashiCorp Plugin SDK v2 or Framework.", mentalModel: "Writing custom API integration adapters.", codeExample: `// Go Plugin entry point\nplugin.Serve(&plugin.ServeOpts{...})`, productionNote: "Publish custom providers to private registries for automated team consumption.", interviewTrap: "Providers communicate via RPC over local loopback sockets instantiated during init." },
+            { id: "c53", title: "53. Debugging & Logs", category: "Interview Traps & Deep Dives", level: "Interview Trap", summary: "Troubleshooting panics using TF_LOG environments.", whatIsIt: "Enabling verbose diagnostic logging outputs across Terraform execution runs.", mentalModel: "Enabling trace level application logging.", codeExample: `export TF_LOG=TRACE\nexport TF_LOG_PATH=./terraform.log`, productionNote: "Scrub trace logs before sharing publicly because TRACE logs print raw HTTP request headers.", interviewTrap: "TRACE logging outputs full HTTP requests, potentially leaking API authorization bearer tokens." }
         ];
 
         let completed = JSON.parse(localStorage.getItem('completed_concepts') || '[]');
@@ -453,7 +391,6 @@
 
         document.getElementById('level-filter').addEventListener('change', renderConcepts);
 
-        // Initial rendering
         renderConcepts();
     </script>
 </body>
