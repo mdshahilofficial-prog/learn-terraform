@@ -131,7 +131,6 @@
         .detail-box { background: rgba(7, 10, 18, 0.6); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); }
         .detail-box h4 { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         .detail-box p, .detail-box ul { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
-        .detail-box ul { padding-left: 1.2rem; }
 
         .visual-container { margin: 1.25rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; text-align: center; }
         .visual-container img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
@@ -148,7 +147,6 @@
         .copy-btn:hover { background: var(--accent); color: #fff; }
         .copy-btn.copied { background: var(--success); color: #fff; }
 
-        /* Interactive Collapsible Elements */
         .interactive-box { background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 1.25rem; margin-top: 1.25rem; }
         .interactive-box h4 { color: var(--accent); font-size: 0.95rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .toggle-btn { background: var(--bg-card); border: 1px solid var(--border-glow); color: var(--text-primary); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; margin-top: 0.75rem; transition: all 0.2s; }
@@ -233,7 +231,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-hcl.min.js"></script>
     <script>
-        // EXPANDED REUSABLE LESSON SCHEMA (Phase 2 Architectural Update)
         const CONCEPTS = [
             {
                 id: "c1",
@@ -245,7 +242,7 @@
                 whyDoWeNeedIt: "Eliminates complex imperative bash/python scripts that break when re-executed or when cloud state drifts out of sync.",
                 howItWorks: "Terraform Core reads configuration files (.tf), inspects current cloud infrastructure, compares them against state (.tfstate), and calculates execution diffs.",
                 syntaxExample: `resource "aws_s3_bucket" "production_assets" {\n  bucket = "my-company-assets-prod-2026"\n\n  tags = {\n    Environment = "Production"\n    ManagedBy   = "Terraform"\n  }\n}`,
-                imageUrl: "image_agent_tag_9854790057429237740",
+                imageUrl: "https://www.databricks.com/wp-content/uploads/2023/04/terraform-workflow.png",
                 imageCaption: "Terraform Core execution flow mapping HCL files to provider APIs.",
                 realWorldUsage: "Provisioning standardized multi-region AWS VPC networking clusters with automated subnet tag allocations.",
                 commonMistakes: "Writing imperative inline provisioning scripts (`local-exec`) instead of relying on native declarative provider resources.",
@@ -268,7 +265,7 @@
                 whyDoWeNeedIt: "Provides an easy-to-read syntax superior to raw JSON while maintaining strict machine readability and type validation.",
                 howItWorks: "HCL parses declarations into Abstract Syntax Trees (AST) that Terraform interprets to build resource dependency graphs.",
                 syntaxExample: `# Syntax: <BLOCK TYPE> "<TYPE LABEL>" "<NAME LABEL>" {}\nresource "aws_instance" "web_server" {\n  ami           = "ami-0c55b159cbfafe1f0"\n  instance_type = "t3.micro"\n}`,
-                imageUrl: "image_agent_tag_9854790057429235961",
+                imageUrl: null,
                 imageCaption: "Structuring HCL configuration files into clean modular layers.",
                 realWorldUsage: "Organizing production repositories into structured `main.tf`, `variables.tf`, `outputs.tf`, and `providers.tf` files.",
                 commonMistakes: "Forgetting quotes around string arguments or improperly nesting blocks inside incorrect parent blocks.",
@@ -332,7 +329,6 @@
                     <h2>${item.title}</h2>
                     <p class="summary">${item.summary}</p>
 
-                    <!-- Pillar 1, 2, 3: Overview & Mechanics -->
                     <div class="lesson-section-grid">
                         <div class="detail-box">
                             <h4><i class="fa-solid fa-circle-info"></i> 1. What is it?</h4>
@@ -349,7 +345,6 @@
                     </div>
                 `;
 
-                // Pillar 4: Syntax / Code Example
                 if (item.syntaxExample) {
                     html += `
                         <div class="code-container">
@@ -361,17 +356,16 @@
                     `;
                 }
 
-                // Pillar 5: Visual Explanation
+                // FIXED: Image container gracefully hides if URL fails or image does not exist
                 if (item.imageUrl) {
                     html += `
                         <div class="visual-container">
-                            <img src="${item.imageUrl}" alt="Visual diagram for ${escapeHtml(item.title)}">
+                            <img src="${item.imageUrl}" onerror="this.parentElement.style.display='none'" alt="Visual diagram for ${escapeHtml(item.title)}">
                             <div class="visual-caption"><i class="fa-solid fa-image"></i> ${item.imageCaption || 'Visual Architecture Overview'}</div>
                         </div>
                     `;
                 }
 
-                // Pillar 6, 7, 8, 9: Real World, Pitfalls, Production & Interview Perspective
                 html += `
                     <div class="lesson-section-grid">
                         <div class="detail-box">
@@ -393,12 +387,11 @@
                     </div>
                 `;
 
-                // Pillar 10: Follow-up Questions (Interactive)
                 if (item.followUpQuestions && item.followUpQuestions.length > 0) {
                     html += `
                         <div class="interactive-box">
                             <h4><i class="fa-solid fa-comments"></i> 10. Follow-up Questions</h4>
-                            ${item.followUpQuestions.map((fq, idx) => `
+                            ${item.followUpQuestions.map((fq) => `
                                 <div style="margin-top: 0.5rem;">
                                     <strong>Q: ${fq.q}</strong>
                                     <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Answer</button>
@@ -409,7 +402,6 @@
                     `;
                 }
 
-                // Pillar 11: Practice
                 if (item.practiceTask) {
                     html += `
                         <div class="interactive-box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
@@ -421,7 +413,6 @@
                     `;
                 }
 
-                // Pillar 12: Next Concept
                 html += `
                     <div class="footer-nav">
                         <span style="font-size: 0.8rem; color: var(--text-secondary);">Module Step Completed?</span>
