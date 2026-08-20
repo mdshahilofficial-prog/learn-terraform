@@ -149,158 +149,108 @@
         .copy-btn:hover { background: var(--accent); color: #fff; }
         .copy-btn.copied { background: var(--success); color: #fff; }
 
-        /* PHASE 3 — INTERVIEW PERSPECTIVE */
-        .interview-box {
-            margin: 1.5rem 0;
-            background: linear-gradient(180deg, #111827 0%, #0d1422 100%);
-            border: 1px solid rgba(139,92,246,.55);
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 8px 28px rgba(0,0,0,.25);
-        }
-        .interview-trigger {
+        /* INTERVIEW PERSPECTIVE SECTION STYLES */
+        .interview-toggle-btn {
             width: 100%;
-            border: 0;
-            background: transparent;
-            color: var(--text-primary);
-            padding: 1rem 1.15rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.85rem 1.25rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            text-align: left;
+            margin-top: 1.5rem;
+            transition: all 0.25s ease;
         }
-        .interview-trigger:hover { background: rgba(139,92,246,.06); }
-        .interview-trigger-main { display:flex; align-items:center; gap:.7rem; flex-wrap:wrap; }
-        .interview-trigger-main > i { color:#a78bfa; font-size:1.05rem; }
-        .interview-trigger-title { font-weight:800; }
-        .interview-badges { display:flex; gap:.4rem; flex-wrap:wrap; }
-        .interview-badge {
-            display:inline-flex;
-            align-items:center;
-            gap:.3rem;
-            padding:.18rem .55rem;
-            border-radius:999px;
-            background:rgba(139,92,246,.1);
-            border:1px solid rgba(139,92,246,.3);
-            color:#c4b5fd;
-            font-size:.68rem;
-            font-weight:700;
+        .interview-toggle-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 4px 15px var(--accent-glow);
         }
-        .interview-chevron { color:var(--text-secondary); transition:transform .2s ease; }
-        .interview-box.open .interview-chevron { transform:rotate(180deg); }
-        .interview-content { display:none; padding:0 1.15rem 1.2rem; }
-        .interview-box.open .interview-content { display:block; }
-        .interview-inner { border-top:1px solid var(--border); padding-top:1.15rem; }
 
+        .interview-box {
+            display: none;
+            background: var(--interview-bg);
+            border: 1px solid var(--accent);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+        }
+        .interview-title {
+            color: var(--accent);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
         .interview-q {
-            font-size:1.02rem;
-            color:#fff;
-            font-weight:700;
-            line-height:1.55;
-            margin-bottom:1rem;
-            padding:.9rem 1rem;
-            background:rgba(255,255,255,.035);
-            border-left:3px solid var(--accent);
-            border-radius:8px;
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
         }
-        .interview-block { margin-bottom:1rem; }
+        .interview-block { margin-bottom: 1.25rem; }
         .interview-label {
-            font-size:.76rem;
-            text-transform:uppercase;
-            letter-spacing:.45px;
-            font-weight:800;
-            margin-bottom:.35rem;
-            display:flex;
-            align-items:center;
-            gap:.4rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
-        .label-30s { color:var(--success); }
-        .label-detailed { color:#60a5fa; }
-        .label-prod { color:#c4b5fd; }
-        .label-weak { color:var(--danger); }
-        .label-strong { color:var(--success); }
-        .label-tip { color:var(--warning); }
-        .label-test { color:#22d3ee; }
-        .label-scenario { color:#f472b6; }
-        .interview-text { font-size:.91rem; color:#cbd5e1; line-height:1.68; }
+        .label-30s { color: var(--success); }
+        .label-detailed { color: #60a5fa; }
+        .label-prod { color: var(--accent); }
+        .label-testing { color: #f472b6; }
+        .label-scenario { color: var(--warning); }
+        .label-weak { color: var(--danger); }
+        .label-strong { color: var(--success); }
+        .label-tip { color: var(--warning); }
+        .interview-text { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
 
-        .interviewer-test,
-        .interview-scenario {
-            padding:.9rem 1rem;
-            border-radius:9px;
-            margin:1rem 0;
-            background:rgba(255,255,255,.025);
-            border:1px solid var(--border);
+        .scenario-box {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            margin-bottom: 1.25rem;
         }
-        .interview-scenario { border-left:3px solid #f472b6; }
 
         .comparison-grid {
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-            gap:1rem;
-            margin:1rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1.25rem 0;
         }
         .comparison-box {
-            padding:1rem;
-            border-radius:9px;
-            background:rgba(0,0,0,.18);
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.25);
         }
-        .comparison-box.weak { border:1px solid rgba(239,68,68,.3); }
-        .comparison-box.strong { border:1px solid rgba(16,185,129,.3); }
-
-        .followup-list { display:grid; gap:.65rem; }
-        .followup-item {
-            border:1px solid var(--border);
-            border-radius:9px;
-            overflow:hidden;
-        }
-        .followup-question {
-            width:100%;
-            border:0;
-            background:rgba(255,255,255,.025);
-            color:#f1f5f9;
-            padding:.8rem .9rem;
-            cursor:pointer;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:1rem;
-            text-align:left;
-            font-size:.87rem;
-            font-weight:700;
-        }
-        .followup-question:hover { background:rgba(139,92,246,.06); }
-        .followup-answer {
-            display:none;
-            padding:.8rem .9rem;
-            border-top:1px solid var(--border);
-            color:#cbd5e1;
-            font-size:.87rem;
-            line-height:1.65;
-        }
-        .followup-item.open .followup-answer { display:block; }
+        .comparison-box.weak { border: 1px solid rgba(239, 68, 68, 0.3); }
+        .comparison-box.strong { border: 1px solid rgba(16, 185, 129, 0.3); }
 
         .tip-box {
-            background:rgba(245,158,11,.08);
-            border:1px solid rgba(245,158,11,.28);
-            padding:.9rem 1rem;
-            border-radius:9px;
-            margin-top:1rem;
-        }
-
-        .interview-filter.active {
-            background:linear-gradient(135deg,var(--accent),#6d28d9);
-            color:#fff;
-            border-color:var(--accent);
-            box-shadow:0 4px 15px var(--accent-glow);
-        }
-        .results-meta {
-            margin:-1rem 0 1rem;
-            color:var(--text-secondary);
-            font-size:.8rem;
-            text-align:right;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 0.9rem 1.25rem;
+            border-radius: 8px;
+            margin-top: 1rem;
         }
 
         .interactive-box { background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 1.25rem; margin-top: 1.25rem; }
@@ -317,21 +267,6 @@
         .complete-btn.done { background: var(--success); color: white; }
 
         footer { margin-top: 4rem; text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); }
-
-        button:focus-visible, input:focus-visible, select:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 2px;
-        }
-
-        @media (max-width: 640px) {
-            body { padding: 1.1rem .75rem; }
-            .brand-title { font-size: 2.25rem; letter-spacing: 2px; }
-            .concept-card { padding: 1.25rem; }
-            .concept-card-header { align-items:flex-start; gap:.75rem; }
-            .interview-trigger { padding:.9rem; }
-            .interview-content { padding:0 .9rem 1rem; }
-            .interview-trigger-main { align-items:flex-start; }
-        }
     </style>
 </head>
 <body>
@@ -339,28 +274,18 @@
     <div class="brand-container">
         <h1 class="brand-title">TERRA ACADEMY</h1>
         <p class="brand-tagline">Master Infrastructure as Code from Core Fundamentals to Production Engineering</p>
-        <div style="margin-top:.7rem;display:flex;justify-content:center;flex-wrap:wrap;gap:.35rem;">
-            <span class="interview-badge">Learn</span>
-            <span style="color:var(--text-secondary);">→</span>
-            <span class="interview-badge">Understand</span>
-            <span style="color:var(--text-secondary);">→</span>
-            <span class="interview-badge">Practice</span>
-            <span style="color:var(--text-secondary);">→</span>
-            <span class="interview-badge">Production</span>
-            <span style="color:var(--text-secondary);">→</span>
-            <span class="interview-badge">Interview</span>
-        </div>
     </div>
 
     <div class="search-section">
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, or code across all modules..." oninput="renderConcepts()">
+            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, questions, or interview terms..." oninput="renderConcepts()">
         </div>
     </div>
 
     <div class="pills-container">
         <button class="pill-btn active" onclick="filterCategory('all', this)"><i class="fa-solid fa-globe"></i> All Modules</button>
+        <button class="pill-btn" onclick="filterCategory('interview-ready', this)"><i class="fa-solid fa-user-ninja"></i> 🎤 Interview Ready</button>
         <button class="pill-btn" onclick="filterCategory('Fundamentals', this)">Fundamentals</button>
         <button class="pill-btn" onclick="filterCategory('HCL & Configuration', this)">HCL & Config</button>
         <button class="pill-btn" onclick="filterCategory('Resources', this)">Resources</button>
@@ -379,18 +304,13 @@
         <button class="pill-btn" onclick="filterCategory('Production', this)">Production</button>
         <button class="pill-btn" onclick="filterCategory('Interview Preparation', this)">Interview Prep</button>
 
-        <select id="level-filter" class="level-select" onchange="renderConcepts()" aria-label="Filter by learning level">
+        <select id="level-filter" class="level-select" onchange="renderConcepts()">
             <option value="all">All Levels</option>
             <option value="Core">Core</option>
             <option value="Advanced">Advanced</option>
             <option value="Production">Production</option>
             <option value="Interview Trap">Interview Trap</option>
         </select>
-
-        <button class="pill-btn interview-filter" id="interview-filter-btn"
-                onclick="toggleInterviewFilter(this)" type="button">
-            <i class="fa-solid fa-microphone-lines"></i> Interview Ready
-        </button>
     </div>
 
     <main>
@@ -407,7 +327,6 @@
             </div>
         </section>
 
-        <div class="results-meta" id="results-meta"></div>
         <section class="concepts-grid" id="concepts-container"></section>
     </main>
 
@@ -435,20 +354,21 @@
                 realWorldUsage: "Provisioning standardized multi-region AWS VPC networking clusters with automated subnet tag allocations.",
                 commonMistakes: "Writing imperative inline provisioning scripts (`local-exec`) instead of relying on native declarative provider resources.",
                 productionPerspective: "Declarative code makes infrastructure self-documenting, enabling strict GitOps review workflows via pull requests.",
-                
-                // PHASE 3: INTERVIEW PERSPECTIVE EXTENSION
                 interviewPerspective: {
-                    question: "How does Terraform's declarative approach differ from procedural tools like Ansible or Bash, and how does state reconcile drift?",
-                    answer30s: "Declarative IaC focuses on defining the desired target state rather than execution steps. Terraform reads the configuration, inspects reality via provider APIs, compares both against the state file, and calculates the exact lifecycle delta required to reach alignment.",
-                    answerDetailed: "In procedural tools, scripts issue step-by-step sequential commands that require complex conditional checks to maintain idempotency. Terraform's declarative model decouples execution logic from target definitions. During a `terraform plan`, Terraform builds a Directed Acyclic Graph (DAG) of resources, fetches real-world attributes, compares them against `.tfstate`, and generates an execution graph with create, update, or destroy actions.",
-                    answerProduction: "In production, relying strictly on declarative resources guarantees GitOps auditability. If an out-of-band manual change occurs in the AWS Console (configuration drift), running `terraform plan` flags the divergence and proposes a corrective update or recreation to align remote reality back to code.",
+                    difficulty: "🟢 Basic",
+                    question: "How does Terraform's declarative model differ from imperative scripting, and how does it handle drift?",
+                    answer30s: "In a declarative approach, we declare the end state in code, and Terraform determines the steps required to achieve that state. Rather than sequentially executing commands like Bash, Terraform reads the configuration, inspects current resources via provider APIs, compares both against the state file, and applies only the calculated diff.",
+                    answerDetailed: "Procedural tools require step-by-step logic, making idempotency difficult to maintain without heavy conditional checks. Terraform builds a Directed Acyclic Graph (DAG) of all resources, evaluates implicit/explicit dependencies, refreshes state against real cloud metadata, and generates an execution plan with precise create, update, or destroy actions.",
+                    answerProduction: "In production, declarative infrastructure enforces GitOps. If someone manually changes a security group in the cloud console, Terraform detects this drift during `terraform plan` and proposes a change to revert the infrastructure back to the code's truth.",
+                    interviewerTesting: "The interviewer wants to see if you understand idempotency, state reconciliation, and how Terraform detects manual configuration drift.",
+                    scenario: "An engineer manually modified a Security Group rule in the AWS Console to fix an outage. When running `terraform plan`, Terraform attempts to revert it. How do you handle this?",
                     followUps: [
-                        { q: "Is Terraform purely declarative in all situations?", a: "Not entirely. Using `local-exec` or `remote-exec` provisioners introduces procedural side effects, breaking pure state reconciliation." },
-                        { q: "What happens if someone manually modifies infrastructure outside Terraform?", a: "Terraform detects the discrepancy during the refresh phase of `terraform plan` and attempts to undo the manual change." }
+                        { q: "Is Terraform purely declarative in all cases?", a: "Not entirely. Using provisioners like `local-exec` or `remote-exec` introduces imperative side effects that fall outside of Terraform's state graph." },
+                        { q: "What is idempotency?", a: "Idempotency means running the exact same Terraform apply multiple times produces the exact same end state without unintended duplicate resources." }
                     ],
-                    weakAnswer: "Declarative means Terraform is easier to write than Ansible because you don't write bash commands.",
-                    strongAnswer: "Declarative means we define the target end-state in HCL. Terraform continuously reconciles code, the `.tfstate` metadata layer, and active cloud provider resources to calculate and apply necessary changes idempotently.",
-                    interviewTip: "Start with desired state and reconciliation. Avoid saying Terraform continuously monitors infrastructure; drift is normally detected when Terraform refreshes state during plan/apply."
+                    weakAnswer: "Declarative means Terraform is easier than Ansible because you don't write bash scripts.",
+                    strongAnswer: "Declarative means we declare the target end state in HCL. Terraform continuously reconciles configuration, state metadata, and cloud provider APIs to calculate and execute necessary diffs idempotently.",
+                    interviewTip: "When answering, mention 'idempotency', 'graph reconciliation', and 'state file comparison'."
                 },
                 practiceTask: "Declare an S3 bucket with tags using declarative HCL and identify which provider argument sets ownership.",
                 practiceSolution: "Use the `aws_s3_bucket` block and define tags inside a nested map structure.",
@@ -469,29 +389,65 @@
                 realWorldUsage: "Organizing production repositories into structured `main.tf`, `variables.tf`, `outputs.tf`, and `providers.tf` files.",
                 commonMistakes: "Forgetting quotes around string arguments or improperly nesting blocks inside incorrect parent blocks.",
                 productionPerspective: "Enforce automated formatting using `terraform fmt -check` in pull request CI validation stages.",
-                
-                // PHASE 3: INTERVIEW PERSPECTIVE EXTENSION
                 interviewPerspective: {
-                    question: "Explain the structure of an HCL block and how Terraform handles file organization within a directory.",
-                    answer30s: "An HCL block consists of a block type, block labels, and a body enclosed in braces. Terraform parses all `.tf` files in a working directory as a single unified configuration module regardless of file naming.",
-                    answerDetailed: "HCL follows a uniform syntax: `block_type \"type_label\" \"name_label\" { key = value }`. When running Terraform commands, the parser combines all `.tf` files in the directory root into a single Abstract Syntax Tree. File names like `main.tf` or `variables.tf` are standard human conventions and do not affect Terraform's internal compilation.",
-                    answerProduction: "In enterprise production repositories, standardizing file layouts (`main.tf`, `variables.tf`, `outputs.tf`, `providers.tf`, `versions.tf`) is essential for maintainability. We enforce formatting via `terraform fmt -check` and validate structural correctness using `terraform validate` during CI pipelines.",
+                    difficulty: "🔵 Intermediate",
+                    question: "Explain the structure of an HCL block and how Terraform loads `.tf` files in a directory.",
+                    answer30s: "An HCL block contains a block type, block labels, and a body with key-value arguments or nested blocks. Terraform parses all `.tf` files in a directory as a single unified root module regardless of individual file names.",
+                    answerDetailed: "HCL follows a unified syntax format: `block_type \"type_label\" \"name_label\" { key = value }`. When Terraform executes, it parses all `.tf` files in the directory root into an Abstract Syntax Tree (AST). Splitting code into `main.tf`, `variables.tf`, and `outputs.tf` is a human convention; Terraform merges them into one execution module.",
+                    answerProduction: "In production, directory file separation is enforced for code readability and CI/CD linting. We run `terraform fmt -check` and `terraform validate` during pipeline checks to enforce consistent formatting across engineering teams.",
+                    interviewerTesting: "Evaluating whether you know how HCL files are concatenated and compiled into the dependency graph.",
+                    scenario: "You placed a resource block in `outputs.tf` instead of `main.tf`. Does Terraform fail or throw an error?",
                     followUps: [
-                        { q: "Does Terraform execute `.tf` files in alphabetical order?", a: "No, execution order is determined purely by explicit and implicit resource dependencies, not file names or lexical order." }
+                        { q: "Does Terraform execute files in alphabetical order?", a: "No. File names and alphabetical order have zero impact on execution. Order is determined strictly by dependency reference graphs." }
                     ],
-                    weakAnswer: "HCL is like JSON but without commas, and Terraform reads main.tf first.",
-                    strongAnswer: "HCL uses structured blocks with identifiers and key-value arguments. Terraform concatenates all `.tf` files in a directory into one root module graph, relying on resource references rather than file ordering.",
-                    interviewTip: "Separate file organization from dependency ordering. Terraform loads the .tf files in a directory as one module; dependencies determine graph ordering, not filenames."
+                    weakAnswer: "HCL is like JSON without commas, and Terraform reads main.tf first.",
+                    strongAnswer: "HCL blocks use defined identifiers and key-value arguments. Terraform concatenates all `.tf` files in a directory into a single evaluation graph, relying on explicit and implicit references rather than file ordering.",
+                    interviewTip: "Clarify that file organization is purely for developer readability and doesn't change evaluation ordering."
                 },
                 practiceTask: "Refactor a plain string variable assignment into a structured block argument.",
                 practiceSolution: "Wrap related arguments inside `{}` block braces according to provider documentation specs.",
                 nextConceptId: "c3"
+            },
+            {
+                id: "c3",
+                title: "3. Terraform State & State Drift Reconciliation",
+                category: "State",
+                level: "Production",
+                summary: "Deep dive into state files, mapping cloud infrastructure to configuration, state locks, and resolving state drift.",
+                whatIsIt: "Terraform state (`terraform.tfstate`) is a JSON file that acts as a single source of truth mapping declared HCL code to real-world cloud resource IDs.",
+                whyDoWeNeedIt: "Cloud APIs do not store metadata like resource dependencies or custom state bindings. State enables fast plan performance and dependency tracking.",
+                howItWorks: "Terraform reads the state file, fetches real-time infrastructure specs from cloud provider APIs during refresh, calculates diffs against HCL code, and builds an execution plan.",
+                syntaxExample: `terraform {\n  backend "azurerm" {\n    resource_group_name  = "rg-terraform-state"\n    storage_account_name = "tfstateaccount2026"\n    container_name       = "tfstate"\n    key                  = "prod.terraform.tfstate"\n  }\n}`,
+                imageUrl: null,
+                imageCaption: "State reconciliation mapping code to real cloud resources.",
+                realWorldUsage: "Storing state in Azure Blob / AWS S3 with state locking via DynamoDB or Blob Lease to prevent concurrent apply corruption.",
+                commonMistakes: "Committing `terraform.tfstate` files containing plaintext secret attributes to Git repositories.",
+                productionPerspective: "Always enforce remote state backends with RBAC, encryption at rest, versioning, and state locking enabled.",
+                interviewPerspective: {
+                    difficulty: "🔴 Production Scenario",
+                    question: "Why does Terraform need a state file, and how do you manage state in a production team environment?",
+                    answer30s: "Terraform state is the single source of truth mapping HCL declarations to real cloud resource IDs and tracking dependencies. In production, we store state in a secure remote backend like Azure Blob or AWS S3 with state locking and encryption enabled to prevent race conditions.",
+                    answerDetailed: "State is critical because cloud provider APIs cannot track complex dependency trees or custom metadata without scanning every resource on every command. The state file caches resource metadata and mappings. When running `terraform plan`, Terraform compares HCL code against state and refreshes real cloud resource status to calculate precise diffs.",
+                    answerProduction: "In team production environments, we configure remote backends with state locking (e.g., Azure Blob leases or S3 + DynamoDB). State files often contain sensitive plain-text output values, so we enforce encryption at rest, restrict access via RBAC/IAM, enable storage container versioning for state recovery, and never commit state files to source control.",
+                    interviewerTesting: "Testing your understanding of state security, concurrency control, team collaboration, and drift resolution.",
+                    scenario: "Two CI/CD pipelines trigger `terraform apply` on the same environment simultaneously. What prevents state corruption?",
+                    followUps: [
+                        { q: "What happens if the state file is deleted or lost?", a: "Terraform loses track of existing infrastructure. A plan would attempt to recreate resources, causing collisions. Recovery requires restoring state backups or using `terraform import`." },
+                        { q: "What is state locking?", a: "State locking prevents concurrent operations on the same state file by acquiring a lock before operations and releasing it upon completion." },
+                        { q: "How do you resolve state drift?", a: "Run `terraform plan` to identify discrepancies, then decide whether to apply code changes to revert cloud modifications or update HCL to match reality." }
+                    ],
+                    weakAnswer: "Terraform state is a local file that stores resources so Terraform knows what you built.",
+                    strongAnswer: "Terraform state is Terraform's record of managed infrastructure. It maps code to real cloud resource IDs, stores dependency metadata, and enables fast plan calculation. In production, we store state remotely with state locking, RBAC, and encryption.",
+                    interviewTip: "Always mention remote backends, state locking mechanisms, and sensitive data encryption when discussing state."
+                },
+                practiceTask: "Configure a remote backend block with state locking enabled.",
+                practiceSolution: "Define a `terraform { backend \"azurerm\" {} }` block with appropriate storage container key definitions.",
+                nextConceptId: null
             }
         ];
 
         let completed = JSON.parse(localStorage.getItem('completed_concepts') || '[]');
         let currentCategory = 'all';
-        let interviewOnly = false;
 
         function handleImageError(imgElement) {
             const container = imgElement.parentElement;
@@ -504,6 +460,18 @@
             container.insertBefore(fallbackDiv, imgElement);
         }
 
+        function toggleInterviewBox(btn) {
+            const box = btn.nextElementSibling;
+            const isHidden = getComputedStyle(box).display === 'none';
+            if (isHidden) {
+                box.style.display = 'block';
+                btn.innerHTML = '<span>🎤 Hide Interview Perspective Strategy</span> <i class="fa-solid fa-chevron-up"></i>';
+            } else {
+                box.style.display = 'none';
+                btn.innerHTML = '<span>🎤 Show Interview Perspective Strategy</span> <i class="fa-solid fa-chevron-down"></i>';
+            }
+        }
+
         function renderConcepts() {
             const container = document.getElementById('concepts-container');
             const searchQuery = document.getElementById('search-input').value.toLowerCase();
@@ -511,29 +479,44 @@
             container.innerHTML = '';
 
             const filtered = CONCEPTS.filter(c => {
-                const matchesCategory = currentCategory === 'all' || c.category === currentCategory;
+                let matchesCategory = false;
+                if (currentCategory === 'all') {
+                    matchesCategory = true;
+                } else if (currentCategory === 'interview-ready') {
+                    matchesCategory = !!c.interviewPerspective;
+                } else {
+                    matchesCategory = c.category.toLowerCase() === currentCategory.toLowerCase();
+                }
+
                 const matchesLevel = selectedLevel === 'all' || c.level === selectedLevel;
-                const matchesSearch = c.title.toLowerCase().includes(searchQuery) || 
+
+                let matchesSearch = c.title.toLowerCase().includes(searchQuery) || 
                                       c.category.toLowerCase().includes(searchQuery) ||
                                       c.summary.toLowerCase().includes(searchQuery) ||
                                       (c.whatIsIt && c.whatIsIt.toLowerCase().includes(searchQuery));
 
+                if (!matchesSearch && c.interviewPerspective) {
+                    const ip = c.interviewPerspective;
+                    matchesSearch = (ip.question && ip.question.toLowerCase().includes(searchQuery)) ||
+                                    (ip.answer30s && ip.answer30s.toLowerCase().includes(searchQuery)) ||
+                                    (ip.scenario && ip.scenario.toLowerCase().includes(searchQuery)) ||
+                                    (ip.interviewTip && ip.interviewTip.toLowerCase().includes(searchQuery)) ||
+                                    (ip.interviewerTesting && ip.interviewerTesting.toLowerCase().includes(searchQuery));
+                    
+                    if (!matchesSearch && ip.followUps) {
+                        matchesSearch = ip.followUps.some(f => f.q.toLowerCase().includes(searchQuery) || f.a.toLowerCase().includes(searchQuery));
+                    }
+                }
+
                 return matchesCategory && matchesLevel && matchesSearch;
             });
-
-            const resultsMeta = document.getElementById('results-meta');
-            if (resultsMeta) {
-                resultsMeta.textContent =
-                    `${filtered.length} concept${filtered.length === 1 ? '' : 's'} shown` +
-                    (interviewOnly ? ' • Interview-ready only' : '');
-            }
 
             if (filtered.length === 0) {
                 container.innerHTML = `
                     <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                         <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; margin-bottom: 1rem;"></i>
                         <h3>No matching Terraform concepts found</h3>
-                        <p>Try searching for a different keyword.</p>
+                        <p>Try adjusting your search query or filter selections.</p>
                     </div>`;
                 return;
             }
@@ -610,145 +593,84 @@
                     </div>
                 `;
 
-                // PHASE 3: CONCEPT-LEVEL INTERVIEW PERSPECTIVE
+                // INTERVIEW PERSPECTIVE ACCORDION SECTION
                 if (item.interviewPerspective) {
                     const ip = item.interviewPerspective;
                     html += `
-                        <section class="interview-box" id="interview-${item.id}">
-                            <button class="interview-trigger" type="button"
-                                    onclick="toggleInterview(this)" aria-expanded="false">
-                                <span>
-                                    <span class="interview-trigger-main">
-                                        <i class="fa-solid fa-microphone-lines"></i>
-                                        <span class="interview-trigger-title">Interview Perspective</span>
-                                    </span>
-                                    <span class="interview-badges">
-                                        <span class="interview-badge">
-                                            <i class="fa-solid fa-signal"></i>
-                                            ${ip.difficulty || 'Interview Ready'}
-                                        </span>
-                                        <span class="interview-badge">
-                                            <i class="fa-solid fa-comments"></i>
-                                            ${(ip.followUps || []).length} follow-ups
-                                        </span>
-                                    </span>
-                                </span>
-                                <i class="fa-solid fa-chevron-down interview-chevron"></i>
-                            </button>
+                        <button class="interview-toggle-btn" onclick="toggleInterviewBox(this)">
+                            <span>🎤 Show Interview Perspective Strategy</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="interview-box">
+                            <div class="interview-title">
+                                <span><i class="fa-solid fa-user-ninja"></i> Interview Perspective</span>
+                                <span class="badge-level">${ip.difficulty || 'Intermediate'}</span>
+                            </div>
+                            
+                            <div class="interview-q">
+                                <i class="fa-solid fa-circle-question"></i> ${ip.question}
+                            </div>
 
-                            <div class="interview-content">
-                                <div class="interview-inner">
-                                    <div class="interview-q">
-                                        <i class="fa-solid fa-circle-question"></i>
-                                        ${ip.question}
-                                    </div>
+                            <div class="interview-block">
+                                <div class="interview-label label-30s"><i class="fa-solid fa-stopwatch"></i> Recommended 30-Second Answer</div>
+                                <div class="interview-text">${ip.answer30s}</div>
+                            </div>
 
-                                    <div class="interview-block">
-                                        <div class="interview-label label-30s">
-                                            <i class="fa-solid fa-stopwatch"></i>
-                                            Recommended 30-Second Answer
-                                        </div>
-                                        <div class="interview-text">${ip.answer30s}</div>
-                                    </div>
+                            <div class="interview-block">
+                                <div class="interview-label label-detailed"><i class="fa-solid fa-align-left"></i> Detailed Explanation</div>
+                                <div class="interview-text">${ip.answerDetailed}</div>
+                            </div>
 
-                                    <div class="interview-block">
-                                        <div class="interview-label label-detailed">
-                                            <i class="fa-solid fa-align-left"></i>
-                                            Detailed Answer
-                                        </div>
-                                        <div class="interview-text">${ip.answerDetailed}</div>
-                                    </div>
+                            ${ip.answerProduction ? `
+                                <div class="interview-block">
+                                    <div class="interview-label label-prod"><i class="fa-solid fa-server"></i> Production-Level Answer</div>
+                                    <div class="interview-text">${ip.answerProduction}</div>
+                                </div>
+                            ` : ''}
 
-                                    ${ip.answerProduction ? `
-                                        <div class="interview-block">
-                                            <div class="interview-label label-prod">
-                                                <i class="fa-solid fa-server"></i>
-                                                Production-Level Answer
-                                            </div>
-                                            <div class="interview-text">${ip.answerProduction}</div>
-                                        </div>
-                                    ` : ''}
+                            ${ip.interviewerTesting ? `
+                                <div class="interview-block">
+                                    <div class="interview-label label-testing"><i class="fa-solid fa-bullseye"></i> What the Interviewer Is Testing</div>
+                                    <div class="interview-text">${ip.interviewerTesting}</div>
+                                </div>
+                            ` : ''}
 
-                                    ${ip.interviewerTesting ? `
-                                        <div class="interviewer-test">
-                                            <div class="interview-label label-test">
-                                                <i class="fa-solid fa-bullseye"></i>
-                                                What the Interviewer Is Testing
-                                            </div>
-                                            <div class="interview-text">${ip.interviewerTesting}</div>
-                                        </div>
-                                    ` : ''}
+                            ${ip.scenario ? `
+                                <div class="scenario-box">
+                                    <div class="interview-label label-scenario"><i class="fa-solid fa-triangle-exclamation"></i> Production Scenario</div>
+                                    <div class="interview-text">${ip.scenario}</div>
+                                </div>
+                            ` : ''}
 
-                                    ${ip.scenario ? `
-                                        <div class="interview-scenario">
-                                            <div class="interview-label label-scenario">
-                                                <i class="fa-solid fa-briefcase"></i>
-                                                Production Scenario
-                                            </div>
-                                            <div class="interview-text">${ip.scenario}</div>
-                                        </div>
-                                    ` : ''}
-
-                                    <div class="comparison-grid">
-                                        <div class="comparison-box weak">
-                                            <div class="interview-label label-weak">
-                                                <i class="fa-solid fa-xmark"></i>
-                                                Weak / Common Answer
-                                            </div>
-                                            <div class="interview-text">${ip.weakAnswer}</div>
-                                        </div>
-
-                                        <div class="comparison-box strong">
-                                            <div class="interview-label label-strong">
-                                                <i class="fa-solid fa-check"></i>
-                                                Strong Interview Answer
-                                            </div>
-                                            <div class="interview-text">${ip.strongAnswer}</div>
-                                        </div>
-                                    </div>
-
-                                    ${(ip.followUps || []).length ? `
-                                        <div class="interview-block">
-                                            <div class="interview-label" style="color:#a78bfa;">
-                                                <i class="fa-solid fa-comments"></i>
-                                                Interviewer Follow-Ups
-                                            </div>
-
-                                            <div class="followup-list">
-                                                ${ip.followUps.map((fq, index) => `
-                                                    <div class="followup-item">
-                                                        <button class="followup-question" type="button"
-                                                                onclick="toggleFollowUp(this)"
-                                                                aria-expanded="false">
-                                                            <span>
-                                                                <strong>Q${index + 1}.</strong> ${fq.q}
-                                                            </span>
-                                                            <i class="fa-solid fa-plus"></i>
-                                                        </button>
-                                                        <div class="followup-answer">
-                                                            <strong style="color:#a78bfa;">
-                                                                Recommended answer:
-                                                            </strong><br>
-                                                            ${fq.a}
-                                                        </div>
-                                                    </div>
-                                                `).join('')}
-                                            </div>
-                                        </div>
-                                    ` : ''}
-
-                                    <div class="tip-box">
-                                        <div class="interview-label label-tip">
-                                            <i class="fa-solid fa-lightbulb"></i>
-                                            Interview Tip
-                                        </div>
-                                        <div class="interview-text" style="color:#fef08a;">
-                                            ${ip.interviewTip}
-                                        </div>
-                                    </div>
+                            <div class="comparison-grid">
+                                <div class="comparison-box weak">
+                                    <div class="interview-label label-weak"><i class="fa-solid fa-xmark"></i> Weak / Common Answer</div>
+                                    <div class="interview-text">${ip.weakAnswer}</div>
+                                </div>
+                                <div class="comparison-box strong">
+                                    <div class="interview-label label-strong"><i class="fa-solid fa-check"></i> Strong Answer</div>
+                                    <div class="interview-text">${ip.strongAnswer}</div>
                                 </div>
                             </div>
-                        </section>
+
+                            ${ip.followUps && ip.followUps.length > 0 ? `
+                                <div class="interactive-box" style="margin-top: 1rem;">
+                                    <h4 style="font-size: 0.85rem;"><i class="fa-solid fa-comments"></i> Interviewer Follow-Up Questions</h4>
+                                    ${ip.followUps.map(fq => `
+                                        <div style="margin-top: 0.6rem;">
+                                            <strong style="font-size: 0.88rem; color: #f1f5f9;">▶ ${fq.q}</strong>
+                                            <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Answer</button>
+                                            <div class="collapsible-content">${fq.a}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            <div class="tip-box">
+                                <div class="interview-label label-tip"><i class="fa-solid fa-lightbulb"></i> Interview Tip</div>
+                                <div class="interview-text" style="color: #fef08a;">${ip.interviewTip}</div>
+                            </div>
+                        </div>
                     `;
                 }
 
@@ -793,26 +715,6 @@
             }
         }
 
-        function toggleInterview(button) {
-            const box = button.closest('.interview-box');
-            const expanded = box.classList.toggle('open');
-            button.setAttribute('aria-expanded', String(expanded));
-        }
-
-        function toggleFollowUp(button) {
-            const item = button.closest('.followup-item');
-            const expanded = item.classList.toggle('open');
-            button.setAttribute('aria-expanded', String(expanded));
-            const icon = button.querySelector('i');
-            if (icon) icon.className = expanded ? 'fa-solid fa-minus' : 'fa-solid fa-plus';
-        }
-
-        function toggleInterviewFilter(button) {
-            interviewOnly = !interviewOnly;
-            button.classList.toggle('active', interviewOnly);
-            renderConcepts();
-        }
-
         function scrollToConcept(id) {
             const element = document.getElementById(`lesson-${id}`);
             if (element) {
@@ -853,14 +755,9 @@
         }
 
         function updateProgress() {
-            const validIds = new Set(CONCEPTS.map(c => c.id));
-            completed = completed.filter(id => validIds.has(id));
-            localStorage.setItem('completed_concepts', JSON.stringify(completed));
-
             const total = CONCEPTS.length;
             const done = completed.length;
-            const pct = total ? Math.round((done / total) * 100) : 0;
-
+            const pct = Math.round((done / total) * 100) || 0;
             document.getElementById('progress-text').textContent = `${done} / ${total} completed`;
             document.getElementById('progress-percent').textContent = `${pct}%`;
             document.getElementById('progress-bar').style.width = `${pct}%`;
@@ -873,7 +770,9 @@
             renderConcepts();
         }
 
-        renderConcepts();
+        document.addEventListener('DOMContentLoaded', () => {
+            renderConcepts();
+        });
     </script>
 </body>
 </html>
