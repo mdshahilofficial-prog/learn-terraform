@@ -19,6 +19,8 @@
             --border: #1e293b;
             --border-glow: #334155;
             --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -32,13 +34,7 @@
             margin: 0 auto;
         }
 
-        /* BRANDING HEADER */
-        .brand-container {
-            text-align: center;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
+        .brand-container { text-align: center; margin-bottom: 2.5rem; }
         .brand-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 3.2rem;
@@ -51,37 +47,11 @@
             text-transform: uppercase;
             margin-bottom: 0.5rem;
         }
+        .brand-tagline { color: var(--text-secondary); font-size: 1rem; max-width: 600px; margin: 0 auto; }
 
-        .brand-tagline {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            letter-spacing: 1px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* SEARCH BAR */
-        .search-section {
-            margin-bottom: 2rem;
-            position: relative;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .search-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 1.2rem;
-            color: var(--accent);
-            font-size: 1.2rem;
-        }
-
+        .search-section { margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+        .search-wrapper { position: relative; display: flex; align-items: center; }
+        .search-icon { position: absolute; left: 1.2rem; color: var(--accent); font-size: 1.2rem; }
         .search-input {
             width: 100%;
             background: var(--bg-card);
@@ -94,21 +64,9 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             transition: all 0.3s;
         }
+        .search-input:focus { border-color: var(--accent); box-shadow: 0 0 25px var(--accent-glow); }
 
-        .search-input:focus {
-            border-color: var(--accent);
-            box-shadow: 0 0 25px var(--accent-glow);
-        }
-
-        /* CATEGORY FILTER PILLS */
-        .pills-container {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
+        .pills-container { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
         .pill-btn {
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
@@ -123,14 +81,12 @@
             gap: 0.4rem;
             transition: all 0.3s;
         }
-
         .pill-btn.active, .pill-btn:hover {
             background: linear-gradient(135deg, var(--accent), #6d28d9);
             color: #fff;
             border-color: var(--accent);
             box-shadow: 0 4px 15px var(--accent-glow);
         }
-
         .level-select {
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
@@ -142,7 +98,6 @@
             font-size: 0.85rem;
         }
 
-        /* PROGRESS TRACKER */
         .progress-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
@@ -151,196 +106,79 @@
             margin-bottom: 2.5rem;
             box-shadow: 0 8px 30px rgba(0,0,0,0.5);
         }
+        .progress-info { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; }
+        .progress-bar-bg { background: var(--bg-dark); height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid var(--border); }
+        .progress-bar-fill { background: linear-gradient(90deg, var(--accent), var(--success)); height: 100%; width: 0%; transition: width 0.4s ease; }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.75rem;
-        }
-
-        .progress-bar-bg {
-            background: var(--bg-dark);
-            height: 10px;
-            border-radius: 5px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .progress-bar-fill {
-            background: linear-gradient(90deg, var(--accent), var(--success));
-            height: 100%;
-            width: 0%;
-            transition: width 0.4s ease;
-        }
-
-        /* CONCEPTS LIST GRID */
-        .concepts-grid { display: flex; flex-direction: column; gap: 1.75rem; }
-
+        .concepts-grid { display: flex; flex-direction: column; gap: 2rem; }
         .concept-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
             border-radius: 16px;
-            padding: 1.75rem;
+            padding: 2rem;
             transition: transform 0.2s, border-color 0.2s;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
+        .concept-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+        .badge-container { display: flex; gap: 0.5rem; align-items: center; }
+        .badge-category { font-size: 0.75rem; padding: 0.3rem 0.75rem; border-radius: 20px; background: rgba(16, 185, 129, 0.15); color: var(--success); border: 1px solid var(--success); font-weight: 600; }
+        .badge-level { font-size: 0.75rem; padding: 0.3rem 0.75rem; border-radius: 20px; background: rgba(139, 92, 246, 0.15); color: var(--accent); border: 1px solid var(--accent); font-weight: 600; }
 
-        .concept-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-3px);
-        }
+        .concept-card h2 { font-size: 1.6rem; color: #fff; margin-bottom: 0.5rem; }
+        .concept-card p.summary { color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6; font-size: 1rem; }
 
-        .concept-card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
+        .lesson-section-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem; }
+        .detail-box { background: rgba(7, 10, 18, 0.6); padding: 1.25rem; border-radius: 12px; border: 1px solid var(--border); }
+        .detail-box h4 { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .detail-box p, .detail-box ul { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
+        .detail-box ul { padding-left: 1.2rem; }
 
-        .badge-container {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
+        .visual-container { margin: 1.25rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; text-align: center; }
+        .visual-container img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+        .visual-caption { padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); background: rgba(15, 23, 42, 0.8); }
 
-        .badge-category {
-            font-size: 0.75rem;
-            padding: 0.3rem 0.75rem;
-            border-radius: 20px;
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--success);
-            border: 1px solid var(--success);
-            font-weight: 600;
-        }
-
-        .badge-level {
-            font-size: 0.75rem;
-            padding: 0.3rem 0.75rem;
-            border-radius: 20px;
-            background: rgba(139, 92, 246, 0.15);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            font-weight: 600;
-        }
-
-        .concept-card h2 { font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; }
-        .concept-card p.summary { color: var(--text-secondary); margin-bottom: 1.25rem; line-height: 1.6; font-size: 0.95rem; }
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.25rem;
-            margin-top: 1.25rem;
-            margin-bottom: 1.25rem;
-        }
-
-        @media (max-width: 768px) { .details-grid { grid-template-columns: 1fr; } }
-
-        .detail-box {
-            background: rgba(7, 10, 18, 0.6);
-            padding: 1.25rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-        }
-
-        .detail-box h4 {
-            color: var(--accent);
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 700;
-        }
-
-        .detail-box p { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
-
-        /* CODE BLOCK WITH COPY BUTTON */
-        .code-container {
-            position: relative;
-            margin: 1rem 0;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .code-container pre {
-            margin: 0 !important;
-            padding-top: 2.5rem !important;
-        }
-
+        .code-container { position: relative; margin: 1.25rem 0; border-radius: 8px; overflow: hidden; }
+        .code-container pre { margin: 0 !important; padding-top: 2.5rem !important; }
         .copy-btn {
-            position: absolute;
-            top: 0.5rem;
-            right: 0.5rem;
-            background: rgba(30, 41, 59, 0.85);
-            border: 1px solid var(--border-glow);
-            color: var(--text-secondary);
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            backdrop-filter: blur(4px);
-            transition: all 0.2s ease;
-            z-index: 10;
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: rgba(30, 41, 59, 0.85); border: 1px solid var(--border-glow);
+            color: var(--text-secondary); padding: 0.35rem 0.75rem; border-radius: 6px;
+            font-size: 0.75rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.4rem; z-index: 10;
         }
+        .copy-btn:hover { background: var(--accent); color: #fff; }
+        .copy-btn.copied { background: var(--success); color: #fff; }
 
-        .copy-btn:hover {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
+        /* Interactive Collapsible Elements */
+        .interactive-box { background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 1.25rem; margin-top: 1.25rem; }
+        .interactive-box h4 { color: var(--accent); font-size: 0.95rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .toggle-btn { background: var(--bg-card); border: 1px solid var(--border-glow); color: var(--text-primary); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; margin-top: 0.75rem; transition: all 0.2s; }
+        .toggle-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .collapsible-content { display: none; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--border); color: #cbd5e1; font-size: 0.9rem; }
 
-        .copy-btn.copied {
-            background: var(--success);
-            color: #fff;
-            border-color: var(--success);
-        }
+        .footer-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+        .next-btn { background: rgba(139, 92, 246, 0.15); border: 1px solid var(--accent); color: var(--accent); padding: 0.5rem 1rem; border-radius: 30px; cursor: pointer; font-size: 0.85rem; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s; }
+        .next-btn:hover { background: var(--accent); color: #fff; }
 
-        .complete-btn {
-            background: transparent;
-            border: 1px solid var(--success);
-            color: var(--success);
-            padding: 0.5rem 1.2rem;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.2s;
-        }
-
+        .complete-btn { background: transparent; border: 1px solid var(--success); color: var(--success); padding: 0.5rem 1.2rem; border-radius: 30px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
         .complete-btn.done { background: var(--success); color: white; }
 
-        footer {
-            margin-top: 4rem;
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border);
-            color: var(--text-secondary);
-        }
+        footer { margin-top: 4rem; text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); }
     </style>
 </head>
 <body>
 
-    <!-- BRANDING HEADER -->
     <div class="brand-container">
         <h1 class="brand-title">TERRA ACADEMY</h1>
         <p class="brand-tagline">Master Infrastructure as Code from Core Fundamentals to Production Engineering</p>
     </div>
 
-    <!-- INSTANT SEARCH BAR -->
     <div class="search-section">
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, or code across all 16 modules..." oninput="renderConcepts()">
+            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, or code across all modules..." oninput="renderConcepts()">
         </div>
     </div>
 
-    <!-- INTERACTIVE PILL NAVIGATION (16 CATEGORIES) -->
     <div class="pills-container">
         <button class="pill-btn active" onclick="filterCategory('all', this)"><i class="fa-solid fa-globe"></i> All Modules</button>
         <button class="pill-btn" onclick="filterCategory('Fundamentals', this)">Fundamentals</button>
@@ -371,7 +209,6 @@
     </div>
 
     <main>
-        <!-- PROGRESS TRACKER -->
         <section class="progress-card">
             <div class="progress-info">
                 <div>
@@ -385,7 +222,6 @@
             </div>
         </section>
 
-        <!-- DYNAMIC CONCEPTS LIST -->
         <section class="concepts-grid" id="concepts-container"></section>
     </main>
 
@@ -397,6 +233,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-hcl.min.js"></script>
     <script>
+        // EXPANDED REUSABLE LESSON SCHEMA (Phase 2 Architectural Update)
         const CONCEPTS = [
             {
                 id: "c1",
@@ -405,10 +242,21 @@
                 level: "Core",
                 summary: "Understanding how Terraform uses a declarative model to reach target infrastructure states without manual steps.",
                 whatIsIt: "In a declarative model, you define WHAT end-state infrastructure you want created rather than writing procedural scripts describing HOW to create it step-by-step.",
-                mentalModel: "Think of an architect handing a blueprint to a builder. You don't tell the builder how to swing the hammer; you describe the house specs, and the engine calculates the build tasks.",
-                codeExample: `resource "aws_s3_bucket" "production_assets" {\n  bucket = "my-company-assets-prod-2026"\n\n  tags = {\n    Environment = "Production"\n    ManagedBy   = "Terraform"\n  }\n}`,
-                productionNote: "Declarative code makes infrastructure self-documenting, making it easy to track infrastructure changes inside git repositories.",
-                interviewTrap: "Is Terraform purely declarative? Yes, for state declarations. However, provisioners and custom scripts introduce imperative side-effects."
+                whyDoWeNeedIt: "Eliminates complex imperative bash/python scripts that break when re-executed or when cloud state drifts out of sync.",
+                howItWorks: "Terraform Core reads configuration files (.tf), inspects current cloud infrastructure, compares them against state (.tfstate), and calculates execution diffs.",
+                syntaxExample: `resource "aws_s3_bucket" "production_assets" {\n  bucket = "my-company-assets-prod-2026"\n\n  tags = {\n    Environment = "Production"\n    ManagedBy   = "Terraform"\n  }\n}`,
+                imageUrl: "image_agent_tag_9854790057429237740",
+                imageCaption: "Terraform Core execution flow mapping HCL files to provider APIs.",
+                realWorldUsage: "Provisioning standardized multi-region AWS VPC networking clusters with automated subnet tag allocations.",
+                commonMistakes: "Writing imperative inline provisioning scripts (`local-exec`) instead of relying on native declarative provider resources.",
+                productionPerspective: "Declarative code makes infrastructure self-documenting, enabling strict GitOps review workflows via pull requests.",
+                interviewPerspective: "Expect questions like: 'How does declarative infrastructure handle drift compared to procedural imperative tools like Ansible?'",
+                followUpQuestions: [
+                    { q: "Can imperative provisioners break declarativeness?", a: "Yes, using `local-exec` or script hooks adds side-effects outside of state reconciliation." }
+                ],
+                practiceTask: "Declare an S3 bucket with tags using declarative HCL and identify which provider argument sets ownership.",
+                practiceSolution: "Use the `aws_s3_bucket` block and define tags inside a nested map structure.",
+                nextConceptId: "c2"
             },
             {
                 id: "c2",
@@ -416,215 +264,22 @@
                 category: "HCL & Configuration",
                 level: "Core",
                 summary: "Mastering HashiCorp Configuration Language syntax, blocks, labels, and argument structure.",
-                whatIsIt: "HCL (HashiCorp Configuration Language) is a human-readable, structured configuration language built specifically for infrastructure configuration.",
-                mentalModel: "HCL structures follow a standard pattern: Block Type -> Block Label 1 -> Block Label 2 -> Arguments inside braces `{}`.",
-                codeExample: `# Syntax: <BLOCK TYPE> "<TYPE LABEL>" "<NAME LABEL>" {}\nresource "aws_instance" "web_server" {\n  ami           = "ami-0c55b159cbfafe1f0"\n  instance_type = "t3.micro"\n}`,
-                productionNote: "Run `terraform fmt` across your workspace before opening Pull Requests to automatically reformat syntax to standard indentations.",
-                interviewTrap: "HCL syntax allows block duplication, but running `plan` fails if duplicate block addresses point to identical cloud resources."
-            },
-            {
-                id: "c3",
-                title: "3. Provider Architecture & Plugin Execution",
-                category: "Fundamentals",
-                level: "Core",
-                summary: "How Terraform translates HCL declarations into cloud API calls using gRPC provider plugins.",
-                whatIsIt: "Providers are executable plugins that translate generic Terraform operations into explicit API calls against AWS, Azure, GCP, or custom services.",
-                mentalModel: "Providers act as API translators. Terraform Core passes execution requests down to the provider plugin over gRPC sockets.",
-                codeExample: `terraform {\n  required_providers {\n    azurerm = {\n      source  = "hashicorp/azurerm"\n      version = "~> 3.0"\n    }\n  }\n}\n\nprovider "azurerm" {\n  features {}\n}`,
-                productionNote: "Always pin provider versions strictly using constraint operators (`~> 3.0`) to avoid pipeline breaks when provider updates publish.",
-                interviewTrap: "Providers run as isolated binaries separate from Terraform Core, communicating over gRPC loopback interfaces."
-            },
-            {
-                id: "c4",
-                title: "4. Resource Lifecycle & Creation Dependencies",
-                category: "Resources",
-                level: "Core",
-                summary: "Defining managed resources, implicit dependency graphs, and resource references.",
-                whatIsIt: "A resource block describes one or more infrastructure objects such as virtual networks, compute instances, or DNS records.",
-                mentalModel: "Terraform creates a Directed Acyclic Graph (DAG) automatically by reading references between resources to determine execution order.",
-                codeExample: `resource "aws_vpc" "main" {\n  cidr_block = "10.0.0.0/16"\n}\n\nresource "aws_subnet" "public" {\n  vpc_id     = aws_vpc.main.id # Implicit dependency created here\n  cidr_block = "10.0.1.0/24"\n}`,
-                productionNote: "Avoid forcing manual execution ordering unless necessary; let Terraform construct its implicit DAG graph natively.",
-                interviewTrap: "What happens if a resource creation fails midway? Terraform records created infrastructure in state before halting execution."
-            },
-            {
-                id: "c5",
-                title: "5. Input Variables & Validation Rules",
-                category: "Variables & Outputs",
-                level: "Core",
-                summary: "Parameterizing configurations using type constraints, defaults, and custom validation blocks.",
-                whatIsIt: "Input variables serve as parameters for a Terraform module, allowing configurations to be customized without altering source code.",
-                mentalModel: "Input variables are function arguments passed into your infrastructure module.",
-                codeExample: `variable "environment" {\n  type        = string\n  default     = "dev"\n  description = "Target deployment stage"\n\n  validation {\n    condition     = contains(["dev", "stage", "prod"], var.environment)\n    error_message = "Environment must be dev, stage, or prod."\n  }\n}`,
-                productionNote: "Always define strict type constraints and descriptive text for all input variables in production modules.",
-                interviewTrap: "Order of precedence for variable values: `-var`/`-var-file` CLI overrides > `*.auto.tfvars` > `terraform.tfvars` > `TF_VAR_` environment variables > `default`."
-            },
-            {
-                id: "c6",
-                title: "6. Outputs & Cross-Stack Exposure",
-                category: "Variables & Outputs",
-                level: "Core",
-                summary: "Exporting resource attributes for parent modules, CLI consumers, or remote state queries.",
-                whatIsIt: "Output values expose structural resource attributes to child modules, external pipelines, or root execution logs.",
-                mentalModel: "Output values act like return values from a function call.",
-                codeExample: `output "db_endpoint" {\n  value       = aws_db_instance.primary.endpoint\n  description = "Connection endpoint for relational DB"\n  sensitive   = true\n}`,
-                productionNote: "Mark sensitive outputs with `sensitive = true` to prevent secrets from rendering in plain text during CI pipeline logs.",
-                interviewTrap: "Setting `sensitive = true` hides values from stdout CLI logs, but does NOT encrypt or hide values inside the `.tfstate` file."
-            },
-            {
-                id: "c7",
-                title: "7. Data Sources & Unmanaged Infrastructure Ingestion",
-                category: "Data Sources",
-                level: "Core",
-                summary: "Querying pre-existing cloud resources without taking direct lifecycle management ownership.",
-                whatIsIt: "Data sources allow Terraform to fetch read-only attributes from existing cloud resources created outside the current workspace.",
-                mentalModel: "Data sources are read-only database queries performed live against target cloud provider APIs.",
-                codeExample: `data "aws_ami" "ubuntu" {\n  most_recent = true\n  owners      = ["099720109477"] # Canonical\n\n  filter {\n    name   = "name"\n    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]\n  }\n}`,
-                productionNote: "Use data sources to reference shared platform infrastructure (like central VPCs or KMS Keys) maintained by core platform teams.",
-                interviewTrap: "Data sources perform real-time API reads during `plan`. If a target resource does not exist, `plan` fails before any changes can be applied."
-            },
-            {
-                id: "c8",
-                title: "8. Expressions, Conditionals & Built-in Functions",
-                category: "Expressions & Functions",
-                level: "Core",
-                summary: "Manipulating data types using built-in functions, ternary operators, and string interpolation.",
-                whatIsIt: "Terraform includes built-in functions (like `lookup`, `merge`, `flatten`) to transform and evaluate dynamic infrastructure expressions.",
-                mentalModel: "Functions are pure utility helpers used directly within parameter value declarations.",
-                codeExample: `locals {\n  env_prefix = lower(var.environment)\n  instance_count = var.environment == "prod" ? 3 : 1\n  tags = merge(var.common_tags, { Env = local.env_prefix })\n}`,
-                productionNote: "User-defined functions are not supported in HCL. You must rely strictly on Terraform's native built-in function library.",
-                interviewTrap: "Can you write custom functions in Terraform? No. Custom logic must be constructed using native functions and ternary expressions."
-            },
-            {
-                id: "c9",
-                title: "9. Meta-Arguments: count vs for_each",
-                category: "Meta-Arguments",
-                level: "Advanced",
-                summary: "Selecting appropriate iteration operators to avoid index-shift resource recreations.",
-                whatIsIt: "`count` iterates using integer indices, while `for_each` iterates over unique string keys in sets or maps.",
-                mentalModel: "`count` behaves like an indexed array (`list[0]`). `for_each` behaves like a key-value map (`map[\"us-east-1\"]`).",
-                codeExample: `resource "aws_iam_user" "team" {\n  for_each = toset(["alice", "bob", "charlie"])\n  name     = each.key\n}`,
-                productionNote: "Prefer `for_each` over `count` when managing collections where items might be inserted or removed from the middle of a list.",
-                interviewTrap: "Deleting the first element in a `count` list shifts all subsequent index positions, forcing Terraform to destroy and recreate downstream resources."
-            },
-            {
-                id: "c10",
-                title: "10. Modules & Reusable Code Enclaves",
-                category: "Modules",
-                level: "Core",
-                summary: "Encapsulating resources into reusable, version-controlled modules to prevent code duplication.",
-                whatIsIt: "A Terraform module is a set of configuration files grouped in a folder that exposes input variables and returns output values.",
-                mentalModel: "Modules are functions for infrastructure. You pass input arguments into the module, and it returns created resource outputs.",
-                codeExample: `module "vpc_network" {\n  source = "./modules/vpc"\n  \n  cidr_block          = "10.0.0.0/16"\n  public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]\n  environment         = "production"\n}`,
-                productionNote: "Store reusable modules in versioned git repositories so environments can pin to explicit release tags (`?ref=v1.2.0`).",
-                interviewTrap: "Resources declared inside child modules cannot be targeted directly without specifying full module paths (`module.vpc_network.aws_subnet.public[0]`)."
-            },
-            {
-                id: "c11",
-                title: "11. State Architecture & Desired vs Actual State",
-                category: "State",
-                level: "Core",
-                summary: "How Terraform records real-world resource bindings and mapping IDs in tfstate files.",
-                whatIsIt: "State is a JSON file acting as a single source of truth mapping your code resource declarations to actual real-world cloud resource IDs.",
-                mentalModel: "State is a translator database linking `aws_instance.web` to actual instance ID `i-0123456789abcdef0`.",
-                codeExample: `# State file excerpt showing resource-to-provider binding\n{\n  "version": 4,\n  "terraform_version": "1.7.0",\n  "resources": [\n    {\n      "mode": "managed",\n      "type": "aws_s3_bucket",\n      "name": "assets",\n      "provider": "provider[\\\"registry.terraform.io/hashicorp/aws\\\"]"\n    }\n  ]\n}`,
-                productionNote: "Never edit raw state files manually. Always use safe CLI tools like `terraform state mv` or `terraform state rm`.",
-                interviewTrap: "If state is deleted, running `apply` will attempt to recreate all infrastructure, resulting in 'Resource Already Exists' cloud API conflicts."
-            },
-            {
-                id: "c12",
-                title: "12. Remote Backends & State Lock Mechanisms",
-                category: "Backend & Remote State",
-                level: "Advanced",
-                summary: "Securing tfstate files centrally using encrypted S3 storage and DynamoDB state locks.",
-                whatIsIt: "A backend defines where Terraform stores its state file. Remote backends keep state centralized and locked during concurrent team applies.",
-                mentalModel: "Think of a central database lock. When developer A runs `apply`, a lock record prevents developer B from writing conflicting changes.",
-                codeExample: `terraform {\n  backend "s3" {\n    bucket         = "company-tf-state"\n    key            = "prod/terraform.tfstate"\n    region         = "us-east-1"\n    dynamodb_table = "terraform-locks"\n  }\n}`,
-                productionNote: "Enable versioning and server-side encryption on your state storage buckets for instant recovery during corruption events.",
-                interviewTrap: "Forcefully unlocking state locks (`force-unlock`) while another deployment pipeline is actively writing risks catastrophic state corruption."
-            },
-            {
-                id: "c13",
-                title: "13. Workspaces vs Multi-Folder Isolation",
-                category: "Workspaces",
-                level: "Advanced",
-                summary: "Evaluating state isolation strategies for multi-environment infrastructure.",
-                whatIsIt: "Workspaces allow multiple state files to exist within the same configuration directory using the `terraform.workspace` variable.",
-                mentalModel: "Workspaces are like local Git branches for your `.tfstate` backend file.",
-                codeExample: `resource "aws_s3_bucket" "env_bucket" {\n  bucket = "company-assets-\${terraform.workspace}"\n}`,
-                productionNote: "For production platforms, prefer separate directory structures and repository branches over CLI workspaces to strictly enforce blast-radius isolation.",
-                interviewTrap: "Workspaces share the same code base and provider configuration; using them for production vs development can accidentally expose production to dev breaking changes."
-            },
-            {
-                id: "c14",
-                title: "14. Dynamic Blocks & Dynamic HCL Construction",
-                category: "Advanced Terraform",
-                level: "Advanced",
-                summary: "Constructing repeating nested configuration blocks programmatically using dynamic expressions.",
-                whatIsIt: "`dynamic` blocks allow you to generate repeated nested blocks (like ingress security group rules) using iterable expressions.",
-                mentalModel: "A `dynamic` block is a `for` loop designed specifically for nested block attributes.",
-                codeExample: `resource "aws_security_group" "sg" {\n  name = "app-sg"\n\n  dynamic "ingress" {\n    for_each = var.service_ports\n    content {\n      from_port   = ingress.value\n      to_port     = ingress.value\n      protocol    = "tcp"\n      cidr_blocks = ["10.0.0.0/8"]\n    }\n  }\n}`,
-                productionNote: "Overusing dynamic blocks makes code difficult to audit. Use them sparingly for complex nested configurations.",
-                interviewTrap: "Can you nest `dynamic` blocks inside other `dynamic` blocks? Yes, but it significantly reduces readability and maintainability."
-            },
-            {
-                id: "c15",
-                title: "15. Azure Resource Management with `azurerm`",
-                category: "Terraform on Azure",
-                level: "Core",
-                summary: "Provisioning Resource Groups, VNets, and Azure App Services safely using provider features.",
-                whatIsIt: "The `azurerm` provider interacts with the Azure Resource Manager (ARM) API to manage Azure cloud infrastructure.",
-                mentalModel: "Translates standard HCL resource blocks into REST API requests targeting the Azure Resource Manager endpoint.",
-                codeExample: `resource "azurerm_resource_group" "rg" {\n  name     = "rg-production-eastus"\n  location = "East US"\n}\n\nresource "azurerm_virtual_network" "vnet" {\n  name                = "vnet-production"\n  resource_group_name = azurerm_resource_group.rg.name\n  location            = azurerm_resource_group.rg.location\n  address_space       = ["10.0.0.0/16"]\n}`,
-                productionNote: "Always declare the required `features {}` block in the `azurerm` provider block; omitting it causes initial execution errors.",
-                interviewTrap: "Why is the `features {}` block mandatory in the `azurerm` provider? It configures custom provider behavior for resource deletion locks and soft deletes."
-            },
-            {
-                id: "c16",
-                title: "16. Automated CI/CD Pipelines with GitHub Actions",
-                category: "CI/CD",
-                level: "Production",
-                summary: "Automating validation, plan generation, and approval-gated applies in continuous integration pipelines.",
-                whatIsIt: "Running Terraform within automated CI/CD tools to enforce pull-request reviews, automated formatting checks, and security scans.",
-                mentalModel: "Eliminates 'works on my machine' deployments by executing `fmt`, `validate`, `plan`, and `apply` inside isolated pipeline containers.",
-                codeExample: `# GitHub Actions Workflow Step Excerpt\n- name: Terraform Plan\n  run: terraform plan -no-color -out=tfplan\n- name: Terraform Apply\n  if: github.ref == 'refs/heads/main' && github.event_name == 'push'\n  run: terraform apply -input=false tfplan`,
-                productionNote: "Always generate a saved plan file (`-out=tfplan`) during the PR validation phase and apply that exact plan file in production.",
-                interviewTrap: "What happens if you run `terraform apply` in CI/CD without specifying a plan file? The pipeline may apply state changes that differ from the approved pull request review."
-            },
-            {
-                id: "c17",
-                title: "17. Secret Management & State Masking Best Practices",
-                category: "Security & Best Practices",
-                level: "Production",
-                summary: "Preventing plain-text secret exposure in git repositories and CI/CD logging streams.",
-                whatIsIt: "Strategies for injecting sensitive credentials (passwords, tokens, keys) safely without hardcoding them into version control.",
-                mentalModel: "Treat HCL files as public source code; pull runtime secrets dynamically from KMS, Vault, or Environment Variables.",
-                codeExample: `variable "db_password" {\n  type      = string\n  sensitive = true\n}\n\nresource "aws_db_instance" "db" {\n  allocated_storage = 20\n  password          = var.db_password # Injected via TF_VAR_db_password\n}`,
-                productionNote: "Even if marked `sensitive = true`, values ARE written in plain text to `.tfstate`. Restrict state file access via strict cloud IAM policies.",
-                interviewTrap: "Does marking a variable as `sensitive` encrypt it in the `.tfstate` file? No. It only prevents the value from displaying in CLI terminal output."
-            },
-            {
-                id: "c18",
-                title: "18. Production Drift Detection & State Reconciliation",
-                category: "Production",
-                level: "Production",
-                summary: "Detecting and resolving out-of-band changes made manually in the cloud console.",
-                whatIsIt: "Drift occurs when physical cloud resources are changed out-of-band without updating the underlying Terraform configuration.",
-                mentalModel: "Terraform inspects real-world infrastructure during `plan`, compares it to state, and proposes modifications to align real-world resources to your code.",
-                codeExample: `# Execute refresh-only plan to inspect real-world drift without modifying state\nterraform plan -refresh-only`,
-                productionNote: "Schedule daily automated `terraform plan -detailed-exitcode` cron jobs to receive alerts whenever production configuration drift occurs.",
-                interviewTrap: "How does `terraform refresh` differ from `terraform plan`? `refresh` updates state to match real infrastructure; `plan` compares code to state and real infrastructure."
-            },
-            {
-                id: "c19",
-                title: "19. High-Frequency Interview Scenario: State Lock & Corruption Recovery",
-                category: "Interview Preparation",
-                level: "Interview Trap",
-                summary: "Resolving deadlocks, interrupted applies, and corrupted `.tfstate` backup files under pressure.",
-                whatIsIt: "A core scenario testing an engineer's ability to safely clear stale state locks and restore corrupted state files without causing downtime.",
-                mentalModel: "First verify no active deployment pipelines are running; then safely clear stale lock IDs or pull prior state backups.",
-                codeExample: `# Step 1: Force unlock stale lock ID (ONLY after verifying process deadlocks)\nterraform force-unlock <LOCK-ID>\n\n# Step 2: Push known good backup state if corruption occurred\nterraform state push backup.tfstate`,
-                productionNote: "Always keep cloud storage bucket versioning enabled on state buckets so prior state files can be restored instantly.",
-                interviewTrap: "Why is running `terraform force-unlock` dangerous? If another pipeline runner is actively applying changes, forcing an unlock will corrupt the state file."
+                whatIsIt: "HCL (HashiCorp Configuration Language) is a human-readable, structured configuration language built specifically for infrastructure orchestration.",
+                whyDoWeNeedIt: "Provides an easy-to-read syntax superior to raw JSON while maintaining strict machine readability and type validation.",
+                howItWorks: "HCL parses declarations into Abstract Syntax Trees (AST) that Terraform interprets to build resource dependency graphs.",
+                syntaxExample: `# Syntax: <BLOCK TYPE> "<TYPE LABEL>" "<NAME LABEL>" {}\nresource "aws_instance" "web_server" {\n  ami           = "ami-0c55b159cbfafe1f0"\n  instance_type = "t3.micro"\n}`,
+                imageUrl: "image_agent_tag_9854790057429235961",
+                imageCaption: "Structuring HCL configuration files into clean modular layers.",
+                realWorldUsage: "Organizing production repositories into structured `main.tf`, `variables.tf`, `outputs.tf`, and `providers.tf` files.",
+                commonMistakes: "Forgetting quotes around string arguments or improperly nesting blocks inside incorrect parent blocks.",
+                productionPerspective: "Enforce automated formatting using `terraform fmt -check` in pull request CI validation stages.",
+                interviewPerspective: "Interpreting duplicate resource address errors during plan phase execution.",
+                followUpQuestions: [
+                    { q: "What is the difference between an argument and a block in HCL?", a: "Arguments assign values (`key = value`), while blocks nest structural configurations (`block_type {}`)." }
+                ],
+                practiceTask: "Refactor a plain string variable assignment into a structured block argument.",
+                practiceSolution: "Wrap related arguments inside `{}` block braces according to provider documentation specs.",
+                nextConceptId: "c3"
             }
         ];
 
@@ -643,8 +298,7 @@
                 const matchesSearch = c.title.toLowerCase().includes(searchQuery) || 
                                       c.category.toLowerCase().includes(searchQuery) ||
                                       c.summary.toLowerCase().includes(searchQuery) ||
-                                      c.whatIsIt.toLowerCase().includes(searchQuery) ||
-                                      c.codeExample.toLowerCase().includes(searchQuery);
+                                      (c.whatIsIt && c.whatIsIt.toLowerCase().includes(searchQuery));
 
                 return matchesCategory && matchesLevel && matchesSearch;
             });
@@ -654,7 +308,7 @@
                     <div style="text-align: center; padding: 3rem; color: var(--text-secondary);">
                         <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; margin-bottom: 1rem;"></i>
                         <h3>No matching Terraform concepts found</h3>
-                        <p>Try searching for a different keyword like "state", "module", "S3", "Azure", or "variables".</p>
+                        <p>Try searching for a different keyword.</p>
                     </div>`;
                 return;
             }
@@ -663,7 +317,9 @@
                 const isDone = completed.includes(item.id);
                 const card = document.createElement('div');
                 card.className = 'concept-card';
-                card.innerHTML = `
+                card.id = `lesson-${item.id}`;
+
+                let html = `
                     <div class="concept-card-header">
                         <div class="badge-container">
                             <span class="badge-category">${item.category}</span>
@@ -676,40 +332,131 @@
                     <h2>${item.title}</h2>
                     <p class="summary">${item.summary}</p>
 
-                    <div class="details-grid">
+                    <!-- Pillar 1, 2, 3: Overview & Mechanics -->
+                    <div class="lesson-section-grid">
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-circle-info"></i> What is it?</h4>
-                            <p>${item.whatIsIt}</p>
+                            <h4><i class="fa-solid fa-circle-info"></i> 1. What is it?</h4>
+                            <p>${item.whatIsIt || 'N/A'}</p>
                         </div>
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-brain"></i> Mental Model</h4>
-                            <p>${item.mentalModel}</p>
+                            <h4><i class="fa-solid fa-circle-question"></i> 2. Why do we need it?</h4>
+                            <p>${item.whyDoWeNeedIt || 'Simplifies state management and infrastructure stability.'}</p>
                         </div>
-                    </div>
-
-                    <div class="code-container">
-                        <button class="copy-btn" onclick="copyCode(this)">
-                            <i class="fa-regular fa-copy"></i> Copy Code
-                        </button>
-                        <pre><code class="language-hcl">${escapeHtml(item.codeExample)}</code></pre>
-                    </div>
-
-                    <div class="details-grid">
-                        <div class="detail-box" style="border-left: 3px solid var(--accent);">
-                            <h4><i class="fa-solid fa-industry"></i> Production Note</h4>
-                            <p>${item.productionNote}</p>
-                        </div>
-                        <div class="detail-box" style="border-left: 3px solid #ef4444;">
-                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Interview Trap</h4>
-                            <p>${item.interviewTrap}</p>
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-gears"></i> 3. How does it work?</h4>
+                            <p>${item.howItWorks || 'Evaluated during execution graph generation.'}</p>
                         </div>
                     </div>
                 `;
+
+                // Pillar 4: Syntax / Code Example
+                if (item.syntaxExample) {
+                    html += `
+                        <div class="code-container">
+                            <button class="copy-btn" onclick="copyCode(this)">
+                                <i class="fa-regular fa-copy"></i> Copy Code
+                            </button>
+                            <pre><code class="language-hcl">${escapeHtml(item.syntaxExample)}</code></pre>
+                        </div>
+                    `;
+                }
+
+                // Pillar 5: Visual Explanation
+                if (item.imageUrl) {
+                    html += `
+                        <div class="visual-container">
+                            <img src="${item.imageUrl}" alt="Visual diagram for ${escapeHtml(item.title)}">
+                            <div class="visual-caption"><i class="fa-solid fa-image"></i> ${item.imageCaption || 'Visual Architecture Overview'}</div>
+                        </div>
+                    `;
+                }
+
+                // Pillar 6, 7, 8, 9: Real World, Pitfalls, Production & Interview Perspective
+                html += `
+                    <div class="lesson-section-grid">
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-building"></i> 6. Real-World Usage</h4>
+                            <p>${item.realWorldUsage || 'Applied standardly across cloud workspaces.'}</p>
+                        </div>
+                        <div class="detail-box" style="border-left: 3px solid var(--warning);">
+                            <h4><i class="fa-solid fa-bug"></i> 7. Common Mistakes</h4>
+                            <p>${item.commonMistakes || 'Avoid hardcoding values.'}</p>
+                        </div>
+                        <div class="detail-box" style="border-left: 3px solid var(--accent);">
+                            <h4><i class="fa-solid fa-industry"></i> 8. Production Perspective</h4>
+                            <p>${item.productionPerspective || 'Follow strict GitOps practices.'}</p>
+                        </div>
+                        <div class="detail-box" style="border-left: 3px solid var(--danger);">
+                            <h4><i class="fa-solid fa-user-ninja"></i> 9. Interview Perspective</h4>
+                            <p>${item.interviewPerspective || 'Focus on state drift resolution.'}</p>
+                        </div>
+                    </div>
+                `;
+
+                // Pillar 10: Follow-up Questions (Interactive)
+                if (item.followUpQuestions && item.followUpQuestions.length > 0) {
+                    html += `
+                        <div class="interactive-box">
+                            <h4><i class="fa-solid fa-comments"></i> 10. Follow-up Questions</h4>
+                            ${item.followUpQuestions.map((fq, idx) => `
+                                <div style="margin-top: 0.5rem;">
+                                    <strong>Q: ${fq.q}</strong>
+                                    <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Answer</button>
+                                    <div class="collapsible-content">${fq.a}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                }
+
+                // Pillar 11: Practice
+                if (item.practiceTask) {
+                    html += `
+                        <div class="interactive-box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
+                            <h4 style="color: var(--success);"><i class="fa-solid fa-terminal"></i> 11. Practice Exercise</h4>
+                            <p style="font-size: 0.92rem; color: #cbd5e1;">${item.practiceTask}</p>
+                            <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Hint / Solution</button>
+                            <div class="collapsible-content">${item.practiceSolution || 'Solution details.'}</div>
+                        </div>
+                    `;
+                }
+
+                // Pillar 12: Next Concept
+                html += `
+                    <div class="footer-nav">
+                        <span style="font-size: 0.8rem; color: var(--text-secondary);">Module Step Completed?</span>
+                        ${item.nextConceptId ? `
+                            <button class="next-btn" onclick="scrollToConcept('${item.nextConceptId}')">
+                                12. Next Concept <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+
+                card.innerHTML = html;
                 container.appendChild(card);
             });
 
             Prism.highlightAll();
             updateProgress();
+        }
+
+        function toggleCollapsible(btn) {
+            const content = btn.nextElementSibling;
+            if (content.style.display === 'block') {
+                content.style.display = 'none';
+                btn.textContent = btn.textContent.replace('Hide', 'Show');
+            } else {
+                content.style.display = 'block';
+                btn.textContent = btn.textContent.replace('Show', 'Hide');
+            }
+        }
+
+        function scrollToConcept(id) {
+            const element = document.getElementById(`lesson-${id}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
         }
 
         function escapeHtml(str) {
@@ -724,17 +471,13 @@
         function copyCode(button) {
             const container = button.closest('.code-container');
             const codeText = container.querySelector('code').textContent;
-
             navigator.clipboard.writeText(codeText).then(() => {
                 button.classList.add('copied');
                 button.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                
                 setTimeout(() => {
                     button.classList.remove('copied');
                     button.innerHTML = '<i class="fa-regular fa-copy"></i> Copy Code';
                 }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy code: ', err);
             });
         }
 
