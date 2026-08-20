@@ -1,45 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Interactive Terraform learning platform for beginners, advanced learners, production engineers, and interview preparation.">
-<title>Terraform Learning Platform</title>
-<link rel="stylesheet" href="terraform-cheatsheet.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terraform Learning Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #151c2e;
+            --bg-card-hover: #1e293b;
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.25);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #2e3748;
+            --success: #10b981;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        
+        body { 
+            background: var(--bg-dark); 
+            color: var(--text-primary); 
+            min-height: 100vh;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HEADER SECTION */
+        header {
+            margin-bottom: 2rem;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-desc {
+            color: var(--text-secondary);
+            max-width: 700px;
+            line-height: 1.5;
+        }
+
+        .concept-count-badge {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .concept-count-badge span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .concept-count-badge small {
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* CONTROLS & CATEGORIES */
+        .controls {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .controls select {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .nav-categories {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            background: var(--accent);
+            color: #fff;
+            border-color: var(--accent);
+        }
+
+        /* PROGRESS TRACKER */
+        .progress-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 1.25rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar-bg {
+            background: var(--bg-dark);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, var(--accent), var(--success));
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* CONCEPTS LIST GRID */
+        .concepts-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .concept-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .concept-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .concept-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .badge-level {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .concept-card h2 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .concept-card p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .details-grid { grid-template-columns: 1fr; }
+        }
+
+        .detail-box {
+            background: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .detail-box h4 {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .detail-box p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+
+        .complete-btn {
+            background: transparent;
+            border: 1px solid var(--success);
+            color: var(--success);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .complete-btn.done {
+            background: var(--success);
+            color: white;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+    </style>
 </head>
 <body>
-<header class="site-header">
-<div class="wrap">
-  <div class="brand-row">
-    <div>
-      <div class="brand-kicker">INFRASTRUCTURE AS CODE • LEARNING PLATFORM</div>
-      <h1>Terraform Learning Platform</h1>
-      <p class="subtitle">Learn Terraform from beginner fundamentals to advanced, production-ready concepts with explanations, examples, interview scenarios, and interactive practice.</p>
-    </div>
-    <div class="header-badge"><span>53+</span><small>concepts</small></div>
-  </div>
-  <div class="toolbar">
-    <label class="search-box"><span>⌕</span><input id="search" autocomplete="off" placeholder="Search concepts: moved, state lock, dynamic, import, provider..."><kbd>/</kbd></label>
-    <select id="level" aria-label="Filter by level">
-      <option value="all">All levels</option><option value="Core">Core</option><option value="Advanced">Advanced</option><option value="Production">Production</option><option value="Interview Trap">Interview Trap</option>
-    </select>
-    <button id="expandAll">Expand all</button><button id="collapseAll">Collapse all</button><button id="resetProgress" class="danger-btn">Reset progress</button>
-  </div>
-  <nav class="tabs" id="tabs" aria-label="Terraform categories"></nav>
-</div>
-</header>
-<main class="wrap">
-<section class="progress-card card">
-  <div class="progress-top"><div><p class="eyebrow">YOUR LEARNING PROGRESS</p><h2><span id="completedConcepts">0</span> / <span id="totalConcepts">0</span> completed</h2></div><strong id="progressPercent">0%</strong></div>
-  <div class="progress"><div class="bar" id="bar"></div></div>
-  <p class="small" id="progressText">0 / 0 concepts completed</p>
-</section>
-<section id="content"></section>
-<section id="comparison" class="platform-section"></section>
-<section id="interview" class="platform-section"></section>
-<section id="quiz" class="platform-section"></section>
-<footer class="footer"><strong>Terraform Learning Platform</strong><span>Learn it. Practice it. Understand how it works in production.</span></footer>
-</main>
-<script src="terraform-cheatsheet.js" defer></script>
+
+    <header>
+        <div class="header-top">
+            <div>
+                <div class="subtitle">Infrastructure as Code • Learning Platform</div>
+                <h1>Terraform Learning Platform</h1>
+                <p class="header-desc">Learn Terraform from beginner fundamentals to advanced, production-ready concepts with explanations, examples, interview scenarios, and interactive practice.</p>
+            </div>
+            <div class="concept-count-badge">
+                <span id="total-count">3+</span>
+                <small>Concepts</small>
+            </div>
+        </div>
+
+        <div class="controls">
+            <select id="level-filter">
+                <option value="all">All levels</option>
+                <option value="Core">Core</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Production">Production</option>
+                <option value="Interview Trap">Interview Trap</option>
+            </select>
+            <div class="nav-categories" id="category-nav">
+                <button class="nav-btn active" onclick="filterCategory('all')">All</button>
+                <button class="nav-btn" onclick="filterCategory('Foundations')">Foundations</button>
+                <button class="nav-btn" onclick="filterCategory('State Management')">State Management</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="progress-card">
+            <div class="progress-info">
+                <div>
+                    <strong style="color:var(--text-secondary); font-size:0.8rem; text-transform:uppercase;">Your Learning Progress</strong>
+                    <h3 id="progress-text">0 / 0 completed</h3>
+                </div>
+                <strong id="progress-percent" style="font-size: 1.5rem; color: var(--accent);">0%</strong>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+        </section>
+
+        <section class="concepts-grid" id="concepts-container"></section>
+    </main>
+
+    <footer>
+        <strong>Terraform Learning Platform</strong><br>
+        <span>Learn it. Practice it. Understand how it works in production.</span>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-hcl.min.js"></script>
+    <script>
+        const CONCEPTS = [
+            {
+                id: "hcl-syntax",
+                title: "HCL Syntax & Structure",
+                category: "Foundations",
+                level: "Core",
+                summary: "HashiCorp Configuration Language structure and block definitions.",
+                whatIsIt: "HCL is a declarative syntax used to express cloud infrastructure state rather than procedural step-by-step code.",
+                mentalModel: "Think of HCL as a blueprint describing the desired final state of your infrastructure.",
+                codeExample: `resource "aws_s3_bucket" "example" {\n  bucket = "my-unique-bucket-name"\n  tags   = {\n    Environment = "Dev"\n  }\n}`,
+                productionNote: "Always keep block naming conventions consistent and lowercase across all team modules.",
+                interviewTrap: "Is Terraform imperative or declarative? Declarative, though execution flow depends on block dependencies."
+            },
+            {
+                id: "state-management",
+                title: "State Files & Remote Backends",
+                category: "State Management",
+                level: "Advanced",
+                summary: "Managing tfstate safely in team environments with concurrency locks.",
+                whatIsIt: "The Terraform state file correlates configuration code to real-world cloud infrastructure provider IDs.",
+                mentalModel: "The state file acts as the Single Source of Truth linking local code to active cloud resources.",
+                codeExample: `terraform {\n  backend "s3" {\n    bucket         = "tf-state-store"\n    key            = "prod/terraform.tfstate"\n    region         = "us-east-1"\n    dynamodb_table = "tf-locks"\n  }\n}`,
+                productionNote: "Never store plain-text secrets in terraform.tfstate without backend encryption enabled.",
+                interviewTrap: "What happens if state lock fails during apply? Execution aborts to prevent concurrent state corruption."
+            },
+            {
+                id: "variables-outputs",
+                title: "Variables & Output Values",
+                category: "Foundations",
+                level: "Core",
+                summary: "Parametrizing configurations using tfvars and outputs.",
+                whatIsIt: "Variables allow input parametrization across staging and production environments.",
+                mentalModel: "Variables are input arguments to a function; outputs are return values made available to other modules.",
+                codeExample: `variable "instance_type" {\n  type    = string\n  default = "t3.micro"\n}\n\noutput "server_ip" {\n  value = aws_instance.web.public_ip\n}`,
+                productionNote: "Mark sensitive output flags (`sensitive = true`) to prevent secret leakage in CI/CD logs.",
+                interviewTrap: "Variable evaluation priority order: CLI flags > .auto.tfvars > terraform.tfvars > Environment variables."
+            }
+        ];
+
+        let completed = JSON.parse(localStorage.getItem('completed_concepts') || '[]');
+        let currentCategory = 'all';
+
+        function renderConcepts() {
+            const container = document.getElementById('concepts-container');
+            const selectedLevel = document.getElementById('level-filter').value;
+            container.innerHTML = '';
+
+            const filtered = CONCEPTS.filter(c => {
+                const categoryMatch = currentCategory === 'all' || c.category === currentCategory;
+                const levelMatch = selectedLevel === 'all' || c.level === selectedLevel;
+                return categoryMatch && levelMatch;
+            });
+
+            document.getElementById('total-count').textContent = CONCEPTS.length + '+';
+
+            filtered.forEach(item => {
+                const isDone = completed.includes(item.id);
+                const card = document.createElement('div');
+                card.className = 'concept-card';
+                card.innerHTML = `
+                    <div class="concept-card-header">
+                        <span class="badge-level">${item.level}</span>
+                        <button class="complete-btn ${isDone ? 'done' : ''}" onclick="toggleComplete('${item.id}')">
+                            ${isDone ? '<i class="fa-solid fa-check"></i> Completed' : 'Mark Completed'}
+                        </button>
+                    </div>
+                    <h2>${item.title}</h2>
+                    <p>${item.summary}</p>
+
+                    <div class="details-grid">
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-circle-info"></i> What is it?</h4>
+                            <p>${item.whatIsIt}</p>
+                        </div>
+                        <div class="detail-box">
+                            <h4><i class="fa-solid fa-brain"></i> Mental Model</h4>
+                            <p>${item.mentalModel}</p>
+                        </div>
+                    </div>
+
+                    <pre><code class="language-hcl">${item.codeExample}</code></pre>
+
+                    <div class="details-grid">
+                        <div class="detail-box" style="border-left: 3px solid var(--accent);">
+                            <h4><i class="fa-solid fa-industry"></i> Production Note</h4>
+                            <p>${item.productionNote}</p>
+                        </div>
+                        <div class="detail-box" style="border-left: 3px solid #ef4444;">
+                            <h4><i class="fa-solid fa-triangle-exclamation"></i> Interview Trap</h4>
+                            <p>${item.interviewTrap}</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            Prism.highlightAll();
+            updateProgress();
+        }
+
+        function toggleComplete(id) {
+            if (completed.includes(id)) {
+                completed = completed.filter(i => i !== id);
+            } else {
+                completed.push(id);
+            }
+            localStorage.setItem('completed_concepts', JSON.stringify(completed));
+            renderConcepts();
+        }
+
+        function updateProgress() {
+            const total = CONCEPTS.length;
+            const done = completed.length;
+            const pct = Math.round((done / total) * 100) || 0;
+            document.getElementById('progress-text').textContent = `${done} / ${total} completed`;
+            document.getElementById('progress-percent').textContent = `${pct}%`;
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+        }
+
+        function filterCategory(cat) {
+            currentCategory = cat;
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.textContent === cat || (cat === 'all' && btn.textContent === 'All'));
+            });
+            renderConcepts();
+        }
+
+        document.getElementById('level-filter').addEventListener('change', renderConcepts);
+
+        // Initial rendering
+        renderConcepts();
+    </script>
 </body>
 </html>
