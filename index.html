@@ -132,9 +132,10 @@
         .detail-box h4 { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
         .detail-box p, .detail-box ul { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
 
-        .visual-container { margin: 1.25rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #000; text-align: center; }
-        .visual-container img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
-        .visual-caption { padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); background: rgba(15, 23, 42, 0.8); }
+        .visual-container { margin: 1.25rem 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: #070a12; text-align: center; }
+        .visual-container img { max-width: 100%; height: auto; display: block; margin: 0 auto; min-height: 120px; }
+        .visual-fallback { padding: 2rem; background: rgba(139, 92, 246, 0.05); color: var(--accent); font-size: 0.9rem; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+        .visual-caption { padding: 0.5rem; font-size: 0.8rem; color: var(--text-secondary); background: rgba(15, 23, 42, 0.8); border-top: 1px solid var(--border); }
 
         .code-container { position: relative; margin: 1.25rem 0; border-radius: 8px; overflow: hidden; }
         .code-container pre { margin: 0 !important; padding-top: 2.5rem !important; }
@@ -242,7 +243,8 @@
                 whyDoWeNeedIt: "Eliminates complex imperative bash/python scripts that break when re-executed or when cloud state drifts out of sync.",
                 howItWorks: "Terraform Core reads configuration files (.tf), inspects current cloud infrastructure, compares them against state (.tfstate), and calculates execution diffs.",
                 syntaxExample: `resource "aws_s3_bucket" "production_assets" {\n  bucket = "my-company-assets-prod-2026"\n\n  tags = {\n    Environment = "Production"\n    ManagedBy   = "Terraform"\n  }\n}`,
-                imageUrl: "https://www.databricks.com/wp-content/uploads/2023/04/terraform-workflow.png",
+                // Reliable public image URL (Wikimedia CORS-friendly)
+                imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/04/Terraform_Logo.svg",
                 imageCaption: "Terraform Core execution flow mapping HCL files to provider APIs.",
                 realWorldUsage: "Provisioning standardized multi-region AWS VPC networking clusters with automated subnet tag allocations.",
                 commonMistakes: "Writing imperative inline provisioning scripts (`local-exec`) instead of relying on native declarative provider resources.",
@@ -282,6 +284,18 @@
 
         let completed = JSON.parse(localStorage.getItem('completed_concepts') || '[]');
         let currentCategory = 'all';
+
+        // Handles broken image links gracefully by replacing them with an inline icon
+        function handleImageError(imgElement) {
+            const container = imgElement.parentElement;
+            imgElement.style.display = 'none';
+            
+            const fallbackDiv = document.createElement('div');
+            fallbackDiv.className = 'visual-fallback';
+            fallbackDiv.innerHTML = '<i class="fa-solid fa-diagram-project" style="font-size: 2rem;"></i><span>Architecture Diagram Placeholder</span>';
+            
+            container.insertBefore(fallbackDiv, imgElement);
+        }
 
         function renderConcepts() {
             const container = document.getElementById('concepts-container');
@@ -356,11 +370,10 @@
                     `;
                 }
 
-                // FIXED: Image container gracefully hides if URL fails or image does not exist
                 if (item.imageUrl) {
                     html += `
                         <div class="visual-container">
-                            <img src="${item.imageUrl}" onerror="this.parentElement.style.display='none'" alt="Visual diagram for ${escapeHtml(item.title)}">
+                            <img src="${item.imageUrl}" onerror="handleImageError(this)" alt="Visual diagram for ${escapeHtml(item.title)}">
                             <div class="visual-caption"><i class="fa-solid fa-image"></i> ${item.imageCaption || 'Visual Architecture Overview'}</div>
                         </div>
                     `;
