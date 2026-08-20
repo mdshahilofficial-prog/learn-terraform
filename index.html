@@ -21,6 +21,7 @@
             --success: #10b981;
             --warning: #f59e0b;
             --danger: #ef4444;
+            --interview-bg: #111827;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -148,6 +149,77 @@
         .copy-btn:hover { background: var(--accent); color: #fff; }
         .copy-btn.copied { background: var(--success); color: #fff; }
 
+        /* INTERVIEW PERSPECTIVE SECTION STYLES */
+        .interview-box {
+            background: var(--interview-bg);
+            border: 1px solid var(--accent);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin: 1.75rem 0;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+        }
+        .interview-title {
+            color: var(--accent);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+        .interview-q {
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0.75rem;
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid var(--accent);
+            border-radius: 4px;
+        }
+        .interview-block { margin-bottom: 1rem; }
+        .interview-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .label-30s { color: var(--success); }
+        .label-detailed { color: #60a5fa; }
+        .label-prod { color: var(--accent); }
+        .label-weak { color: var(--danger); }
+        .label-strong { color: var(--success); }
+        .label-tip { color: var(--warning); }
+        .interview-text { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .comparison-box {
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.2);
+        }
+        .comparison-box.weak { border: 1px solid rgba(239, 68, 68, 0.3); }
+        .comparison-box.strong { border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .tip-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 0.9rem 1.25rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
         .interactive-box { background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 1.25rem; margin-top: 1.25rem; }
         .interactive-box h4 { color: var(--accent); font-size: 0.95rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
         .toggle-btn { background: var(--bg-card); border: 1px solid var(--border-glow); color: var(--text-primary); padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; margin-top: 0.75rem; transition: all 0.2s; }
@@ -243,16 +315,26 @@
                 whyDoWeNeedIt: "Eliminates complex imperative bash/python scripts that break when re-executed or when cloud state drifts out of sync.",
                 howItWorks: "Terraform Core reads configuration files (.tf), inspects current cloud infrastructure, compares them against state (.tfstate), and calculates execution diffs.",
                 syntaxExample: `resource "aws_s3_bucket" "production_assets" {\n  bucket = "my-company-assets-prod-2026"\n\n  tags = {\n    Environment = "Production"\n    ManagedBy   = "Terraform"\n  }\n}`,
-                // Reliable public image URL (Wikimedia CORS-friendly)
                 imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/04/Terraform_Logo.svg",
                 imageCaption: "Terraform Core execution flow mapping HCL files to provider APIs.",
                 realWorldUsage: "Provisioning standardized multi-region AWS VPC networking clusters with automated subnet tag allocations.",
                 commonMistakes: "Writing imperative inline provisioning scripts (`local-exec`) instead of relying on native declarative provider resources.",
                 productionPerspective: "Declarative code makes infrastructure self-documenting, enabling strict GitOps review workflows via pull requests.",
-                interviewPerspective: "Expect questions like: 'How does declarative infrastructure handle drift compared to procedural imperative tools like Ansible?'",
-                followUpQuestions: [
-                    { q: "Can imperative provisioners break declarativeness?", a: "Yes, using `local-exec` or script hooks adds side-effects outside of state reconciliation." }
-                ],
+                
+                // PHASE 3: INTERVIEW PERSPECTIVE EXTENSION
+                interviewPerspective: {
+                    question: "How does Terraform's declarative approach differ from procedural tools like Ansible or Bash, and how does state reconcile drift?",
+                    answer30s: "Declarative IaC focuses on defining the desired target state rather than execution steps. Terraform reads the configuration, inspects reality via provider APIs, compares both against the state file, and calculates the exact lifecycle delta required to reach alignment.",
+                    answerDetailed: "In procedural tools, scripts issue step-by-step sequential commands that require complex conditional checks to maintain idempotency. Terraform's declarative model decouples execution logic from target definitions. During a `terraform plan`, Terraform builds a Directed Acyclic Graph (DAG) of resources, fetches real-world attributes, compares them against `.tfstate`, and generates an execution graph with create, update, or destroy actions.",
+                    answerProduction: "In production, relying strictly on declarative resources guarantees GitOps auditability. If an out-of-band manual change occurs in the AWS Console (configuration drift), running `terraform plan` flags the divergence and proposes a corrective update or recreation to align remote reality back to code.",
+                    followUps: [
+                        { q: "Is Terraform purely declarative in all situations?", a: "Not entirely. Using `local-exec` or `remote-exec` provisioners introduces procedural side effects, breaking pure state reconciliation." },
+                        { q: "What happens if someone manually modifies infrastructure outside Terraform?", a: "Terraform detects the discrepancy during the refresh phase of `terraform plan` and attempts to undo the manual change." }
+                    ],
+                    weakAnswer: "Declarative means Terraform is easier to write than Ansible because you don't write bash commands.",
+                    strongAnswer: "Declarative means we define the target end-state in HCL. Terraform continuously reconciles code, the `.tfstate` metadata layer, and active cloud provider resources to calculate and apply necessary changes idempotently.",
+                    interviewTip: "Always mention 'idempotency', 'graph reconciliation', and 'state file comparison' when answering declarative architecture questions."
+                },
                 practiceTask: "Declare an S3 bucket with tags using declarative HCL and identify which provider argument sets ownership.",
                 practiceSolution: "Use the `aws_s3_bucket` block and define tags inside a nested map structure.",
                 nextConceptId: "c2"
@@ -272,10 +354,20 @@
                 realWorldUsage: "Organizing production repositories into structured `main.tf`, `variables.tf`, `outputs.tf`, and `providers.tf` files.",
                 commonMistakes: "Forgetting quotes around string arguments or improperly nesting blocks inside incorrect parent blocks.",
                 productionPerspective: "Enforce automated formatting using `terraform fmt -check` in pull request CI validation stages.",
-                interviewPerspective: "Interpreting duplicate resource address errors during plan phase execution.",
-                followUpQuestions: [
-                    { q: "What is the difference between an argument and a block in HCL?", a: "Arguments assign values (`key = value`), while blocks nest structural configurations (`block_type {}`)." }
-                ],
+                
+                // PHASE 3: INTERVIEW PERSPECTIVE EXTENSION
+                interviewPerspective: {
+                    question: "Explain the structure of an HCL block and how Terraform handles file organization within a directory.",
+                    answer30s: "An HCL block consists of a block type, block labels, and a body enclosed in braces. Terraform parses all `.tf` files in a working directory as a single unified configuration module regardless of file naming.",
+                    answerDetailed: "HCL follows a uniform syntax: `block_type \"type_label\" \"name_label\" { key = value }`. When running Terraform commands, the parser combines all `.tf` files in the directory root into a single Abstract Syntax Tree. File names like `main.tf` or `variables.tf` are standard human conventions and do not affect Terraform's internal compilation.",
+                    answerProduction: "In enterprise production repositories, standardizing file layouts (`main.tf`, `variables.tf`, `outputs.tf`, `providers.tf`, `versions.tf`) is essential for maintainability. We enforce formatting via `terraform fmt -check` and validate structural correctness using `terraform validate` during CI pipelines.",
+                    followUps: [
+                        { q: "Does Terraform execute `.tf` files in alphabetical order?", a: "No, execution order is determined purely by explicit and implicit resource dependencies, not file names or lexical order." }
+                    ],
+                    weakAnswer: "HCL is like JSON but without commas, and Terraform reads main.tf first.",
+                    strongAnswer: "HCL uses structured blocks with identifiers and key-value arguments. Terraform concatenates all `.tf` files in a directory into one root module graph, relying on resource references rather than file ordering.",
+                    interviewTip: "Clarify that file organization is purely for developer organization and does not alter resource evaluation order."
+                },
                 practiceTask: "Refactor a plain string variable assignment into a structured block argument.",
                 practiceSolution: "Wrap related arguments inside `{}` block braces according to provider documentation specs.",
                 nextConceptId: "c3"
@@ -285,7 +377,6 @@
         let completed = JSON.parse(localStorage.getItem('completed_concepts') || '[]');
         let currentCategory = 'all';
 
-        // Handles broken image links gracefully by replacing them with an inline icon
         function handleImageError(imgElement) {
             const container = imgElement.parentElement;
             imgElement.style.display = 'none';
@@ -382,35 +473,78 @@
                 html += `
                     <div class="lesson-section-grid">
                         <div class="detail-box">
-                            <h4><i class="fa-solid fa-building"></i> 6. Real-World Usage</h4>
+                            <h4><i class="fa-solid fa-building"></i> 4. Real-World Usage</h4>
                             <p>${item.realWorldUsage || 'Applied standardly across cloud workspaces.'}</p>
                         </div>
                         <div class="detail-box" style="border-left: 3px solid var(--warning);">
-                            <h4><i class="fa-solid fa-bug"></i> 7. Common Mistakes</h4>
+                            <h4><i class="fa-solid fa-bug"></i> 5. Common Mistakes</h4>
                             <p>${item.commonMistakes || 'Avoid hardcoding values.'}</p>
                         </div>
                         <div class="detail-box" style="border-left: 3px solid var(--accent);">
-                            <h4><i class="fa-solid fa-industry"></i> 8. Production Perspective</h4>
+                            <h4><i class="fa-solid fa-industry"></i> 6. Production Perspective</h4>
                             <p>${item.productionPerspective || 'Follow strict GitOps practices.'}</p>
-                        </div>
-                        <div class="detail-box" style="border-left: 3px solid var(--danger);">
-                            <h4><i class="fa-solid fa-user-ninja"></i> 9. Interview Perspective</h4>
-                            <p>${item.interviewPerspective || 'Focus on state drift resolution.'}</p>
                         </div>
                     </div>
                 `;
 
-                if (item.followUpQuestions && item.followUpQuestions.length > 0) {
+                // RENDER INTERVIEW PERSPECTIVE SECTION (PHASE 3)
+                if (item.interviewPerspective) {
+                    const ip = item.interviewPerspective;
                     html += `
-                        <div class="interactive-box">
-                            <h4><i class="fa-solid fa-comments"></i> 10. Follow-up Questions</h4>
-                            ${item.followUpQuestions.map((fq) => `
-                                <div style="margin-top: 0.5rem;">
-                                    <strong>Q: ${fq.q}</strong>
-                                    <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Answer</button>
-                                    <div class="collapsible-content">${fq.a}</div>
+                        <div class="interview-box">
+                            <div class="interview-title">
+                                <i class="fa-solid fa-user-ninja"></i> Interview Perspective Strategy
+                            </div>
+                            
+                            <div class="interview-q">
+                                <i class="fa-solid fa-circle-question"></i> ${ip.question}
+                            </div>
+
+                            <div class="interview-block">
+                                <div class="interview-label label-30s"><i class="fa-solid fa-stopwatch"></i> Recommended 30-Second Answer</div>
+                                <div class="interview-text">${ip.answer30s}</div>
+                            </div>
+
+                            <div class="interview-block">
+                                <div class="interview-label label-detailed"><i class="fa-solid fa-align-left"></i> Detailed Explanation</div>
+                                <div class="interview-text">${ip.answerDetailed}</div>
+                            </div>
+
+                            ${ip.answerProduction ? `
+                                <div class="interview-block">
+                                    <div class="interview-label label-prod"><i class="fa-solid fa-server"></i> Production-Level Context</div>
+                                    <div class="interview-text">${ip.answerProduction}</div>
                                 </div>
-                            `).join('')}
+                            ` : ''}
+
+                            <div class="comparison-grid">
+                                <div class="comparison-box weak">
+                                    <div class="interview-label label-weak"><i class="fa-solid fa-xmark"></i> Weak Answer</div>
+                                    <div class="interview-text">${ip.weakAnswer}</div>
+                                </div>
+                                <div class="comparison-box strong">
+                                    <div class="interview-label label-strong"><i class="fa-solid fa-check"></i> Strong Answer</div>
+                                    <div class="interview-text">${ip.strongAnswer}</div>
+                                </div>
+                            </div>
+
+                            ${ip.followUps && ip.followUps.length > 0 ? `
+                                <div class="interactive-box" style="margin-top: 1rem;">
+                                    <h4 style="font-size: 0.85rem;"><i class="fa-solid fa-comments"></i> Potential Interviewer Follow-ups</h4>
+                                    ${ip.followUps.map(fq => `
+                                        <div style="margin-top: 0.5rem;">
+                                            <strong style="font-size: 0.88rem; color: #f1f5f9;">Q: ${fq.q}</strong>
+                                            <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Answer</button>
+                                            <div class="collapsible-content">${fq.a}</div>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            ` : ''}
+
+                            <div class="tip-box">
+                                <div class="interview-label label-tip"><i class="fa-solid fa-lightbulb"></i> Pro Interview Tip</div>
+                                <div class="interview-text" style="color: #fef08a;">${ip.interviewTip}</div>
+                            </div>
                         </div>
                     `;
                 }
@@ -418,7 +552,7 @@
                 if (item.practiceTask) {
                     html += `
                         <div class="interactive-box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
-                            <h4 style="color: var(--success);"><i class="fa-solid fa-terminal"></i> 11. Practice Exercise</h4>
+                            <h4 style="color: var(--success);"><i class="fa-solid fa-terminal"></i> Practice Exercise</h4>
                             <p style="font-size: 0.92rem; color: #cbd5e1;">${item.practiceTask}</p>
                             <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Hint / Solution</button>
                             <div class="collapsible-content">${item.practiceSolution || 'Solution details.'}</div>
@@ -431,7 +565,7 @@
                         <span style="font-size: 0.8rem; color: var(--text-secondary);">Module Step Completed?</span>
                         ${item.nextConceptId ? `
                             <button class="next-btn" onclick="scrollToConcept('${item.nextConceptId}')">
-                                12. Next Concept <i class="fa-solid fa-arrow-right"></i>
+                                Next Concept <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         ` : ''}
                     </div>
