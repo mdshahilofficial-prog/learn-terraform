@@ -149,75 +149,90 @@
         .copy-btn:hover { background: var(--accent); color: #fff; }
         .copy-btn.copied { background: var(--success); color: #fff; }
 
-        /* INTERVIEW PERSPECTIVE SECTION STYLES */
+        /* INTERVIEW PERSPECTIVE */
         .interview-box {
-            background: var(--interview-bg);
-            border: 1px solid var(--accent);
-            border-radius: 14px;
-            padding: 1.5rem;
+            background: linear-gradient(180deg, rgba(17,24,39,.98), rgba(15,23,42,.98));
+            border: 1px solid rgba(139,92,246,.65);
+            border-radius: 16px;
             margin: 1.75rem 0;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,.28), 0 0 24px rgba(139,92,246,.08);
         }
-        .interview-title {
-            color: var(--accent);
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .interview-summary {
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1.15rem 1.35rem;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 0.75rem;
-        }
-        .interview-q {
-            font-size: 1.05rem;
-            color: #fff;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            padding: 0.5rem 0.75rem;
-            background: rgba(255,255,255,0.03);
-            border-left: 3px solid var(--accent);
-            border-radius: 4px;
-        }
-        .interview-block { margin-bottom: 1rem; }
-        .interview-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .label-30s { color: var(--success); }
-        .label-detailed { color: #60a5fa; }
-        .label-prod { color: var(--accent); }
-        .label-weak { color: var(--danger); }
-        .label-strong { color: var(--success); }
-        .label-tip { color: var(--warning); }
-        .interview-text { font-size: 0.92rem; color: #cbd5e1; line-height: 1.6; }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            justify-content: space-between;
             gap: 1rem;
-            margin: 1rem 0;
+            text-align: left;
         }
-        .comparison-box {
-            padding: 1rem;
-            border-radius: 8px;
-            background: rgba(0,0,0,0.2);
+        .interview-summary:hover { background: rgba(139,92,246,.06); }
+        .interview-summary-main { display:flex; align-items:center; gap:.75rem; }
+        .interview-summary-main i { color: var(--accent); font-size:1.15rem; }
+        .interview-summary-title { font-weight:800; }
+        .interview-summary-meta { display:flex; gap:.45rem; flex-wrap:wrap; margin-top:.35rem; }
+        .interview-badge {
+            display:inline-flex; align-items:center; gap:.3rem;
+            padding:.2rem .55rem; border-radius:999px;
+            font-size:.68rem; font-weight:700;
+            background:rgba(139,92,246,.12); color:#c4b5fd;
+            border:1px solid rgba(139,92,246,.35);
         }
-        .comparison-box.weak { border: 1px solid rgba(239, 68, 68, 0.3); }
-        .comparison-box.strong { border: 1px solid rgba(16, 185, 129, 0.3); }
-
+        .interview-chevron { transition:transform .2s ease; color:var(--text-secondary); }
+        .interview-box.open .interview-chevron { transform:rotate(180deg); }
+        .interview-content { display:none; padding:0 1.35rem 1.35rem; }
+        .interview-box.open .interview-content { display:block; }
+        .interview-inner { border-top:1px solid var(--border); padding-top:1.25rem; }
+        .interview-q {
+            font-size:1.05rem; color:#fff; font-weight:700; margin-bottom:1.15rem;
+            padding:1rem 1rem 1rem 1.1rem; background:rgba(255,255,255,.035);
+            border-left:3px solid var(--accent); border-radius:8px; line-height:1.55;
+        }
+        .interview-block { margin-bottom:1.15rem; }
+        .interview-label {
+            font-size:.78rem; text-transform:uppercase; letter-spacing:.5px;
+            font-weight:800; margin-bottom:.4rem; display:flex;
+            align-items:center; gap:.4rem;
+        }
+        .label-30s { color:var(--success); }
+        .label-detailed { color:#60a5fa; }
+        .label-prod { color:#c4b5fd; }
+        .label-weak { color:var(--danger); }
+        .label-strong { color:var(--success); }
+        .label-tip { color:var(--warning); }
+        .label-test { color:#22d3ee; }
+        .label-scenario { color:#f472b6; }
+        .interview-text { font-size:.92rem; color:#cbd5e1; line-height:1.7; }
+        .interview-test-box, .interview-scenario {
+            padding:1rem; border-radius:10px; margin:1rem 0;
+            background:rgba(255,255,255,.025); border:1px solid var(--border);
+        }
+        .interview-scenario { border-left:3px solid #f472b6; }
+        .comparison-grid {
+            display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+            gap:1rem; margin:1rem 0;
+        }
+        .comparison-box { padding:1rem; border-radius:10px; background:rgba(0,0,0,.2); }
+        .comparison-box.weak { border:1px solid rgba(239,68,68,.3); }
+        .comparison-box.strong { border:1px solid rgba(16,185,129,.3); }
+        .followup-list { display:grid; gap:.7rem; margin-top:.75rem; }
+        .followup-item { border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+        .followup-question {
+            width:100%; background:rgba(255,255,255,.025); border:0; color:#f1f5f9;
+            padding:.85rem 1rem; cursor:pointer; display:flex; justify-content:space-between;
+            gap:1rem; text-align:left; font-size:.88rem; font-weight:700;
+        }
+        .followup-question:hover { background:rgba(139,92,246,.06); }
+        .followup-answer { display:none; padding:.85rem 1rem; color:#cbd5e1; line-height:1.65; font-size:.88rem; border-top:1px solid var(--border); }
+        .followup-item.open .followup-answer { display:block; }
         .tip-box {
-            background: rgba(245, 158, 11, 0.1);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            padding: 0.9rem 1.25rem;
-            border-radius: 8px;
-            margin-top: 1rem;
+            background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.28);
+            padding:1rem 1.15rem; border-radius:10px; margin-top:1rem;
         }
 
         .interactive-box { background: rgba(139, 92, 246, 0.05); border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 12px; padding: 1.25rem; margin-top: 1.25rem; }
@@ -234,6 +249,19 @@
         .complete-btn.done { background: var(--success); color: white; }
 
         footer { margin-top: 4rem; text-align: center; padding: 2rem; border-top: 1px solid var(--border); color: var(--text-secondary); }
+        button:focus-visible, input:focus-visible, select:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        @media (max-width: 640px) {
+            body { padding: 1.1rem .75rem; }
+            .brand-title { font-size: 2.25rem; letter-spacing: 2px; }
+            .concept-card { padding: 1.25rem; }
+            .concept-card-header { align-items:flex-start; gap:.75rem; }
+            .interview-summary { padding:1rem; }
+            .interview-content { padding:0 1rem 1rem; }
+            .interview-summary-main { align-items:flex-start; }
+        }
     </style>
 </head>
 <body>
@@ -241,6 +269,17 @@
     <div class="brand-container">
         <h1 class="brand-title">TERRA ACADEMY</h1>
         <p class="brand-tagline">Master Infrastructure as Code from Core Fundamentals to Production Engineering</p>
+        <div style="margin-top:.7rem; display:flex; justify-content:center; flex-wrap:wrap; gap:.45rem;">
+            <span class="interview-badge">Learn</span>
+            <span style="color:var(--text-secondary);">→</span>
+            <span class="interview-badge">Understand</span>
+            <span style="color:var(--text-secondary);">→</span>
+            <span class="interview-badge">Practice</span>
+            <span style="color:var(--text-secondary);">→</span>
+            <span class="interview-badge">Production</span>
+            <span style="color:var(--text-secondary);">→</span>
+            <span class="interview-badge">Interview</span>
+        </div>
     </div>
 
     <div class="search-section">
@@ -270,13 +309,16 @@
         <button class="pill-btn" onclick="filterCategory('Production', this)">Production</button>
         <button class="pill-btn" onclick="filterCategory('Interview Preparation', this)">Interview Prep</button>
 
-        <select id="level-filter" class="level-select" onchange="renderConcepts()">
+        <select id="level-filter" class="level-select" onchange="renderConcepts()" aria-label="Filter by learning level">
             <option value="all">All Levels</option>
             <option value="Core">Core</option>
             <option value="Advanced">Advanced</option>
             <option value="Production">Production</option>
             <option value="Interview Trap">Interview Trap</option>
         </select>
+        <button class="pill-btn" id="interview-filter-btn" onclick="toggleInterviewFilter(this)">
+            <i class="fa-solid fa-microphone-lines"></i> Interview Ready
+        </button>
     </div>
 
     <main>
@@ -293,6 +335,7 @@
             </div>
         </section>
 
+        <div id="results-meta" style="margin:-1rem 0 1rem; color:var(--text-secondary); font-size:.82rem; text-align:right;"></div>
         <section class="concepts-grid" id="concepts-container"></section>
     </main>
 
@@ -333,7 +376,7 @@
                     ],
                     weakAnswer: "Declarative means Terraform is easier to write than Ansible because you don't write bash commands.",
                     strongAnswer: "Declarative means we define the target end-state in HCL. Terraform continuously reconciles code, the `.tfstate` metadata layer, and active cloud provider resources to calculate and apply necessary changes idempotently.",
-                    interviewTip: "Always mention 'idempotency', 'graph reconciliation', and 'state file comparison' when answering declarative architecture questions."
+                    interviewTip: "Start with the desired-state idea, then explain reconciliation. Avoid saying Terraform continuously monitors infrastructure; Terraform normally detects drift when you run a plan/apply or otherwise refresh state."
                 },
                 practiceTask: "Declare an S3 bucket with tags using declarative HCL and identify which provider argument sets ownership.",
                 practiceSolution: "Use the `aws_s3_bucket` block and define tags inside a nested map structure.",
@@ -366,7 +409,7 @@
                     ],
                     weakAnswer: "HCL is like JSON but without commas, and Terraform reads main.tf first.",
                     strongAnswer: "HCL uses structured blocks with identifiers and key-value arguments. Terraform concatenates all `.tf` files in a directory into one root module graph, relying on resource references rather than file ordering.",
-                    interviewTip: "Clarify that file organization is purely for developer organization and does not alter resource evaluation order."
+                    interviewTip: "A strong answer separates file organization from resource dependency ordering. Terraform loads the configuration in the working directory as a module; resource ordering comes from dependencies, not filenames."
                 },
                 practiceTask: "Refactor a plain string variable assignment into a structured block argument.",
                 practiceSolution: "Wrap related arguments inside `{}` block braces according to provider documentation specs.",
@@ -376,6 +419,7 @@
 
         let completed = JSON.parse(localStorage.getItem('completed_concepts') || '[]');
         let currentCategory = 'all';
+        let interviewOnly = false;
 
         function handleImageError(imgElement) {
             const container = imgElement.parentElement;
@@ -402,8 +446,13 @@
                                       c.summary.toLowerCase().includes(searchQuery) ||
                                       (c.whatIsIt && c.whatIsIt.toLowerCase().includes(searchQuery));
 
-                return matchesCategory && matchesLevel && matchesSearch;
+                return matchesCategory && matchesLevel && matchesInterview && matchesSearch;
             });
+
+            const resultsMeta = document.getElementById('results-meta');
+            if (resultsMeta) {
+                resultsMeta.textContent = `${filtered.length} concept${filtered.length === 1 ? '' : 's'} shown${interviewOnly ? ' • Interview-ready only' : ''}`;
+            }
 
             if (filtered.length === 0) {
                 container.innerHTML = `
@@ -487,65 +536,119 @@
                     </div>
                 `;
 
-                // RENDER INTERVIEW PERSPECTIVE SECTION (PHASE 3)
+                // PHASE 3: CONCEPT-LEVEL INTERVIEW PERSPECTIVE
                 if (item.interviewPerspective) {
                     const ip = item.interviewPerspective;
                     html += `
-                        <div class="interview-box">
-                            <div class="interview-title">
-                                <i class="fa-solid fa-user-ninja"></i> Interview Perspective Strategy
-                            </div>
-                            
-                            <div class="interview-q">
-                                <i class="fa-solid fa-circle-question"></i> ${ip.question}
-                            </div>
+                        <section class="interview-box" id="interview-${item.id}">
+                            <button class="interview-summary" type="button" onclick="toggleInterview(this)" aria-expanded="false">
+                                <span>
+                                    <span class="interview-summary-main">
+                                        <i class="fa-solid fa-microphone-lines"></i>
+                                        <span class="interview-summary-title">Interview Perspective</span>
+                                    </span>
+                                    <span class="interview-summary-meta">
+                                        <span class="interview-badge"><i class="fa-solid fa-signal"></i> ${ip.difficulty || 'Interview Ready'}</span>
+                                        <span class="interview-badge"><i class="fa-solid fa-comments"></i> ${ip.followUps?.length || 0} follow-ups</span>
+                                    </span>
+                                </span>
+                                <i class="fa-solid fa-chevron-down interview-chevron"></i>
+                            </button>
 
-                            <div class="interview-block">
-                                <div class="interview-label label-30s"><i class="fa-solid fa-stopwatch"></i> Recommended 30-Second Answer</div>
-                                <div class="interview-text">${ip.answer30s}</div>
-                            </div>
+                            <div class="interview-content">
+                                <div class="interview-inner">
+                                    <div class="interview-q">
+                                        <i class="fa-solid fa-circle-question"></i>
+                                        ${ip.question}
+                                    </div>
 
-                            <div class="interview-block">
-                                <div class="interview-label label-detailed"><i class="fa-solid fa-align-left"></i> Detailed Explanation</div>
-                                <div class="interview-text">${ip.answerDetailed}</div>
-                            </div>
-
-                            ${ip.answerProduction ? `
-                                <div class="interview-block">
-                                    <div class="interview-label label-prod"><i class="fa-solid fa-server"></i> Production-Level Context</div>
-                                    <div class="interview-text">${ip.answerProduction}</div>
-                                </div>
-                            ` : ''}
-
-                            <div class="comparison-grid">
-                                <div class="comparison-box weak">
-                                    <div class="interview-label label-weak"><i class="fa-solid fa-xmark"></i> Weak Answer</div>
-                                    <div class="interview-text">${ip.weakAnswer}</div>
-                                </div>
-                                <div class="comparison-box strong">
-                                    <div class="interview-label label-strong"><i class="fa-solid fa-check"></i> Strong Answer</div>
-                                    <div class="interview-text">${ip.strongAnswer}</div>
-                                </div>
-                            </div>
-
-                            ${ip.followUps && ip.followUps.length > 0 ? `
-                                <div class="interactive-box" style="margin-top: 1rem;">
-                                    <h4 style="font-size: 0.85rem;"><i class="fa-solid fa-comments"></i> Potential Interviewer Follow-ups</h4>
-                                    ${ip.followUps.map(fq => `
-                                        <div style="margin-top: 0.5rem;">
-                                            <strong style="font-size: 0.88rem; color: #f1f5f9;">Q: ${fq.q}</strong>
-                                            <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Answer</button>
-                                            <div class="collapsible-content">${fq.a}</div>
+                                    <div class="interview-block">
+                                        <div class="interview-label label-30s">
+                                            <i class="fa-solid fa-stopwatch"></i> Recommended 30-Second Answer
                                         </div>
-                                    `).join('')}
-                                </div>
-                            ` : ''}
+                                        <div class="interview-text">${ip.answer30s}</div>
+                                    </div>
 
-                            <div class="tip-box">
-                                <div class="interview-label label-tip"><i class="fa-solid fa-lightbulb"></i> Pro Interview Tip</div>
-                                <div class="interview-text" style="color: #fef08a;">${ip.interviewTip}</div>
+                                    <div class="interview-block">
+                                        <div class="interview-label label-detailed">
+                                            <i class="fa-solid fa-align-left"></i> Detailed Answer
+                                        </div>
+                                        <div class="interview-text">${ip.answerDetailed}</div>
+                                    </div>
+
+                                    ${ip.answerProduction ? `
+                                        <div class="interview-block">
+                                            <div class="interview-label label-prod">
+                                                <i class="fa-solid fa-server"></i> Production-Level Answer
+                                            </div>
+                                            <div class="interview-text">${ip.answerProduction}</div>
+                                        </div>
+                                    ` : ''}
+
+                                    ${ip.interviewerTesting ? `
+                                        <div class="interview-test-box">
+                                            <div class="interview-label label-test">
+                                                <i class="fa-solid fa-bullseye"></i> What the Interviewer Is Testing
+                                            </div>
+                                            <div class="interview-text">${ip.interviewerTesting}</div>
+                                        </div>
+                                    ` : ''}
+
+                                    ${ip.scenario ? `
+                                        <div class="interview-scenario">
+                                            <div class="interview-label label-scenario">
+                                                <i class="fa-solid fa-briefcase"></i> Production Scenario
+                                            </div>
+                                            <div class="interview-text">${ip.scenario}</div>
+                                        </div>
+                                    ` : ''}
+
+                                    <div class="comparison-grid">
+                                        <div class="comparison-box weak">
+                                            <div class="interview-label label-weak">
+                                                <i class="fa-solid fa-xmark"></i> Weak / Common Answer
+                                            </div>
+                                            <div class="interview-text">${ip.weakAnswer}</div>
+                                        </div>
+                                        <div class="comparison-box strong">
+                                            <div class="interview-label label-strong">
+                                                <i class="fa-solid fa-check"></i> Strong Interview Answer
+                                            </div>
+                                            <div class="interview-text">${ip.strongAnswer}</div>
+                                        </div>
+                                    </div>
+
+                                    ${ip.followUps && ip.followUps.length ? `
+                                        <div class="interview-block">
+                                            <div class="interview-label" style="color:#a78bfa;">
+                                                <i class="fa-solid fa-comments"></i> Interviewer Follow-Ups
+                                            </div>
+                                            <div class="followup-list">
+                                                ${ip.followUps.map((fq, index) => `
+                                                    <div class="followup-item">
+                                                        <button class="followup-question" type="button" onclick="toggleFollowUp(this)" aria-expanded="false">
+                                                            <span><strong>Q${index + 1}.</strong> ${fq.q}</span>
+                                                            <i class="fa-solid fa-plus"></i>
+                                                        </button>
+                                                        <div class="followup-answer">
+                                                            <strong style="color:#a78bfa;">Recommended answer:</strong><br>
+                                                            ${fq.a}
+                                                        </div>
+                                                    </div>
+                                                `).join('')}
+                                            </div>
+                                        </div>
+                                    ` : ''}
+
+                                    <div class="tip-box">
+                                        <div class="interview-label label-tip">
+                                            <i class="fa-solid fa-lightbulb"></i> Interview Tip
+                                        </div>
+                                        <div class="interview-text" style="color:#fef08a;">${ip.interviewTip}</div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        </section>
                     `;
                 }
 
@@ -588,6 +691,26 @@
                 content.style.display = 'block';
                 btn.textContent = btn.textContent.replace('Show', 'Hide');
             }
+        }
+
+        function toggleInterview(btn) {
+            const box = btn.closest('.interview-box');
+            const expanded = box.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(expanded));
+        }
+
+        function toggleFollowUp(btn) {
+            const item = btn.closest('.followup-item');
+            const expanded = item.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(expanded));
+            const icon = btn.querySelector('i');
+            if (icon) icon.className = expanded ? 'fa-solid fa-minus' : 'fa-solid fa-plus';
+        }
+
+        function toggleInterviewFilter(btn) {
+            interviewOnly = !interviewOnly;
+            btn.classList.toggle('active', interviewOnly);
+            renderConcepts();
         }
 
         function scrollToConcept(id) {
