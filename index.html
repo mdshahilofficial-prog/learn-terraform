@@ -22,6 +22,9 @@
             --warning: #f59e0b;
             --danger: #ef4444;
             --interview-bg: #111827;
+            --production-bg: #0b1329;
+            --production-border: #3b82f6;
+            --production-glow: rgba(59, 130, 246, 0.25);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -149,6 +152,70 @@
         .copy-btn:hover { background: var(--accent); color: #fff; }
         .copy-btn.copied { background: var(--success); color: #fff; }
 
+        /* PRODUCTION PERSPECTIVE SECTION STYLES */
+        .production-toggle-btn {
+            width: 100%;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid var(--production-border);
+            color: #60a5fa;
+            padding: 0.85rem 1.25rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            transition: all 0.25s ease;
+        }
+        .production-toggle-btn:hover {
+            background: var(--production-border);
+            color: #fff;
+            box-shadow: 0 4px 15px var(--production-glow);
+        }
+
+        .production-box {
+            display: none;
+            background: var(--production-bg);
+            border: 1px solid var(--production-border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
+        }
+        .production-title {
+            color: #60a5fa;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        .prod-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+        .prod-card { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border); padding: 1rem; border-radius: 10px; }
+        .prod-card-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+        .prod-card-title.how { color: #60a5fa; }
+        .prod-card-title.why { color: var(--success); }
+        .prod-card-title.arch { color: var(--accent); }
+        .prod-card-title.rec { color: #38bdf8; }
+        .prod-card-title.mistake { color: var(--danger); }
+        .prod-card-title.sec { color: #f472b6; }
+        .prod-card-title.scale { color: #a78bfa; }
+        .prod-card-title.trouble { color: var(--warning); }
+
+        .trouble-box {
+            background: rgba(245, 158, 11, 0.08);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+
         /* INTERVIEW PERSPECTIVE SECTION STYLES */
         .interview-toggle-btn {
             width: 100%;
@@ -163,7 +230,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             transition: all 0.25s ease;
         }
         .interview-toggle-btn:hover {
@@ -279,12 +346,13 @@
     <div class="search-section">
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
-            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, questions, or interview terms..." oninput="renderConcepts()">
+            <input type="text" id="search-input" class="search-input" placeholder="Search concepts, commands, production scenarios, or interview terms..." oninput="renderConcepts()">
         </div>
     </div>
 
     <div class="pills-container">
         <button class="pill-btn active" onclick="filterCategory('all', this)"><i class="fa-solid fa-globe"></i> All Modules</button>
+        <button class="pill-btn" onclick="filterCategory('production-ready', this)"><i class="fa-solid fa-server"></i> 🏢 Production Ready</button>
         <button class="pill-btn" onclick="filterCategory('interview-ready', this)"><i class="fa-solid fa-user-ninja"></i> 🎤 Interview Ready</button>
         <button class="pill-btn" onclick="filterCategory('Fundamentals', this)">Fundamentals</button>
         <button class="pill-btn" onclick="filterCategory('HCL & Configuration', this)">HCL & Config</button>
@@ -354,6 +422,17 @@
                 realWorldUsage: "Provisioning standardized multi-region AWS VPC networking clusters with automated subnet tag allocations.",
                 commonMistakes: "Writing imperative inline provisioning scripts (`local-exec`) instead of relying on native declarative provider resources.",
                 productionPerspective: "Declarative code makes infrastructure self-documenting, enabling strict GitOps review workflows via pull requests.",
+                productionPerspectiveData: {
+                    howUsed: "Used in GitOps automated pipelines (GitHub Actions, Azure DevOps) to ensure cloud topology exactly mirrors code merged to main.",
+                    whyItMatters: "Eliminates configuration drift and environment fragmentation across multi-region enterprise cloud infrastructure.",
+                    productionArchitecture: "Main Git repository triggers automated plan on pull request and apply on merge, pointing to remote encrypted state stores.",
+                    recommendedApproach: "Avoid provisioners like local-exec; use native cloud provider resource declarations and cloud-init scripts.",
+                    commonMistakes: "Executing manual out-of-band console changes or embedding imperative shell commands that bypass graph execution.",
+                    security: "Enforce strict RBAC permissions so engineers apply changes through CI/CD service principals rather than personal administrative accounts.",
+                    scalability: "Deconstruct monolith configurations into decoupled root modules organized by domain boundary (Network, Data, Compute).",
+                    troubleshootingScenario: "A developer manually altered a Production Security Group in the AWS console to fix an urgent outage. Running `terraform plan` now shows Terraform trying to destroy the manual rule.",
+                    troubleshootingAnswer: "1. Review the plan diff. 2. Decide whether to adopt the manual change into HCL code or let Terraform revert it. 3. If adopting, add the rule to HCL and re-run plan to verify 0 changes before merging."
+                },
                 interviewPerspective: {
                     difficulty: "🟢 Basic",
                     question: "How does Terraform's declarative model differ from imperative scripting, and how does it handle drift?",
@@ -389,6 +468,17 @@
                 realWorldUsage: "Organizing production repositories into structured `main.tf`, `variables.tf`, `outputs.tf`, and `providers.tf` files.",
                 commonMistakes: "Forgetting quotes around string arguments or improperly nesting blocks inside incorrect parent blocks.",
                 productionPerspective: "Enforce automated formatting using `terraform fmt -check` in pull request CI validation stages.",
+                productionPerspectiveData: {
+                    howUsed: "HCL files are standardized across team repositories using unified conventions (`main.tf`, `variables.tf`, `outputs.tf`, `terraform.tfvars`).",
+                    whyItMatters: "Standardized block formatting allows multiple platform engineers to collaborate without syntax conflicts or merge noise.",
+                    productionArchitecture: "Pre-commit hooks and PR validation gates execute linting tools (`tflint`, `terraform fmt`) prior to pipeline evaluation.",
+                    recommendedApproach: "Maintain strict block alignment, explicitly declare variable types and validation rules, and document outputs.",
+                    commonMistakes: "Putting all infrastructure definitions into a single massive `main.tf` file.",
+                    security: "Never hardcode cleartext credentials or tokens inside HCL variable blocks or local definitions.",
+                    scalability: "Divide complex HCL block hierarchies into dedicated reusable modules referenced via semantic version tags.",
+                    troubleshootingScenario: "A pipeline fails with a syntax error during `terraform validate` after an engineer added a new block without closing braces.",
+                    troubleshootingAnswer: "Run `terraform fmt` and `terraform validate` locally to pinpoint line numbers and parse errors prior to committing code."
+                },
                 interviewPerspective: {
                     difficulty: "🔵 Intermediate",
                     question: "Explain the structure of an HCL block and how Terraform loads `.tf` files in a directory.",
@@ -423,6 +513,17 @@
                 realWorldUsage: "Storing state in Azure Blob / AWS S3 with state locking via DynamoDB or Blob Lease to prevent concurrent apply corruption.",
                 commonMistakes: "Committing `terraform.tfstate` files containing plaintext secret attributes to Git repositories.",
                 productionPerspective: "Always enforce remote state backends with RBAC, encryption at rest, versioning, and state locking enabled.",
+                productionPerspectiveData: {
+                    howUsed: "Centralized remote backends (AWS S3 + DynamoDB or Azure Blob Storage with Lease Locks) host state files for cloud operations.",
+                    whyItMatters: "Prevents state corruption from concurrent applies and enables team collaboration without local file syncing.",
+                    productionArchitecture: "State files are isolated per environment (dev, staging, prod) into dedicated encrypted storage accounts with private endpoints.",
+                    recommendedApproach: "Enable object versioning and soft delete on state storage containers to allow state rollback during emergencies.",
+                    commonMistakes: "Storing multiple environment states in a single `.tfstate` file or storing state locally on engineer laptops.",
+                    security: "State files contain plaintext secrets (passwords, connection strings). Enforce customer-managed key encryption and strict RBAC.",
+                    scalability: "Decompose monolithic state files into smaller, domain-driven remote state files to isolate blast radiuses.",
+                    troubleshootingScenario: "A pipeline run crashed mid-apply due to a runner timeout. Subsequent pipeline runs fail with a 'State Blob Locked' error.",
+                    troubleshootingAnswer: "1. Confirm no active apply pipeline is currently running. 2. Retrieve the Lock ID from pipeline logs. 3. Execute `terraform force-unlock <LOCK-ID>` after verifying safety."
+                },
                 interviewPerspective: {
                     difficulty: "🔴 Production Scenario",
                     question: "Why does Terraform need a state file, and how do you manage state in a production team environment?",
@@ -460,6 +561,18 @@
             container.insertBefore(fallbackDiv, imgElement);
         }
 
+        function toggleProductionBox(btn) {
+            const box = btn.nextElementSibling;
+            const isHidden = getComputedStyle(box).display === 'none';
+            if (isHidden) {
+                box.style.display = 'block';
+                btn.innerHTML = '<span>🏢 Hide Production Perspective Strategy</span> <i class="fa-solid fa-chevron-up"></i>';
+            } else {
+                box.style.display = 'none';
+                btn.innerHTML = '<span>🏢 Show Production Perspective Strategy</span> <i class="fa-solid fa-chevron-down"></i>';
+            }
+        }
+
         function toggleInterviewBox(btn) {
             const box = btn.nextElementSibling;
             const isHidden = getComputedStyle(box).display === 'none';
@@ -482,6 +595,8 @@
                 let matchesCategory = false;
                 if (currentCategory === 'all') {
                     matchesCategory = true;
+                } else if (currentCategory === 'production-ready') {
+                    matchesCategory = !!c.productionPerspectiveData;
                 } else if (currentCategory === 'interview-ready') {
                     matchesCategory = !!c.interviewPerspective;
                 } else {
@@ -494,6 +609,19 @@
                                       c.category.toLowerCase().includes(searchQuery) ||
                                       c.summary.toLowerCase().includes(searchQuery) ||
                                       (c.whatIsIt && c.whatIsIt.toLowerCase().includes(searchQuery));
+
+                if (!matchesSearch && c.productionPerspectiveData) {
+                    const pp = c.productionPerspectiveData;
+                    matchesSearch = (pp.howUsed && pp.howUsed.toLowerCase().includes(searchQuery)) ||
+                                    (pp.whyItMatters && pp.whyItMatters.toLowerCase().includes(searchQuery)) ||
+                                    (pp.productionArchitecture && pp.productionArchitecture.toLowerCase().includes(searchQuery)) ||
+                                    (pp.recommendedApproach && pp.recommendedApproach.toLowerCase().includes(searchQuery)) ||
+                                    (pp.commonMistakes && pp.commonMistakes.toLowerCase().includes(searchQuery)) ||
+                                    (pp.security && pp.security.toLowerCase().includes(searchQuery)) ||
+                                    (pp.scalability && pp.scalability.toLowerCase().includes(searchQuery)) ||
+                                    (pp.troubleshootingScenario && pp.troubleshootingScenario.toLowerCase().includes(searchQuery)) ||
+                                    (pp.troubleshootingAnswer && pp.troubleshootingAnswer.toLowerCase().includes(searchQuery));
+                }
 
                 if (!matchesSearch && c.interviewPerspective) {
                     const ip = c.interviewPerspective;
@@ -587,11 +715,79 @@
                             <p>${item.commonMistakes || 'Avoid hardcoding values.'}</p>
                         </div>
                         <div class="detail-box" style="border-left: 3px solid var(--accent);">
-                            <h4><i class="fa-solid fa-industry"></i> 6. Production Perspective</h4>
+                            <h4><i class="fa-solid fa-industry"></i> 6. Production Perspective Overview</h4>
                             <p>${item.productionPerspective || 'Follow strict GitOps practices.'}</p>
                         </div>
                     </div>
                 `;
+
+                if (item.practiceTask) {
+                    html += `
+                        <div class="interactive-box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
+                            <h4 style="color: var(--success);"><i class="fa-solid fa-terminal"></i> Practice Exercise</h4>
+                            <p style="font-size: 0.92rem; color: #cbd5e1;">${item.practiceTask}</p>
+                            <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Hint / Solution</button>
+                            <div class="collapsible-content">${item.practiceSolution || 'Solution details.'}</div>
+                        </div>
+                    `;
+                }
+
+                // PRODUCTION PERSPECTIVE ACCORDION SECTION
+                if (item.productionPerspectiveData) {
+                    const pp = item.productionPerspectiveData;
+                    html += `
+                        <button class="production-toggle-btn" onclick="toggleProductionBox(this)">
+                            <span>🏢 Show Production Perspective Strategy</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <div class="production-box">
+                            <div class="production-title">
+                                <span><i class="fa-solid fa-server"></i> Production Operations Architecture</span>
+                                <span class="badge-level" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; border-color: #60a5fa;">DevOps Engineering</span>
+                            </div>
+
+                            <div class="prod-grid">
+                                <div class="prod-card">
+                                    <div class="prod-card-title how"><i class="fa-solid fa-microchip"></i> How It Is Used</div>
+                                    <div class="interview-text">${pp.howUsed}</div>
+                                </div>
+                                <div class="prod-card">
+                                    <div class="prod-card-title why"><i class="fa-solid fa-bullseye"></i> Why It Matters</div>
+                                    <div class="interview-text">${pp.whyItMatters}</div>
+                                </div>
+                                <div class="prod-card">
+                                    <div class="prod-card-title arch"><i class="fa-solid fa-sitemap"></i> Production Architecture</div>
+                                    <div class="interview-text">${pp.productionArchitecture}</div>
+                                </div>
+                                <div class="prod-card">
+                                    <div class="prod-card-title rec"><i class="fa-solid fa-circle-check"></i> Recommended Approach</div>
+                                    <div class="interview-text">${pp.recommendedApproach}</div>
+                                </div>
+                                <div class="prod-card">
+                                    <div class="prod-card-title mistake"><i class="fa-solid fa-triangle-exclamation"></i> Common Mistakes</div>
+                                    <div class="interview-text">${pp.commonMistakes}</div>
+                                </div>
+                                <div class="prod-card">
+                                    <div class="prod-card-title sec"><i class="fa-solid fa-shield-halved"></i> Security Considerations</div>
+                                    <div class="interview-text">${pp.security}</div>
+                                </div>
+                                <div class="prod-card">
+                                    <div class="prod-card-title scale"><i class="fa-solid fa-chart-line"></i> Scalability & Growth</div>
+                                    <div class="interview-text">${pp.scalability}</div>
+                                </div>
+                            </div>
+
+                            ${pp.troubleshootingScenario ? `
+                                <div class="trouble-box">
+                                    <div class="prod-card-title trouble"><i class="fa-solid fa-wrench"></i> Production Incident & Troubleshooting Scenario</div>
+                                    <div class="interview-text" style="margin-bottom: 0.5rem;">${pp.troubleshootingScenario}</div>
+                                    <button class="toggle-btn" onclick="toggleCollapsible(this)">🛠️ Show Investigation & Resolution Steps</button>
+                                    <div class="collapsible-content">${pp.troubleshootingAnswer}</div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }
 
                 // INTERVIEW PERSPECTIVE ACCORDION SECTION
                 if (item.interviewPerspective) {
@@ -670,17 +866,6 @@
                                 <div class="interview-label label-tip"><i class="fa-solid fa-lightbulb"></i> Interview Tip</div>
                                 <div class="interview-text" style="color: #fef08a;">${ip.interviewTip}</div>
                             </div>
-                        </div>
-                    `;
-                }
-
-                if (item.practiceTask) {
-                    html += `
-                        <div class="interactive-box" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
-                            <h4 style="color: var(--success);"><i class="fa-solid fa-terminal"></i> Practice Exercise</h4>
-                            <p style="font-size: 0.92rem; color: #cbd5e1;">${item.practiceTask}</p>
-                            <button class="toggle-btn" onclick="toggleCollapsible(this)">Show Hint / Solution</button>
-                            <div class="collapsible-content">${item.practiceSolution || 'Solution details.'}</div>
                         </div>
                     `;
                 }
