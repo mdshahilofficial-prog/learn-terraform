@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terraform Interview & Production Cheat Sheet</title>
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css?v=phase5-final">
 </head>
 <body>
 <header><div class="wrap">
@@ -13,7 +13,7 @@
 <div class="toolbar">
 <input id="search" placeholder="Search: moved, state lock, dynamic, import, provider...">
 <select id="level"><option value="all">All levels</option><option>Core</option><option>Advanced</option><option>Production</option><option>Interview Trap</option></select>
-<button id="expandAll" type="button" onclick="expandAll()">Expand all</button><button id="collapseAll" type="button" onclick="collapseAll()">Collapse all</button><button id="resetProgress" type="button" onclick="resetProgress()">Reset progress</button>
+<button id="expandAll" type="button">Expand all</button><button id="collapseAll" type="button">Collapse all</button><button id="resetProgress" type="button">Reset progress</button>
 </div>
 <div class="tabs" id="tabs"></div>
 </div></header>
@@ -22,13 +22,14 @@
 <div class="card">
 <b>Learning progress</b>
 <div class="progress" style="margin-top:9px"><div class="bar" id="bar"></div></div>
-<div class="small" id="progressText">0 / 0 concepts completed</div>
+<div class="progress-stats"><span class="small" id="progressText">0 / 0 concepts completed</span><span class="small" id="progressPercent">0%</span></div>
+<div class="progress-counts"><span class="small">Total: <b id="totalConcepts">0</b></span><span class="small">Completed: <b id="completedConcepts">0</b></span></div>
 <div class="small revision-help">Revision Mode adds concise interview-focused summaries without replacing the original lessons.</div>
 </div>
 
 <section id="content"></section>
 
-<section>
+<section id="comparison">
 <h2>High-value comparison tables</h2>
 <table>
 <tr><th>Concepts</th><th>Use this when...</th><th>Important distinction</th></tr>
@@ -45,7 +46,7 @@
 </table>
 </section>
 
-<section>
+<section id="interview">
 <h2>Interview rapid-fire</h2>
 <div class="grid">
 <div class="card"><b>Why remote state?</b><p>Centralized state, collaboration, locking where supported, and durable storage. In production, protect the backend with access controls, encryption and versioning.</p></div>
@@ -63,7 +64,7 @@
 </section>
 </main>
 
-<script src="js/concepts.js"></script>
-<script src="js/app.js"></script>
+<script src="js/concepts.js?v=phase5-final"></script>
+<script src="js/app.js?v=phase5-final"></script>
 </body>
 </html>

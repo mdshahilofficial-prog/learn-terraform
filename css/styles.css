@@ -61,3 +61,7 @@ code{background:#f0f1f5;border-radius:5px;padding:2px 5px;font-size:.9em}
 .compact-hidden{display:none!important}.revision-help{margin-top:6px;color:#6757e8}
 body.revision-mode-active .concept-card{border-color:#d8d2ff}
 @media(max-width:700px){.revision-toggle-btn{width:100%}.revision-badge{margin-left:auto}}
+
+/* Phase 5 fallback when a concept has no revision dataset yet */
+.revision-notice{margin-top:12px;padding:12px 14px;border:1px dashed #b8b0ff;border-radius:10px;background:#faf9ff;color:#5b547e;display:flex;flex-direction:column;gap:3px;font-size:12px}
+.revision-notice strong{color:#6757e8;font-size:13px}

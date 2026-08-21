@@ -14,6 +14,8 @@ let isRevisionMode = false;
 
 const STORAGE_KEY = "terraform-learning-platform-progress-v2";
 const $ = (id) => document.getElementById(id);
+const setText = (id, value) => { const el = $(id); if (el) el.textContent = value; return el; };
+const setWidth = (id, value) => { const el = $(id); if (el) el.style.width = value; return el; };
 
 function escapeHtml(value) {
   return String(value).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
@@ -44,7 +46,9 @@ function showToast(message) {
 }
 
 function renderTabs() {
-  $("tabs").innerHTML=["All",...LESSONS.map(x=>x.cat)].map(category =>
+  const tabs = $("tabs");
+  if (!tabs) return;
+  tabs.innerHTML=["All",...LESSONS.map(x=>x.cat)].map(category =>
     `<button class="tab ${state.category===category?"active":""}" data-category="${escapeHtml(category)}">${escapeHtml(category)}</button>`
   ).join("");
 }
@@ -80,20 +84,25 @@ function filteredLessons() {
 }
 
 function renderStats() {
-  const total=allLessons().length;
-  const validIds=new Set(allLessons().map(x=>lessonId(x.group.cat,x.item[0])));
-  const completed=[...state.completed].filter(id=>validIds.has(id)).length;
-  const percent=total ? Math.round(completed/total*100) : 0;
-  $("bar").style.width=percent+"%";
-  $("progressText").textContent=`${completed} / ${total} concepts completed`;
-  $("progressPercent").textContent=percent+"%";
-  $("totalConcepts").textContent=total;
-  $("completedConcepts").textContent=completed;
+  const lessons = allLessons();
+  const total = lessons.length;
+  const validIds = new Set(lessons.map(x => lessonId(x.group.cat, x.item[0])));
+  const completed = [...state.completed].filter(id => validIds.has(id)).length;
+  const percent = total ? Math.round(completed / total * 100) : 0;
+  setWidth("bar", percent + "%");
+  setText("progressText", `${completed} / ${total} concepts completed`);
+  setText("progressPercent", percent + "%");
+  setText("totalConcepts", total);
+  setText("completedConcepts", completed);
 }
 
 function createRevisionHTML(title) {
   const r = getRevisionForLesson(title);
-  if (!r) return "";
+  if (!r) {
+    return isRevisionMode
+      ? `<div class="revision-notice"><strong>🔄 Quick Revision</strong><span>Revision summary is not available for this concept yet.</span></div>`
+      : "";
+  }
   const commands = (r.importantCommands || []).map(c =>
     `<li><code>${escapeHtml(c.command)}</code> — ${escapeHtml(c.explanation)}</li>`
   ).join("");
@@ -143,12 +152,14 @@ function renderCard(category,item) {
 }
 
 function renderLessons() {
+  const content = $("content");
+  if (!content) return;
   const groups=filteredLessons();
   if(!groups.length) {
-    $("content").innerHTML=`<div class="empty-state card"><div class="empty-icon">⌕</div><h2>No concepts found</h2><p>Try a different search term, level, or category.</p><button id="clearFilters">Clear filters</button></div>`;
+    content.innerHTML=`<div class="empty-state card"><div class="empty-icon">⌕</div><h2>No concepts found</h2><p>Try a different search term, level, or category.</p><button id="clearFilters" type="button">Clear filters</button></div>`;
     renderStats(); return;
   }
-  $("content").innerHTML=groups.map(group=>`
+  content.innerHTML=groups.map(group=>`
     <section class="lesson-section">
       <div class="section-heading">
         <div><p class="eyebrow">LEARNING PATH</p><h2>${escapeHtml(group.cat)}</h2></div>
@@ -160,7 +171,9 @@ function renderLessons() {
 }
 
 function renderComparison() {
-  $("comparison").innerHTML=`
+  const comparison = $("comparison");
+  if (!comparison) return;
+  comparison.innerHTML=`
     <div class="section-heading"><div><p class="eyebrow">REFERENCE</p><h2>High-value comparisons</h2></div></div>
     <div class="table-wrap"><table>
     <thead><tr><th>Concepts</th><th>Use this when...</th><th>Important distinction</th></tr></thead>
@@ -179,7 +192,9 @@ function renderComparison() {
 }
 
 function renderInterview() {
-  $("interview").innerHTML=`
+  const interview = $("interview");
+  if (!interview) return;
+  interview.innerHTML=`
     <div class="section-heading"><div><p class="eyebrow">INTERVIEW MODE</p><h2>Rapid-fire Terraform questions</h2></div><span class="section-count">${QUIZ_QUESTIONS.length} questions</span></div>
     <div class="interview-grid">${QUIZ_QUESTIONS.map((q,i)=>`
       <article class="interview-card">
@@ -191,8 +206,10 @@ function renderInterview() {
 }
 
 function renderQuiz() {
+  const quiz = $("quiz");
+  if (!quiz) return;
   state.quizScore=0; state.answeredQuiz.clear();
-  $("quiz").innerHTML=`
+  quiz.innerHTML=`
     <div class="quiz-head"><div><p class="eyebrow">SELF TEST</p><h2>Test yourself</h2></div><span class="score-pill" id="quizScore">0 / ${QUIZ_QUESTIONS.length}</span></div>
     <div class="quiz-list">${QUIZ_QUESTIONS.map((q,i)=>{
       const options=[...new Set([q[1],"It depends only on terraform fmt","terraform state rm","depends_on"])].sort(()=>Math.random()-.5);
@@ -214,6 +231,7 @@ function answerQuiz(button,index,value) {
   const correct=value===QUIZ_QUESTIONS[index][1];
   if(correct) state.quizScore++;
   const container=button.closest(".quiz-question");
+  if (!container) return;
   container.querySelectorAll("button").forEach(btn=>{
     btn.disabled=true;
     if(btn.textContent===QUIZ_QUESTIONS[index][1]) btn.classList.add("correct");
@@ -236,7 +254,10 @@ async function copyText(text) {
 
 function clearFilters(){
   state.search="";state.category="All";state.level="all";
-  $("search").value="";$("level").value="all";renderTabs();renderLessons();
+  const search=$("search"); const level=$("level");
+  if (search) search.value="";
+  if (level) level.value="all";
+  renderTabs();renderLessons();
 }
 function resetProgress(){
   if(!confirm("Reset all Terraform learning progress?")) return;
@@ -245,36 +266,58 @@ function resetProgress(){
 function expandAll(){document.querySelectorAll("#content details").forEach(x=>x.open=true);}
 function collapseAll(){document.querySelectorAll("#content details").forEach(x=>x.open=false);}
 
-document.addEventListener("click",event=>{
-  const tab=event.target.closest("[data-category]");
-  if(tab){state.category=tab.dataset.category;renderTabs();renderLessons();return;}
-  const action=event.target.closest("[data-action]");
-  if(!action) {
-    if(event.target.id==="clearFilters") clearFilters();
-    return;
-  }
-  if(action.dataset.action==="complete") toggleComplete(action.dataset.id);
-  if(action.dataset.action==="copy") copyText(action.dataset.copy);
-  if(action.dataset.action==="answer") answerQuiz(action,Number(action.dataset.q),action.dataset.value);
-  if(action.dataset.action==="reveal"){
-    const target=$(`answer-${action.dataset.qid}`);
-    const open=target.classList.toggle("show");
-    target.textContent=open?`Answer: ${action.dataset.answer}`:"";
-    action.textContent=open?"Hide answer":"Reveal answer";
-  }
-});
+function bindEvents(){
+  document.addEventListener("click", event => {
+    const tab = event.target.closest("[data-category]");
+    if(tab){
+      state.category = tab.dataset.category;
+      renderTabs();
+      renderLessons();
+      return;
+    }
+    const action = event.target.closest("[data-action]");
+    if(!action) {
+      if(event.target.id === "clearFilters") clearFilters();
+      return;
+    }
+    if(action.dataset.action === "complete") toggleComplete(action.dataset.id);
+    if(action.dataset.action === "copy") copyText(action.dataset.copy);
+    if(action.dataset.action === "answer") answerQuiz(action, Number(action.dataset.q), action.dataset.value);
+    if(action.dataset.action === "reveal"){
+      const target = $("answer-" + action.dataset.qid);
+      if (!target) return;
+      const open = target.classList.toggle("show");
+      target.textContent = open ? `Answer: ${action.dataset.answer}` : "";
+      action.textContent = open ? "Hide answer" : "Reveal answer";
+    }
+  });
 
-$("search").addEventListener("input",e=>{state.search=e.target.value;renderLessons();});
-$("level").addEventListener("change",e=>{state.level=e.target.value;renderLessons();});
-$("expandAll").addEventListener("click",expandAll);
-$("collapseAll").addEventListener("click",collapseAll);
-$("resetProgress").addEventListener("click",resetProgress);
+  const search = $("search");
+  if (search) search.addEventListener("input", e => { state.search = e.target.value; renderLessons(); });
+  const level = $("level");
+  if (level) level.addEventListener("change", e => { state.level = e.target.value; renderLessons(); });
+  const expand = $("expandAll");
+  if (expand) expand.addEventListener("click", expandAll);
+  const collapse = $("collapseAll");
+  if (collapse) collapse.addEventListener("click", collapseAll);
+  const reset = $("resetProgress");
+  if (reset) reset.addEventListener("click", resetProgress);
 
-document.addEventListener("keydown",event=>{
-  const tag=document.activeElement?.tagName;
-  if(event.key==="/" && !["INPUT","TEXTAREA","SELECT"].includes(tag)){event.preventDefault();$("search").focus();}
-  if(event.key==="Escape" && tag==="INPUT"){ $("search").value="";state.search="";renderLessons();$("search").blur(); }
-});
+  document.addEventListener("keydown", event => {
+    const tag = document.activeElement?.tagName;
+    if(event.key === "/" && !["INPUT","TEXTAREA","SELECT"].includes(tag)){
+      event.preventDefault();
+      $("search")?.focus();
+    }
+    if(event.key === "Escape" && tag === "INPUT"){
+      const searchInput = $("search");
+      if (searchInput) searchInput.value = "";
+      state.search = "";
+      renderLessons();
+      searchInput?.blur();
+    }
+  });
+}
 
 function render(){ renderLessons(); }
 
@@ -299,14 +342,24 @@ function setupRevisionModeToggle(){
   toolbar.appendChild(button);
 }
 
+let initialized = false;
 function init(){
+  if (initialized) return;
+  initialized = true;
   loadProgress();
+  bindEvents();
   setupRevisionModeToggle();
   renderTabs();
   renderLessons();
   renderComparison();
   renderInterview();
   renderQuiz();
+  window.__PHASE5_READY__ = true;
+  window.phase5 = Object.freeze({
+    totalConcepts: allLessons().length,
+    revisionConcepts: allLessons().filter(x => Boolean(getRevisionForLesson(x.item[0]))).length,
+    revisionMode: () => isRevisionMode
+  });
 }
-if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init);
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init,{once:true});
 else init();
